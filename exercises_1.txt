@@ -1,0 +1,15 @@
+
+1. 	Write a for loop that prints out the song "99 Bottles of Beer".
+
+	Use the link to below to see to the full lyrics:
+
+	http://www.99-bottles-of-beer.net/lyrics.html
+
+--------------------------------------------------------------------------------
+
+2. 	Take your for loop from Exercise #1 and put it in a function that takes a 
+	number argument and a string argument that allows the for loop to start 
+	counting at any whole number and allows the word "Beer" to be replaced by 
+	any string.
+
+--------------------------------------------------------------------------------

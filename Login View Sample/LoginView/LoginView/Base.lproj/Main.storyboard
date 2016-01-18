@@ -14,21 +14,21 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-MX-5Kd">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Input Box" translatesAutoresizingMaskIntoConstraints="NO" id="69j-92-zkR">
-                                <rect key="frame" x="185" y="220" width="230" height="120"/>
+                                <rect key="frame" x="45" y="220" width="230" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="Coy-k6-Kxa"/>
                                     <constraint firstAttribute="height" constant="120" id="F9B-cN-NeE"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BUq-Xp-EUQ" userLabel="User Name">
-                                <rect key="frame" x="200" y="238" width="200" height="35"/>
+                                <rect key="frame" x="60" y="238" width="200" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="EhE-WN-rbc"/>
                                     <constraint firstAttribute="width" constant="200" id="PGs-SZ-oSq"/>
@@ -37,7 +37,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MPv-gk-mj8" userLabel="Password">
-                                <rect key="frame" x="200" y="288" width="200" height="35"/>
+                                <rect key="frame" x="60" y="288" width="200" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="7fG-nS-F6v"/>
                                     <constraint firstAttribute="height" constant="35" id="Avx-h8-25k"/>
@@ -46,8 +46,8 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpg-Qy-LaK">
-                                <rect key="frame" x="258" y="369" width="83" height="33"/>
-                                <state key="normal" title="Login" backgroundImage="Green Button"/>
+                                <rect key="frame" x="112" y="369" width="96" height="33"/>
+                                <state key="normal" title="Login" backgroundImage="Button"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -66,6 +66,7 @@
                             <constraint firstItem="BUq-Xp-EUQ" firstAttribute="centerX" secondItem="69j-92-zkR" secondAttribute="centerX" id="vmj-Xh-3Wi"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,7 +75,7 @@
     </scenes>
     <resources>
         <image name="Background" width="414" height="736"/>
-        <image name="Green Button" width="83" height="33"/>
-        <image name="Input Box" width="233" height="119"/>
+        <image name="Button" width="96" height="33"/>
+        <image name="Input Box" width="233" height="116"/>
     </resources>
 </document>

@@ -2,7 +2,7 @@
 //  MyTableViewCell.swift
 //  CustomTableCell
 //
-//  Created by Kevin Harris on 1/24/16.
+//  Created by Kevin Harris on 1/25/16.
 //  Copyright © 2016 Guild/SA. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  SecondViewController.swift
 //  TestTableView
 //
-//  Created by Kevin Harris on 1/20/16.
+//  Created by Kevin Harris on 1/25/16.
 //  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
@@ -17,8 +17,9 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
+        // Once the view loads, use the String value stored in textData to
+        // to set the view's label text as proof that we actually got the 
+        // data passed to us from the other view controller.
         textLabel.text = textData
     }
 

@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  TableViewSegue
 //
-//  Created by Kevin Harris on 1/19/16.
+//  Created by Kevin Harris on 1/25/16.
 //  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
@@ -75,20 +75,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         print("User selected section: \(indexPath.section), row: \(indexPath.row)")
         
+        // The user has tapped or selected a row in our table view - manually fire our
+        // named Segue.
         performSegueWithIdentifier("My Segue", sender: tableView)
     }
     
+    // We can override this method in UIViewController if we want to perform some
+    // logic before a Segue actually fires off.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         if segue.identifier == "My Segue" {
             
             print("Preparing for My Segue!")
             
+            // Ask the table view what row is currenlty selected.
             let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
+            
             print("User selected section: \(indexPath.section), row: \(indexPath.row)")
             
-            let secondVC:SecondViewController = segue.destinationViewController as! SecondViewController
+            let secondVC = segue.destinationViewController as! SecondViewController
             
+            // Pass some data to the next View Controller by setting one or more of
+            // its properties.
             secondVC.textData = myData[indexPath.row]
         }
     }

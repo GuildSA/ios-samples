@@ -2,16 +2,16 @@
 //  ViewController.swift
 //  TableView
 //
-//  Created by Kevin Harris on 11/5/15.
-//  Copyright © 2015 Guild/SA. All rights reserved.
+//  Created by Kevin Harris on 1/25/16.
+//  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
-      
+    
     let myData = [
         "Some data 1",
         "Some data 2",
@@ -39,36 +39,46 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
- 
-//        // This can be done in the StoryBoard if you don't want to write these lines!
-//        tableView.delegate = self
-//        tableView.dataSource = self
+        
+        // This sample sets the dataSource and delegate in the StoryBoard, but you may
+        // see some code samples where they're set here in code like so.
+        //tableView.delegate = self
+        //tableView.dataSource = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    // From UITableViewDataSource protocol.
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        // We only have one section in our table view.
         return 1
     }
-
+    
+    // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        // The number of rows we want for out table view is directly related to
+        // the number of data entries we have in our data array.
         return myData.count
     }
-
+    
+    // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        // This will try to reuse a cell if one can be found. If not, a new cell will be created.
         let cell = tableView.dequeueReusableCellWithIdentifier("My Cell", forIndexPath: indexPath) as UITableViewCell
         
+        // Find out what index or row we're building for and use that to fetch the corresponding data.
         let row = indexPath.row
         
         cell.textLabel?.text = myData[row]
         
+        // Finally, return the cell so it can be placed into the table view.
         return cell
     }
 }
-

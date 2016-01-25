@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  CustomTableCell
 //
-//  Created by Kevin Harris on 11/5/15.
-//  Copyright © 2015 Guild/SA. All rights reserved.
+//  Created by Kevin Harris on 1/25/16.
+//  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
 import UIKit
@@ -47,15 +47,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
 
+    // From UITableViewDataSource protocol.
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
         return 1
     }
 
+    // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return myData.count
     }
 
+    // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("My Cell", forIndexPath: indexPath) as! MyTableViewCell
@@ -67,22 +71,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    // From UITableViewDelegate protocol.
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
         return true
     }
     
+    // From UITableViewDelegate protocol.
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = UIColor.redColor()
     }
     
+    // From UITableViewDelegate protocol.
     func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.contentView.backgroundColor = UIColor.clearColor()
     }
     
+    // From UITableViewDelegate protocol.
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)

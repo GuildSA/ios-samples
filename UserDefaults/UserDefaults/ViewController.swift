@@ -80,7 +80,7 @@ class ViewController: UIViewController {
 
         let searchTermsArray = ["Irish Pubs", "Concerts Frisco", "Coffee Shops"]
         let searchTermsData = NSKeyedArchiver.archivedDataWithRootObject(searchTermsArray)
-        NSUserDefaults.standardUserDefaults().setObject(searchTermsData, forKey: "SEARCH_TERMS")
+        defaults.setObject(searchTermsData, forKey: "SEARCH_TERMS")
         
         defaults.synchronize()
     }

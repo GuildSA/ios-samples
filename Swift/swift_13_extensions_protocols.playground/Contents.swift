@@ -76,8 +76,8 @@ protocol Weapon {
     func description()
 }
 
-// This protocol declares a single method called Speak.
-// Any class that conforms to this protocol must implement this method. Try this by adding two classes that conform to your protocol:
+// Any class that conforms to this protocol must implement these methods 
+// and properties. Below are two classes that conform to our Weapon protocol:
 
 class ShortSword: Weapon {
     

@@ -32,13 +32,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
-    @IBAction func onTouchUpInsideCreateBtn(sender: UIButton) {
+    @IBAction func onTouchUpInsideRegisterBtn(sender: UIButton) {
         
-        print( "onTouchUpInsideCreateBtn called!" )
+        print( "onTouchUpInsideRegisterBtn called!" )
         
+        // In a real app, this where we would send the user to a register screen to collect their
+        // user name and password for registering a new user. For testing purposes, we will simply
+        // register a test user using a hard coded user name and password.
         let user: BackendlessUser = BackendlessUser()
-        
         user.email = USER_NAME
         user.password = PASSWORD
         
@@ -52,23 +53,45 @@ class ViewController: UIViewController {
                 print("User failed to register: \(fault)")
             }
         )
-        
     }
     
     @IBAction func onTouchUpInsideLoginBtn(sender: UIButton) {
         
         print( "onTouchUpInsideLoginBtn called!" )
         
-        backendless.userService.login( USER_NAME, password:PASSWORD,
+        // First, check if the user is already logged in. If they are, we don't need to
+        // ask them to login again.
+        let isValidUser = backendless.userService.isValidUserToken()
+        
+        if(isValidUser != nil && isValidUser != 0) {
             
-            response: { ( user : BackendlessUser!) -> () in
-                print("User logged in: \(user.objectId)")
-            },
+            // The user has a valid user token so we know for sure the user is already logged!
+            print("User is already logged: \(isValidUser.boolValue)");
             
-            error: { ( fault : Fault!) -> () in
-                print("User failed to login: \(fault)")
-            }
-        )
+        } else {
+            
+            // If we were unable to find a valid user token, the user is not logged and they'll
+            // need to login. In a real app, this where we would send the user to a login screen to
+            // collect their user name and password for the login attempt. For testing purposes,
+            // we will simply login a test user using a hard coded user name and password.
+            
+            // Please note for a user to stay logged in, we had to make a call to
+            // backendless.userService.setStayLoggedIn(true) and pass true.
+            // This asks that the user should stay logged in by storing or caching the user's login
+            // information so future logins can be skipped next time the user launches the app.
+            // For this sample this call was made in the AppDelegate in didFinishLaunchingWithOptions.
+            
+            backendless.userService.login( USER_NAME, password:PASSWORD,
+                
+                response: { ( user : BackendlessUser!) -> () in
+                    print("User logged in: \(user.objectId)")
+                },
+                
+                error: { ( fault : Fault!) -> () in
+                    print("User failed to login: \(fault)")
+                }
+            )
+        }
     }
     
     @IBAction func onTouchUpInsideCreateCommentBtn(sender: UIButton) {
@@ -85,7 +108,7 @@ class ViewController: UIViewController {
                 
                 let comment = entity as! Comment
                 
-                print("Comment was saved: \(comment.objectId!), message: \(comment.message)")
+                print("Comment was saved: \(comment.objectId!), message: \(comment.message!)")
             },
             
             error: { ( fault : Fault!) -> () in
@@ -96,6 +119,8 @@ class ViewController: UIViewController {
     
     @IBAction func onTouchUpInsideFetchCommentsBtn(sender: UIButton) {
       
+        print( "onTouchUpInsideFetchCommentsBtn called!" )
+        
         let dataStore = self.backendless.persistenceService.of(Comment.ofClass())
         
         dataStore.find(
@@ -104,7 +129,10 @@ class ViewController: UIViewController {
                 print("Comments have been fetched:")
                 
                 for comment in comments.data {
-                    print("Comment: \(comment.objectId), message: \(comment.message)")
+                    
+                    let comment = comment as! Comment
+                    
+                    print("Comment: \(comment.objectId!), message: \(comment.message!)")
                 }
             },
             

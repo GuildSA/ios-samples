@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let backendless = Backendless.sharedInstance()
         backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+        backendless.userService.setStayLoggedIn(true)
         
         // If you plan to use Backendless Media Service, uncomment the following line (iOS ONLY!)
         // backendless.mediaService = MediaService()

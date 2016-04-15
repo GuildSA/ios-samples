@@ -1,0 +1,10 @@
+PODS:
+  - Backendless-ios-SDK (3.0.14)
+
+DEPENDENCIES:
+  - Backendless-ios-SDK
+
+SPEC CHECKSUMS:
+  Backendless-ios-SDK: 5c35bc02fdf7875f782e0cc353aa8b289e71f87f
+
+COCOAPODS: 0.39.0

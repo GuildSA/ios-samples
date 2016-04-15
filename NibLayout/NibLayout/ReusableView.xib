@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageView" customModule="NibLayout" customModuleProvider="target">
@@ -15,21 +15,37 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ReusableView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0X-9C-Ljh">
-                    <rect key="frame" x="68" y="65" width="115" height="20"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WkM-PI-6Gl">
+                    <rect key="frame" x="10" y="10" width="230" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="7zt-09-Eak"/>
-                        <constraint firstAttribute="width" constant="115" id="Oqc-yp-MUW"/>
+                        <constraint firstAttribute="height" constant="40" id="uG4-SP-aB6"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pYp-Gb-uHz">
+                    <rect key="frame" x="8" y="60" width="234" height="31"/>
+                </slider>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48t-bj-6nh">
+                    <rect key="frame" x="75" y="100" width="100" height="40"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Dlt-hb-Gbs"/>
+                        <constraint firstAttribute="width" constant="100" id="Uge-S5-2wi"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="k0X-9C-Ljh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FTX-8w-Cm5"/>
-                <constraint firstItem="k0X-9C-Ljh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="M8u-4d-Ulp"/>
+                <constraint firstItem="pYp-Gb-uHz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="NBE-VT-PPV"/>
+                <constraint firstItem="pYp-Gb-uHz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ThE-vE-cXq"/>
+                <constraint firstAttribute="bottom" secondItem="48t-bj-6nh" secondAttribute="bottom" constant="10" id="W7q-V7-14L"/>
+                <constraint firstItem="WkM-PI-6Gl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="btc-3c-nrt"/>
+                <constraint firstItem="WkM-PI-6Gl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="cNE-vS-wXU"/>
+                <constraint firstItem="48t-bj-6nh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ebx-Lj-MJp"/>
+                <constraint firstAttribute="trailing" secondItem="pYp-Gb-uHz" secondAttribute="trailing" constant="10" id="qY3-6F-eEy"/>
+                <constraint firstAttribute="trailing" secondItem="WkM-PI-6Gl" secondAttribute="trailing" constant="10" id="rFr-tn-Kng"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="238" y="222"/>

@@ -1,0 +1,28 @@
+{
+    "weapons": {
+        "swords": [
+            {
+                "name": "Short Sword",
+                "damage": 25
+            },
+            {
+                "name": "Broad Sword",
+                "damage": 100
+            },
+            {
+                "name": "Skull Cleaver",
+                "damage": 150
+            }
+        ],
+        "spears": [
+            {
+                "name": "Wooden Spear",
+                "damage": 15
+            },
+            {
+                "name": "Iron Spear",
+                "damage": 20
+            }
+        ]
+    }
+}

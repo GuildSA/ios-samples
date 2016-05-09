@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GzK-js-I8O">
-                                <rect key="frame" x="98" y="40" width="125" height="190"/>
+                                <rect key="frame" x="85" y="40" width="150" height="190"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW1-Vq-XUE">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Register User"/>
                                         <connections>
@@ -29,7 +29,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFb-5w-Umb">
-                                        <rect key="frame" x="0.0" y="40" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="40" width="150" height="30"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Login User"/>
                                         <connections>
@@ -37,36 +37,30 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lhd-lt-Itw">
-                                        <rect key="frame" x="0.0" y="80" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="80" width="150" height="30"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="fpR-75-2Cb"/>
-                                        </constraints>
                                         <state key="normal" title="Create Comment"/>
                                         <connections>
                                             <action selector="onTouchUpInsideCreateCommentBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LgO-a1-C8h"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9N-S0-n43">
-                                        <rect key="frame" x="0.0" y="120" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="120" width="150" height="30"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="1a8-Pe-bvj"/>
-                                        </constraints>
                                         <state key="normal" title="Fetch Comments"/>
                                         <connections>
                                             <action selector="onTouchUpInsideFetchCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MNC-JQ-BYY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRz-cI-Nou">
-                                        <rect key="frame" x="0.0" y="160" width="125" height="30"/>
+                                        <rect key="frame" x="0.0" y="160" width="150" height="30"/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="zzr-8Y-H0M"/>
+                                            <constraint firstAttribute="width" constant="150" id="zzr-8Y-H0M"/>
                                         </constraints>
-                                        <state key="normal" title="Delete Comments"/>
+                                        <state key="normal" title="Remove Comments"/>
                                         <connections>
-                                            <action selector="onTouchUpInsideDeleteCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Klz-ek-07S"/>
+                                            <action selector="onTouchUpInsideRemoveCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tCx-Pq-wsI"/>
                                         </connections>
                                     </button>
                                 </subviews>

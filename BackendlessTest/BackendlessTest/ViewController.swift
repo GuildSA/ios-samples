@@ -142,9 +142,9 @@ class ViewController: UIViewController {
         )
     }
     
-    @IBAction func onTouchUpInsideDeleteCommentsBtn(sender: UIButton) {
+    @IBAction func onTouchUpInsideRemoveCommentsBtn(sender: UIButton) {
         
-        print( "onTouchUpInsideDeleteCommentsBtn called!" )
+        print( "onTouchUpInsideRemoveCommentsBtn called!" )
         
         let dataStore = self.backendless.persistenceService.of(Comment.ofClass())
         
@@ -165,8 +165,7 @@ class ViewController: UIViewController {
                     let result = dataStore.remove(comment, fault: &error)
                     if error == nil {
                         print("One Comment has been removed: \(result)")
-                    }
-                    else {
+                    } else {
                         print("Server reported an error on attempted removal: \(error)")
                     }
                 }

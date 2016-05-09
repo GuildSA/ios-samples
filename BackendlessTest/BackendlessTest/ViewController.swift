@@ -141,5 +141,41 @@ class ViewController: UIViewController {
             }
         )
     }
+    
+    @IBAction func onTouchUpInsideDeleteCommentsBtn(sender: UIButton) {
+        
+        print( "onTouchUpInsideDeleteCommentsBtn called!" )
+        
+        let dataStore = self.backendless.persistenceService.of(Comment.ofClass())
+        
+        // Find all the Comments!
+        dataStore.find(
+            
+            { ( comments : BackendlessCollection!) -> () in
+                print("Comments have been fetched:")
+                
+                // Now, remove all the Comments we found - one by one!
+                for comment in comments.data {
+                    
+                    let comment = comment as! Comment
+                    
+                    print("Remove Comment: \(comment.objectId!)")
+
+                    var error: Fault?
+                    let result = dataStore.remove(comment, fault: &error)
+                    if error == nil {
+                        print("One Comment has been removed: \(result)")
+                    }
+                    else {
+                        print("Server reported an error on attempted removal: \(error)")
+                    }
+                }
+            },
+            
+            error: { ( fault : Fault!) -> () in
+                print("Comments were not fetched: \(fault)")
+            }
+        )
+    }
 }
 

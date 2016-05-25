@@ -35,17 +35,17 @@ class ViewController: UIViewController {
                 if let fileAsString = NSString(data: fileData, encoding: encoding) {
                     return fileAsString as String
                 } else {
-                    print("weaponsDictionary failed on: \(fileName). Failed to convert data to String!")
+                    print("readFileFromResources failed on: \(fileName). Failed to convert data to String!")
                     return  ""
                 }
                 
             } else {
-                print("weaponsDictionary failed on: \(fileName). Failed to load any data!")
+                print("readFileFromResources failed on: \(fileName). Failed to load any data!")
                 return  ""
             }
         }
 
-        print("weaponsDictionary failed on: \(fileName). File does not exist!")
+        print("readFileFromResources failed on: \(fileName). File does not exist!")
         return  ""
     }
     

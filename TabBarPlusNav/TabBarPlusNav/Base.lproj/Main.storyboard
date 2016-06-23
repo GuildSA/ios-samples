@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--First-->
@@ -21,13 +21,13 @@
                                 <rect key="frame" x="81" y="263" width="158" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
                                 <rect key="frame" x="63" y="313" width="195" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -61,11 +61,17 @@
                                 <rect key="frame" x="75" y="263" width="170" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by ThirdViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zb0-Gd-qGI">
+                                <rect key="frame" x="60" y="313" width="200" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUg-AP-mZi">
-                                <rect key="frame" x="118" y="313" width="85" height="30"/>
+                                <rect key="frame" x="118" y="338" width="85" height="30"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="R4u-go-3g3"/>
@@ -79,9 +85,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lUg-AP-mZi" firstAttribute="top" secondItem="zhd-bz-kr8" secondAttribute="bottom" constant="8" symbolic="YES" id="92F-Lq-Uub"/>
                             <constraint firstItem="zhd-bz-kr8" firstAttribute="centerX" secondItem="RiE-mJ-ElS" secondAttribute="centerX" id="GOI-JS-Bc0"/>
-                            <constraint firstItem="lUg-AP-mZi" firstAttribute="centerX" secondItem="zhd-bz-kr8" secondAttribute="centerX" id="fqC-Dg-nvd"/>
+                            <constraint firstItem="lUg-AP-mZi" firstAttribute="top" secondItem="zb0-Gd-qGI" secondAttribute="bottom" constant="8" id="Mvv-sL-dy6"/>
+                            <constraint firstItem="zb0-Gd-qGI" firstAttribute="centerX" secondItem="zhd-bz-kr8" secondAttribute="centerX" id="Orm-O4-ca5"/>
+                            <constraint firstItem="lUg-AP-mZi" firstAttribute="centerX" secondItem="zb0-Gd-qGI" secondAttribute="centerX" id="VaR-2P-K9g"/>
+                            <constraint firstItem="zb0-Gd-qGI" firstAttribute="top" secondItem="zhd-bz-kr8" secondAttribute="bottom" constant="8" id="dbr-EN-1yg"/>
                             <constraint firstItem="zhd-bz-kr8" firstAttribute="centerY" secondItem="RiE-mJ-ElS" secondAttribute="centerY" id="plR-87-cNb"/>
                         </constraints>
                     </view>
@@ -92,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="426" y="746"/>
         </scene>
-        <!--View Controller-->
+        <!--Fourth View Controller-->
         <scene sceneID="EhV-7N-Y54">
             <objects>
-                <viewController id="sRN-TR-hVp" sceneMemberID="viewController">
+                <viewController id="sRN-TR-hVp" customClass="FourthViewController" customModule="TabBarPlusNav" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nZU-9Z-5gv"/>
                         <viewControllerLayoutGuide type="bottom" id="oHj-E4-63d"/>
@@ -103,7 +111,37 @@
                     <view key="view" contentMode="scaleToFill" id="7ZG-4p-Wff">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fourth View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7K-v4-FnB">
+                                <rect key="frame" x="59" y="263" width="202" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Pf2-Bu-Nz3"/>
+                                    <constraint firstAttribute="width" constant="202" id="Syw-Tj-pcN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVZ-hb-3iD">
+                                <rect key="frame" x="105" y="313" width="110" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="nE4-Eb-gRQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="op3-Ge-Sxv"/>
+                                </constraints>
+                                <state key="normal" title="Jump to a Tab"/>
+                                <connections>
+                                    <action selector="onTouchUpInsideJumpToTab:" destination="sRN-TR-hVp" eventType="touchUpInside" id="11s-n3-7Pd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X7K-v4-FnB" firstAttribute="centerY" secondItem="7ZG-4p-Wff" secondAttribute="centerY" id="G9E-hG-nyZ"/>
+                            <constraint firstItem="PVZ-hb-3iD" firstAttribute="centerX" secondItem="X7K-v4-FnB" secondAttribute="centerX" id="HIm-To-ND7"/>
+                            <constraint firstItem="X7K-v4-FnB" firstAttribute="centerX" secondItem="7ZG-4p-Wff" secondAttribute="centerX" id="iCO-Mi-2mk"/>
+                            <constraint firstItem="PVZ-hb-3iD" firstAttribute="top" secondItem="X7K-v4-FnB" secondAttribute="bottom" constant="8" id="zFF-5i-F2S"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -127,13 +165,13 @@
                                 <rect key="frame" x="55" y="263" width="210" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
                                 <rect key="frame" x="53" y="313" width="215" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

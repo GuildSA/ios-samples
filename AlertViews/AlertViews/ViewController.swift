@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         if sender.tag == 1 {
             
             //
-            // Simple Alert
+            // UIAlertController - Simple
             //
             
             let alertController = UIAlertController(title: "Discard Settings", message: "Are you sure you want to discard these settings?", preferredStyle: .Alert)
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         } else if sender.tag == 2 {
                 
             //
-            // Alert + TextFields
+            // UIAlertController - With Text Fields
             //
             
             let alertController = UIAlertController(title: "Account Login", message: "Please enter your login credentials.", preferredStyle: .Alert)
@@ -92,7 +92,7 @@ class ViewController: UIViewController {
         } else if sender.tag == 3 {
             
             //
-            // Action Sheet
+            // UIAlertController - Action Sheet
             //
             
             let alertController = UIAlertController(title: nil, message: "You have changed this image. What would you like to do with it?", preferredStyle: .ActionSheet)

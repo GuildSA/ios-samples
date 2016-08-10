@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet weak var colorPickerView: UIPickerView!
+    @IBOutlet weak var datePickerView: UIPickerView!
+    
     var pickerColors = ["White", "Red", "Green", "Blue", "Purple", "Orange", "Brown"];
     
     var pickerDates = [
@@ -31,9 +34,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // From the UIPickerViewDataSource protocol.
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         
-        if(pickerView.tag == 1) {
+        if(pickerView == colorPickerView) {
             return 1
-        } else if(pickerView.tag == 2) {
+        } else if(pickerView == datePickerView) {
             return 3
         }
         
@@ -43,9 +46,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // From the UIPickerViewDataSource protocol.
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        if(pickerView.tag == 1) {
+        if(pickerView == colorPickerView) {
             return pickerColors.count
-        } else if(pickerView.tag == 2) {
+        } else if(pickerView == datePickerView) {
             return pickerDates[component].count
         }
         
@@ -55,9 +58,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // From the UIPickerViewDataSource protocol.
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        if(pickerView.tag == 1) {
+        if(pickerView == colorPickerView) {
             return pickerColors[row]
-        } else if(pickerView.tag == 2) {
+        } else if(pickerView == datePickerView) {
             return pickerDates[component][row]
         }
         
@@ -67,7 +70,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // From the UIPickerViewDelegate protocol.
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
-        if(pickerView.tag == 1) {
+        if(pickerView == colorPickerView) {
 
             if(row == 0) {
                 self.view.backgroundColor = UIColor.whiteColor()
@@ -87,7 +90,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 self.view.backgroundColor = UIColor.lightGrayColor()
             }
             
-        } else if(pickerView.tag == 2) {
+        } else if(pickerView == datePickerView) {
             
             print("\(pickerDates[component][row])")
         }

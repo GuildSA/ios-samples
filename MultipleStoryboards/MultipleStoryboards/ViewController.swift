@@ -22,7 +22,10 @@ class ViewController: UIViewController {
 
     @IBAction func onNextViewController(sender: UIButton) {
         
+        // Load the second storyboard by name.
         let storyboard = UIStoryboard(name: "Second", bundle: nil)
+        
+        // Use the new storyboard to instantiate a certain UIViewController by name.
         let controller = storyboard.instantiateViewControllerWithIdentifier("SecondViewController") as UIViewController
         
         //self.presentViewController(controller, animated: true, completion: nil)
@@ -30,4 +33,3 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
-

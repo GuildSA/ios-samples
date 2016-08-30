@@ -28,7 +28,7 @@ class RedViewController: UIViewController {
     }
     
     // If we create an action Segue that was directly connected from a control such as a
-    // button to a new UIViewControler, our only chance to stop the Segue is by overriding
+    // UIButton to a new UIViewControler, our only chance to stop the Segue is by overriding
     // shouldPerformSegueWithIdentifier. This will not be called for manual Segues that are
     // connected from one UIViewControler to the next UIViewControler.
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {

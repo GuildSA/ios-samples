@@ -18,42 +18,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BK1-sN-hWN">
-                                <rect key="frame" x="85" y="229" width="150" height="110"/>
+                                <rect key="frame" x="73" y="209" width="175" height="150"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vp-wz-DxC">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vp-wz-DxC">
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
                                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="CXv-ja-ihI"/>
-                                            <constraint firstAttribute="width" constant="150" id="W6O-le-o7b"/>
+                                            <constraint firstAttribute="width" constant="175" id="1fE-Tf-m77"/>
+                                            <constraint firstAttribute="height" constant="30" id="u6f-4K-cPj"/>
                                         </constraints>
                                         <state key="normal" title="Show Simple Alert"/>
                                         <connections>
-                                            <action selector="onTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kdR-KA-0GT"/>
+                                            <action selector="showSimpleAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xg0-Fl-AGj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fae-xZ-OdC">
-                                        <rect key="frame" x="0.0" y="40" width="150" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhO-x1-94d">
+                                        <rect key="frame" x="0.0" y="40" width="175" height="30"/>
                                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="pQk-9N-Lbv"/>
-                                            <constraint firstAttribute="width" constant="150" id="tQR-4K-6sL"/>
-                                        </constraints>
-                                        <state key="normal" title="Show Alert + Text"/>
+                                        <state key="normal" title="Show Alert + Buttons"/>
                                         <connections>
-                                            <action selector="onTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JXq-Ab-P1w"/>
+                                            <action selector="showAlertWithButtons:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yyc-wN-w3b"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yF2-dj-tfr">
-                                        <rect key="frame" x="0.0" y="80" width="150" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fae-xZ-OdC">
+                                        <rect key="frame" x="0.0" y="80" width="175" height="30"/>
                                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="3r8-AO-nWX"/>
-                                            <constraint firstAttribute="width" constant="150" id="zh6-TQ-WH2"/>
-                                        </constraints>
+                                        <state key="normal" title="Show Alert + Text Fields"/>
+                                        <connections>
+                                            <action selector="showAlertWithTextFields:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qfc-hn-Dh6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yF2-dj-tfr">
+                                        <rect key="frame" x="0.0" y="120" width="175" height="30"/>
+                                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Show Action Sheet"/>
                                         <connections>
-                                            <action selector="onTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ORA-T8-0B5"/>
+                                            <action selector="showActionSheet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G2r-HS-2ne"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -24,6 +24,6 @@ class ModalViewController: UIViewController {
         
         self.dismissViewControllerAnimated(true, completion: {
             print("ModalViewController was dismissed!");
-            })
+        })
     }
 }

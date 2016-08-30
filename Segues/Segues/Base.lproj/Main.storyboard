@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Red View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="RedViewController" customModule="Segues" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSu-Ml-spb">
+                                <rect key="frame" x="60" y="200" width="200" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="24P-Pg-gRj"/>
+                                    <constraint firstAttribute="height" constant="30" id="dXz-9N-46g"/>
+                                </constraints>
+                                <state key="normal" title="Segue From Button Action"/>
+                                <connections>
+                                    <segue destination="JiG-JZ-xyt" kind="show" identifier="segueFromButtonAction" id="Jor-My-QcW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6t8-JT-wyk">
+                                <rect key="frame" x="55" y="250" width="210" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="M6q-Nm-ns1"/>
+                                    <constraint firstAttribute="width" constant="210" id="rbK-o4-z2J"/>
+                                </constraints>
+                                <state key="normal" title="Segue From View Controller"/>
+                                <connections>
+                                    <action selector="segueToGreenViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NxU-35-P6d"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jSu-Ml-spb" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-25" id="61L-F1-ibr"/>
+                            <constraint firstItem="jSu-Ml-spb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UUc-bF-f9K"/>
+                            <constraint firstItem="6t8-JT-wyk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="25" id="b9d-jf-4kb"/>
+                            <constraint firstItem="6t8-JT-wyk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ktg-l8-A3T"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="JiG-JZ-xyt" kind="show" identifier="segueFromViewController" id="v1F-bu-fpg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="429"/>
+        </scene>
+        <!--Green View Controller-->
+        <scene sceneID="m6C-KM-vNp">
+            <objects>
+                <viewController id="JiG-JZ-xyt" customClass="GreenViewController" customModule="Segues" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yXH-AA-7Hv"/>
+                        <viewControllerLayoutGuide type="bottom" id="vx5-VM-dc7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h7i-cQ-Kld">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCN-kT-Nd5">
+                                <rect key="frame" x="55" y="225" width="210" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="OFP-9U-wIS"/>
+                                    <constraint firstAttribute="height" constant="30" id="oYk-lK-MkW"/>
+                                </constraints>
+                                <state key="normal" title="Back To Red View Controller"/>
+                                <connections>
+                                    <action selector="backToRedViewController:" destination="JiG-JZ-xyt" eventType="touchUpInside" id="dUH-qX-9gk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fCN-kT-Nd5" firstAttribute="centerX" secondItem="h7i-cQ-Kld" secondAttribute="centerX" id="Gys-AY-6cH"/>
+                            <constraint firstItem="fCN-kT-Nd5" firstAttribute="centerY" secondItem="h7i-cQ-Kld" secondAttribute="centerY" id="Mxi-6A-nl8"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SwM-K2-qhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744" y="429"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="v1F-bu-fpg"/>
+    </inferredMetricsTieBreakers>
+</document>

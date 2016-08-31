@@ -20,7 +20,7 @@ class SecondViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // Create a UIImage from our Save Button art.
-        var itemButtonImage = UIImage(named: "Item Button Save")
+        var itemButtonImage = UIImage(named: "save_btn")
         
         // Now, force our Save Button image to keep its original colors by setting its
         // rendering mode to AlwaysOriginal. This will keep iOS from converting it to white.

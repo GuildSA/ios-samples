@@ -19,11 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // This sets the background image of the whole Nav Bar for all View Controllers!
-        let navBarBackgroundImage = UIImage(named: "Background Nav Bar")
+        let navBarBackgroundImage = UIImage(named: "bg_nav")
         UINavigationBar.appearance().setBackgroundImage(navBarBackgroundImage, forBarMetrics: .Default)
         
         // This sets the background image of the Back Button for all View Controllers!
-        let buttonBackgroundImage: UIImage = UIImage(named: "Back Button")!
+        let buttonBackgroundImage: UIImage = UIImage(named: "back_btn")!
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(buttonBackgroundImage, forState: .Normal, barMetrics: .Default)
         
         

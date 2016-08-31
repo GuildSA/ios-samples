@@ -8,7 +8,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CustomNavBar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="CustomNavBar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -76,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="615" y="501"/>
         </scene>
-        <!--Second-->
+        <!--Menu-->
         <scene sceneID="F49-WO-zUe">
             <objects>
-                <viewController id="vcb-Xc-gam" customClass="SecondViewController" customModule="CustomNavBar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vcb-Xc-gam" customClass="MenuViewController" customModule="CustomNavBar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lXV-og-ant"/>
                         <viewControllerLayoutGuide type="bottom" id="rBj-Qm-YBi"/>
@@ -87,14 +87,70 @@
                     <view key="view" contentMode="scaleToFill" id="8Gn-OB-pSd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZo-Ee-pq5">
+                                <rect key="frame" x="105" y="268" width="110" height="32"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="i2p-0I-vlh"/>
+                                    <constraint firstAttribute="width" constant="110" id="xwk-x1-0Yn"/>
+                                </constraints>
+                                <state key="normal" title="Edit Settings"/>
+                                <connections>
+                                    <segue destination="HDx-Ge-0C5" kind="show" id="iTu-dS-Lx0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MZo-Ee-pq5" firstAttribute="centerY" secondItem="8Gn-OB-pSd" secondAttribute="centerY" id="BvE-Nb-xJG"/>
+                            <constraint firstItem="MZo-Ee-pq5" firstAttribute="centerX" secondItem="8Gn-OB-pSd" secondAttribute="centerX" id="QCE-cv-HZ9"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Second" id="0qI-gs-Apd"/>
+                    <navigationItem key="navigationItem" title="Menu" id="0qI-gs-Apd"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aFO-4I-Njn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1033" y="501"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="hXn-Xz-Vgh">
+            <objects>
+                <viewController id="HDx-Ge-0C5" customClass="SettingsViewController" customModule="CustomNavBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uFQ-Sq-ogy"/>
+                        <viewControllerLayoutGuide type="bottom" id="jkP-LV-dZ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YsX-e3-CAQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="cQt-Cx-nvr">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="xou-tc-tKh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a0X-54-gOi">
+                                <rect key="frame" x="16" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="back_btn"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="HDx-Ge-0C5" eventType="touchUpInside" id="cYx-Ft-fW4"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="rWS-zL-7Ob">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OeS-pA-ASX">
+                                <rect key="frame" x="259" y="7" width="45" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="save_btn"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bti-VH-gSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457" y="501"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sPn-5D-K3e">
@@ -105,7 +161,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nLj-bO-IVm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.89411764709999997" green="0.0" blue="0.1137254902" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -118,8 +175,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back_btn" width="66" height="33"/>
         <image name="bg" width="414" height="736"/>
         <image name="btn" width="96" height="33"/>
         <image name="input_box" width="233" height="116"/>
+        <image name="save_btn" width="50" height="33"/>
     </resources>
 </document>

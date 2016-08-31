@@ -16,26 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        
-        // This sets the background image of the whole Nav Bar for all View Controllers!
-        let navBarBackgroundImage = UIImage(named: "bg_nav")
-        UINavigationBar.appearance().setBackgroundImage(navBarBackgroundImage, forBarMetrics: .Default)
-        
-        // This sets the background image of the Back Button for all View Controllers!
-        let buttonBackgroundImage: UIImage = UIImage(named: "back_btn")!
-        UIBarButtonItem.appearance().setBackButtonBackgroundImage(buttonBackgroundImage, forState: .Normal, barMetrics: .Default)
-        
-        
-//        // This sets the background color of the whole Nav Bar for all View Controllers!
-//        UINavigationBar.appearance().barTintColor = UIColor.blueColor()
-//        
-//        // This sets the color of the Title text for all View Controllers.
-//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor()]
-//        
-//        // This sets the color of Bar Buton text for all View Controllers.
-//        UIBarButtonItem.appearance().tintColor = UIColor.greenColor()
-        
         return true
     }
 

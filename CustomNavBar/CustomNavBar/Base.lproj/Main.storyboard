@@ -130,7 +130,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="cQt-Cx-nvr">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="xou-tc-tKh">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a0X-54-gOi">
-                                <rect key="frame" x="16" y="7" width="71" height="30"/>
+                                <rect key="frame" x="16" y="7" width="70" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="back_btn"/>
                                 <connections>

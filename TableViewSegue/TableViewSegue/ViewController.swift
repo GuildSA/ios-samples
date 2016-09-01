@@ -84,9 +84,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // logic before a Segue actually fires off.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
-        if segue.identifier == "My Segue" {
+        if segue.identifier == "mySegue" {
             
-            print("Preparing for My Segue!")
+            print("Preparing for mySegue!")
             
             // Ask the table view what row is currenlty selected.
             let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!

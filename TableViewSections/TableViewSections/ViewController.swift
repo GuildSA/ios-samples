@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         "2",
         "3",
         "4",
-        "5",
+        "5"
     ]
     
     let dataForSection2 = [
@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         "B",
         "C",
         "D",
-        "E",
+        "E"
     ]
     
     override func viewDidLoad() {
@@ -48,13 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        if section == 0 {
-            return sectionTitles[section]
-        } else if section == 1 {
-            return sectionTitles[section]
-        }
-        
-        return ""
+        return sectionTitles[section]
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

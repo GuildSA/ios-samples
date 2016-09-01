@@ -63,7 +63,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //print("Building a UITableViewCell for \(indexPath.row)")
 
         // Our Custom Cell.
-        let cell = tableView.dequeueReusableCellWithIdentifier("My Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel?.text = myData[indexPath.row]
 
@@ -77,7 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // The user has tapped or selected a row in our table view - manually fire our
         // named Segue.
-        performSegueWithIdentifier("My Segue", sender: tableView)
+        performSegueWithIdentifier("mySegue", sender: tableView)
     }
     
     // We can override this method in UIViewController if we want to perform some

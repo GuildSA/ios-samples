@@ -38,22 +38,22 @@ class ViewController: UIViewController, UITableViewDataSource {
                     
                     //print(jsonArray)
                     
-                        //let jsonArray = (JSON as? NSMutableArray)!
+                    //let jsonArray = (JSON as? NSMutableArray)!
 
-                        for arrayEntry in jsonArray {
+                    for arrayEntry in jsonArray {
 
-                            let photoDictionary = arrayEntry as! NSDictionary
+                        let photoDictionary = arrayEntry as! NSDictionary
 
-                            let thumbnailUrl:String = photoDictionary["thumbnailUrl"] as! String
-                            let url:String = photoDictionary["url"] as! String
-                            let title:String = photoDictionary["title"] as! String
+                        let thumbnailUrl:String = photoDictionary["thumbnailUrl"] as! String
+                        let url:String = photoDictionary["url"] as! String
+                        let title:String = photoDictionary["title"] as! String
 
-                            self.photoDataArray.append(PhotoData(thumbnailUrl:thumbnailUrl, url:url, title:title))
-                        }
+                        self.photoDataArray.append(PhotoData(thumbnailUrl:thumbnailUrl, url:url, title:title))
+                    }
 
-                        // Once we're done loading up the photoDataArray, force the table view to reload so
-                        // the cells get rebuilt using the data that we fetched from the test server.
-                        self.tableView!.reloadData()
+                    // Once we're done loading up the photoDataArray, force the table view to reload so
+                    // the cells get rebuilt using the data that we fetched from the test server.
+                    self.tableView!.reloadData()
                     
                 } catch {
                     print("Error!")
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("My Cell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
         
         let row = indexPath.row
         

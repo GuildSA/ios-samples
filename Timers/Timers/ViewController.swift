@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     
     @IBAction func onTouchDelayedEvent(sender: UIButton) {
         
-        delayedEventTimer = NSTimer(timeInterval: 3.0, target: self, selector: "delayedEvent", userInfo: nil, repeats: false)
+        delayedEventTimer = NSTimer(timeInterval: 3.0, target: self, selector: #selector(ViewController.delayedEvent), userInfo: nil, repeats: false)
         
         NSRunLoop.currentRunLoop().addTimer(delayedEventTimer, forMode: NSRunLoopCommonModes)
     }
@@ -78,16 +78,18 @@ class ViewController: UIViewController {
     
     @IBAction func onTouchTimerWithObject(sender: UIButton) {
         
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("disableButton:"), userInfo: ["theButtonTouched" :sender], repeats: false)
+        sender.enabled = false
+        
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(ViewController.resetButton(_:)), userInfo: ["theButtonTouched" :sender], repeats: false)
     }
     
-    func disableButton(timer: NSTimer) {
+    func resetButton(timer: NSTimer) {
 
         let userInfo = timer.userInfo as! Dictionary<String, AnyObject>
         
         let touchedbutton:UIButton = (userInfo["theButtonTouched"] as! UIButton)
         
-        touchedbutton.enabled = false
+        touchedbutton.enabled = true
         
         timer.invalidate()
     }

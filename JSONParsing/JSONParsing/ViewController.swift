@@ -164,6 +164,18 @@ class ViewController: UIViewController {
             
             print("name = \(name), damage = \(damage)")
         }
+        
+// NOTE: Some deveolpers might cast spear to a NSDictionary so they can 
+// pass the key name into [] insted of using valueForKey().
+//        for spear in spears {
+//            
+//            let spear = spear as! NSDictionary
+//            
+//            let name = spear["name"] as! String
+//            let damage = spear["damage"] as! Int
+//            
+//            print("name = \(name), damage = \(damage)")
+//        }
     }
 }
 

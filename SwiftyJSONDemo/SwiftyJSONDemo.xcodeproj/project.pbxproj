@@ -7,20 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F1FEF491CD2521D00E763D0 /* json2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FEF481CD2521D00E763D0 /* json2.txt */; };
-		3F1FEF4B1CD253F300E763D0 /* json3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F1FEF4A1CD253F300E763D0 /* json3.txt */; };
 		3FC6344B1CD100B100DBCE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6344A1CD100B100DBCE8C /* AppDelegate.swift */; };
 		3FC6344D1CD100B100DBCE8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6344C1CD100B100DBCE8C /* ViewController.swift */; };
 		3FC634501CD100B100DBCE8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FC6344E1CD100B100DBCE8C /* Main.storyboard */; };
 		3FC634521CD100B100DBCE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC634511CD100B100DBCE8C /* Assets.xcassets */; };
 		3FC634551CD100B100DBCE8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FC634531CD100B100DBCE8C /* LaunchScreen.storyboard */; };
-		3FC6345D1CD102F200DBCE8C /* json1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FC6345C1CD102F200DBCE8C /* json1.txt */; };
 		DD9BEC9B1AFA8D5210AC2018 /* Pods_SwiftyJSONDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765D3C4B8CF4F323FBCE3618 /* Pods_SwiftyJSONDemo.framework */; };
+		E74C15EB1D8056DA003BEB82 /* example1.json in Resources */ = {isa = PBXBuildFile; fileRef = E74C15E81D8056DA003BEB82 /* example1.json */; };
+		E74C15EC1D8056DA003BEB82 /* example2.json in Resources */ = {isa = PBXBuildFile; fileRef = E74C15E91D8056DA003BEB82 /* example2.json */; };
+		E74C15ED1D8056DA003BEB82 /* example3.json in Resources */ = {isa = PBXBuildFile; fileRef = E74C15EA1D8056DA003BEB82 /* example3.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F1FEF481CD2521D00E763D0 /* json2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json2.txt; sourceTree = "<group>"; };
-		3F1FEF4A1CD253F300E763D0 /* json3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json3.txt; sourceTree = "<group>"; };
 		3FC634471CD100B100DBCE8C /* SwiftyJSONDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyJSONDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC6344A1CD100B100DBCE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FC6344C1CD100B100DBCE8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,10 +26,12 @@
 		3FC634511CD100B100DBCE8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FC634541CD100B100DBCE8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FC634561CD100B100DBCE8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FC6345C1CD102F200DBCE8C /* json1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json1.txt; sourceTree = "<group>"; };
 		4F0535991BF62D0943BCF40A /* Pods-SwiftyJSONDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONDemo/Pods-SwiftyJSONDemo.release.xcconfig"; sourceTree = "<group>"; };
 		765D3C4B8CF4F323FBCE3618 /* Pods_SwiftyJSONDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyJSONDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2061ABE80E8D4097CECFE87 /* Pods-SwiftyJSONDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyJSONDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyJSONDemo/Pods-SwiftyJSONDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		E74C15E81D8056DA003BEB82 /* example1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example1.json; sourceTree = "<group>"; };
+		E74C15E91D8056DA003BEB82 /* example2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example2.json; sourceTree = "<group>"; };
+		E74C15EA1D8056DA003BEB82 /* example3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example3.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +78,13 @@
 			children = (
 				3FC6344A1CD100B100DBCE8C /* AppDelegate.swift */,
 				3FC6344C1CD100B100DBCE8C /* ViewController.swift */,
+				E74C15E81D8056DA003BEB82 /* example1.json */,
+				E74C15E91D8056DA003BEB82 /* example2.json */,
+				E74C15EA1D8056DA003BEB82 /* example3.json */,
 				3FC6344E1CD100B100DBCE8C /* Main.storyboard */,
 				3FC634511CD100B100DBCE8C /* Assets.xcassets */,
 				3FC634531CD100B100DBCE8C /* LaunchScreen.storyboard */,
 				3FC634561CD100B100DBCE8C /* Info.plist */,
-				3FC6345C1CD102F200DBCE8C /* json1.txt */,
-				3F1FEF481CD2521D00E763D0 /* json2.txt */,
-				3F1FEF4A1CD253F300E763D0 /* json3.txt */,
 			);
 			path = SwiftyJSONDemo;
 			sourceTree = "<group>";
@@ -158,11 +158,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F1FEF4B1CD253F300E763D0 /* json3.txt in Resources */,
-				3F1FEF491CD2521D00E763D0 /* json2.txt in Resources */,
+				E74C15ED1D8056DA003BEB82 /* example3.json in Resources */,
 				3FC634551CD100B100DBCE8C /* LaunchScreen.storyboard in Resources */,
 				3FC634521CD100B100DBCE8C /* Assets.xcassets in Resources */,
-				3FC6345D1CD102F200DBCE8C /* json1.txt in Resources */,
+				E74C15EC1D8056DA003BEB82 /* example2.json in Resources */,
+				E74C15EB1D8056DA003BEB82 /* example1.json in Resources */,
 				3FC634501CD100B100DBCE8C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

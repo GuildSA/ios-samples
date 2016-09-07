@@ -53,11 +53,11 @@ class ViewController: UIViewController {
 
         // Example 1:
         //
-        // Located in: JsonParsing/JsonParsing/json1.txt
+        // Located in: JsonParsing/JsonParsing/example1.json
         //
         // [ "Cloe", "Bob", "Jennifer", "Robert" ]
         
-        let jsonString = readFileFromResources("json1", fileType: ".txt")
+        let jsonString = readFileFromResources("example1", fileType: ".json")
 
         let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
 
@@ -75,14 +75,14 @@ class ViewController: UIViewController {
         
         // Example 2:
         //
-        // Located in: JsonParsing/JsonParsing/json2.txt
+        // Located in: JsonParsing/JsonParsing/example2.json
         //
         // {
         //     "name": "The WarL0rd",
         //     "maps": [ 12, 23, 55 ]
         // }
         
-        let jsonString = readFileFromResources("json2", fileType: ".txt")
+        let jsonString = readFileFromResources("example2", fileType: ".json")
         
         let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         
         // Example 3:
         //
-        // Located in: JsonParsing/JsonParsing/json3.txt
+        // Located in: JsonParsing/JsonParsing/example3.json
         //
         // {
         //     "weapons": {
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
         //     }
         // }
         
-        let jsonString = readFileFromResources("json3", fileType: ".txt")
+        let jsonString = readFileFromResources("example3", fileType: ".json")
         
         let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         

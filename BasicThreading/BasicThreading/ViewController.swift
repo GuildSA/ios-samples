@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     
     func testNSThread() {
         
-        let myThread = NSThread(target:self, selector:"threadMain:", object:self)
+        let myThread = NSThread(target:self, selector:#selector(threadMain(_:)), object:self)
         myThread.start()
         
         // If you don't need access to the thread instance, you can call

@@ -51,27 +51,31 @@ class ViewController: UIViewController, UITableViewDataSource {
                 //print(response.data)     // server data
                 //print(response.result)   // result of response serialization
                 
-                if let JSON = response.result.value {
+                if let jsonString = response.result.value {
                     
-                    //print("JSON: \(JSON)")
-                    //print("JSON[0] = \(JSON[0])")
+                    //print("jsonString: \(jsonString)")
+                    //print("jsonString[0] = \(jsonString[0])")
                     
-                    let jsonArray = (JSON as? NSMutableArray)!
+                    let jsonArray = jsonString as! NSArray
                     
                     for arrayEntry in jsonArray {
                         
                         let photoDictionary = arrayEntry as! NSDictionary
                         
-                        let thumbnailUrl:String = photoDictionary["thumbnailUrl"] as! String
-                        let url:String = photoDictionary["url"] as! String
-                        let title:String = photoDictionary["title"] as! String
+                        let thumbnailUrl: String = photoDictionary["thumbnailUrl"] as! String
+                        let url: String = photoDictionary["url"] as! String
+                        let title: String = photoDictionary["title"] as! String
                         
-                        self.photoDataArray.append(PhotoData(thumbnailUrl:thumbnailUrl, url:url, title:title))
+                        self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                     }
                     
                     // Once we're done loading up the photoDataArray, force the table view to reload so
                     // the cells get rebuilt using the data that we fetched from the test server.
                     self.tableView!.reloadData()
+                    
+                } else {
+                    
+                    print("Failed to get a value from the response.")
                 }
         }
         
@@ -98,7 +102,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("My Cell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
         
         let row = indexPath.row
         
@@ -117,7 +121,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             //print(data)
             //print(error)
             
-            if(error == nil) {
+            if error == nil {
                 
                 // We got the image data! Use it to create a UIImage for our cell's
                 // UIImageView. Then, stop the activity spinner.
@@ -125,7 +129,6 @@ class ViewController: UIViewController, UITableViewDataSource {
                 cell.activityIndicator.stopAnimating()
                 
             } else {
-                
                 print("Failed to load image from URL \(request) with error \(error)")
             }
         }

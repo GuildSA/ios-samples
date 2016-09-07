@@ -28,4 +28,7 @@ class ReusableView: UIView {
         self.addSubview(view)
     }
 
+    @IBAction func onTouchBtn(sender: UIButton) {
+        print("Button touched!")
+    }
 }

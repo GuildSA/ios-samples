@@ -46,8 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                     do {
                         
                         let jsonArray =
-                            try NSJSONSerialization.JSONObjectWithData(data,
-                                                                       options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
+                            try NSJSONSerialization.JSONObjectWithData(data, options: [] ) as! NSArray
                         
                         //print(jsonArray)
                         //let jsonArray = (JSON as? NSMutableArray)!
@@ -71,15 +70,15 @@ class ViewController: UIViewController, UITableViewDataSource {
                         }
                         
                     } catch {
-                        print("Error!")
+                        print("JOSN Error: \(error)")
                     }
                     
                 } else {
-                    print("Error!")
+                    print("Failed to create NSData")
                 }
                 
-            }  else {
-                print("Error!")
+            } else {
+                print("NSURLSession Error: \(error)")
             }
         }
 
@@ -93,12 +92,6 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     // From UITableViewDataSource protocol.
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
-    }
-    
-    // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return photoDataArray.count
@@ -107,7 +100,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     // From UITableViewDataSource protocol.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("My Cell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
         
         let row = indexPath.row
         
@@ -143,11 +136,11 @@ class ViewController: UIViewController, UITableViewDataSource {
                     }
                     
                 } else {
-                    print("Error!")
+                    print("Failed to create NSData")
                 }
                 
-            }  else {
-                print("Error!")
+            } else {
+                print("NSURLSession Error: \(error)")
             }
         }
         

@@ -33,11 +33,9 @@ class ViewController: UIViewController, UITableViewDataSource {
             if let data = try? NSData(contentsOfURL: url, options: []) {
                 
                 do {
-                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data,
-                        options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
+                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSArray
                     
                     //print(jsonArray)
-                    
                     //let jsonArray = (JSON as? NSMutableArray)!
 
                     for arrayEntry in jsonArray {
@@ -48,7 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                         let url:String = photoDictionary["url"] as! String
                         let title:String = photoDictionary["title"] as! String
 
-                        self.photoDataArray.append(PhotoData(thumbnailUrl:thumbnailUrl, url:url, title:title))
+                        self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                     }
 
                     // Once we're done loading up the photoDataArray, force the table view to reload so
@@ -56,15 +54,15 @@ class ViewController: UIViewController, UITableViewDataSource {
                     self.tableView!.reloadData()
                     
                 } catch {
-                    print("Error!")
+                    print("NSJSONSerialization Error: \(error)")
                 }
                 
             } else {
-                print("Error!")
+                print("Failed to create NSData")
             }
             
         } else {
-            print("Error!")
+            print("NSURL Error")
         }
     }
     
@@ -72,12 +70,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // From UITableViewDataSource protocol.
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
     }
     
     // From UITableViewDataSource protocol.
@@ -111,13 +103,13 @@ class ViewController: UIViewController, UITableViewDataSource {
                 cell.activityIndicator.stopAnimating()
                 
             } else {
-                print("Error!")
+                print("Failed to create NSData")
             }
             
         } else {
-            print("Error!")
+            print("NSURL Error")
         }
-
+        
         return cell
     }
 }

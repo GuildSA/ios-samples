@@ -65,13 +65,13 @@ class ViewController: UIViewController {
             let json = JSON(data: dataFromString)
             
             let playerName = json.arrayObject![0] as! String
+            
             print("playerName = \(playerName)")
             
             for name in json.arrayValue {
                 
                 print("name = \(name.stringValue)")
             }
-
         }
     }
     
@@ -93,9 +93,11 @@ class ViewController: UIViewController {
             let json = JSON(data: dataFromString)
             
             let name = json["name"].stringValue
+            
             print("name = \(name)")
             
             let mapId = json["maps"][0].intValue
+            
             print("map id at index 0 = \(mapId)")
             
             for map in json["maps"].arrayValue {

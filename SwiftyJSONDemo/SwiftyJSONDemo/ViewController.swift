@@ -64,10 +64,12 @@ class ViewController: UIViewController {
             
             let json = JSON(data: dataFromString)
             
+            // Do this to get a single name by index.
             let playerName = json.arrayObject![0] as! String
             
             print("playerName = \(playerName)")
             
+            // Do this to for loop through all names.
             for name in json.arrayValue {
                 
                 print("name = \(name.stringValue)")
@@ -96,10 +98,12 @@ class ViewController: UIViewController {
             
             print("name = \(name)")
             
+            // Do this to get a single map id by index.
             let mapId = json["maps"][0].intValue
             
             print("map id at index 0 = \(mapId)")
             
+            // Do this to for loop through all map ids.
             for map in json["maps"].arrayValue {
                 
                 print("map = \(map.intValue)")

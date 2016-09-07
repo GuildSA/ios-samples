@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         var title:String
     }
     
-    var photoDataArray: Array<PhotoData> = []
+    var photoDataArray = [PhotoData]()
     
     override func viewDidLoad() {
         
@@ -45,21 +45,15 @@ class ViewController: UIViewController, UITableViewDataSource {
                     
                     do {
                         
-                        let jsonArray =
-                            try NSJSONSerialization.JSONObjectWithData(data, options: [] ) as! NSArray
-                        
-                        //print(jsonArray)
-                        //let jsonArray = (JSON as? NSMutableArray)!
+                        let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: [] ) as! NSArray
                         
                         for arrayEntry in jsonArray {
                             
-                            let photoDictionary = arrayEntry as! NSDictionary
+                            let thumbnailUrl = arrayEntry["thumbnailUrl"] as! String
+                            let url = arrayEntry["url"] as! String
+                            let title = arrayEntry["title"] as! String
                             
-                            let thumbnailUrl:String = photoDictionary["thumbnailUrl"] as! String
-                            let url:String = photoDictionary["url"] as! String
-                            let title:String = photoDictionary["title"] as! String
-                            
-                            self.photoDataArray.append(PhotoData(thumbnailUrl:thumbnailUrl, url:url, title:title))
+                            self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url:url, title:title))
                         }
                         
                         dispatch_async(dispatch_get_main_queue()) {
@@ -114,12 +108,14 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         let url = NSURL(string: thumbnaillUrl)!
         
+        let session = NSURLSession.sharedSession()
+        
+// Instead of using the shared session, we could choose to create a NSURLSessionConfiguration and
+// then use it to create our own NSURLSession.
 //        let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 //        urlConfig.timeoutIntervalForRequest = 10
 //        urlConfig.timeoutIntervalForResource = 10
 //        let session = NSURLSession(configuration: urlConfig)
-        
-        let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithURL(url) {(data, response, error) in
             

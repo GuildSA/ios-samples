@@ -61,7 +61,7 @@ class ViewController: UIViewController {
 
         let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
 
-        let playerNamesArray = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as! NSArray
+        let playerNamesArray = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSArray
 
         for playerName in playerNamesArray {
             
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
         
         let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
-        let playerDataDictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+        let playerDataDictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
         
         let name = playerDataDictionary.valueForKey("name")
         
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         
         let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         
-        let dictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+        let dictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
         
         let weaponsDictionary = dictionary.valueForKey("weapons") as! NSDictionary
         

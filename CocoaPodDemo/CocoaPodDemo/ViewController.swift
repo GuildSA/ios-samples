@@ -72,7 +72,6 @@ class ViewController: UIViewController {
 //        )
         
         
-
         // Example #5
 //        let alertView = SCLAlertView()
 //        

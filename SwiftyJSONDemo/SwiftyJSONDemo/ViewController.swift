@@ -60,21 +60,25 @@ class ViewController: UIViewController {
         
         let jsonString = readFileFromResources("example1", fileType: ".json")
 
-        if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+        let json = JSON.parse(jsonString)
+        
+// NOTE: If we want more control over the string encoding we can convert the String to a
+//       NSData first and then pass the NSDatat object into the JSON initializer.
+//
+//        let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+//        let json = JSON(data: jsonData)
+        
+        // Do this to get a single name by index.
+        let playerName = json.arrayObject![0] as! String
+        
+        print("playerName = \(playerName)")
+        
+        // Do this to for loop through all names.
+        for name in json.arrayValue {
             
-            let json = JSON(data: dataFromString)
-            
-            // Do this to get a single name by index.
-            let playerName = json.arrayObject![0] as! String
-            
-            print("playerName = \(playerName)")
-            
-            // Do this to for loop through all names.
-            for name in json.arrayValue {
-                
-                print("name = \(name.stringValue)")
-            }
+            print("name = \(name.stringValue)")
         }
+        
     }
     
     func parseJsonTest2() {
@@ -90,24 +94,21 @@ class ViewController: UIViewController {
         
         let jsonString = readFileFromResources("example2", fileType: ".json")
         
-        if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+        let json = JSON.parse(jsonString)
+        
+        let name = json["name"].stringValue
+        
+        print("name = \(name)")
+        
+        // Do this to get a single map id by index.
+        let mapId = json["maps"][0].intValue
+        
+        print("map id at index 0 = \(mapId)")
+        
+        // Do this to for loop through all map ids.
+        for map in json["maps"].arrayValue {
             
-            let json = JSON(data: dataFromString)
-            
-            let name = json["name"].stringValue
-            
-            print("name = \(name)")
-            
-            // Do this to get a single map id by index.
-            let mapId = json["maps"][0].intValue
-            
-            print("map id at index 0 = \(mapId)")
-            
-            // Do this to for loop through all map ids.
-            for map in json["maps"].arrayValue {
-                
-                print("map = \(map.intValue)")
-            }
+            print("map = \(map.intValue)")
         }
     }
     
@@ -148,25 +149,22 @@ class ViewController: UIViewController {
         
         let jsonString = readFileFromResources("example3", fileType: ".json")
         
-        if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+        let json = JSON.parse(jsonString)
+        
+        for sword in json["weapons"]["swords"].arrayValue {
             
-            let json = JSON(data: dataFromString)
-            
-            for sword in json["weapons"]["swords"].arrayValue {
-                
-                let name = sword["name"].stringValue
-                let damage = sword["damage"].stringValue
+            let name = sword["name"].stringValue
+            let damage = sword["damage"].stringValue
 
-                print("name = \(name), damage = \(damage)")
-            }
+            print("name = \(name), damage = \(damage)")
+        }
+        
+        for spear in json["weapons"]["spears"].arrayValue {
             
-            for spear in json["weapons"]["spears"].arrayValue {
-                
-                let name = spear["name"].stringValue
-                let damage = spear["damage"].stringValue
-                
-                print("name = \(name), damage = \(damage)")
-            }
+            let name = spear["name"].stringValue
+            let damage = spear["damage"].stringValue
+            
+            print("name = \(name), damage = \(damage)")
         }
     }
 }

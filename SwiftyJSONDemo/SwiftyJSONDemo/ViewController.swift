@@ -69,7 +69,7 @@ class ViewController: UIViewController {
 //        let json = JSON(data: jsonData)
         
         // Do this to get a single name by index.
-        let playerName = json.arrayObject![0] as! String
+        let playerName = json.arrayValue[3].stringValue
         
         print("playerName = \(playerName)")
         
@@ -154,7 +154,7 @@ class ViewController: UIViewController {
         for sword in json["weapons"]["swords"].arrayValue {
             
             let name = sword["name"].stringValue
-            let damage = sword["damage"].stringValue
+            let damage = sword["damage"].intValue
 
             print("name = \(name), damage = \(damage)")
         }
@@ -162,7 +162,7 @@ class ViewController: UIViewController {
         for spear in json["weapons"]["spears"].arrayValue {
             
             let name = spear["name"].stringValue
-            let damage = spear["damage"].stringValue
+            let damage = spear["damage"].intValue
             
             print("name = \(name), damage = \(damage)")
         }

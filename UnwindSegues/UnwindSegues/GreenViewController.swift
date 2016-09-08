@@ -46,6 +46,9 @@ class GreenViewController: UIViewController {
         
         if segue.identifier == "unwindToRedVC" {
             
+            // Since we know that we're about to transition back to the RedViewController
+            // we can use this moment to set some data on ourselves so the RedViewController
+            // can retrieve it later.
             someOutgoingData = "GreenViewController says bye-bye!"
         }
     }

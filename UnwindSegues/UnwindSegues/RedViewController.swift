@@ -30,7 +30,8 @@ class RedViewController: UIViewController {
         
         if segue.identifier == "segueToGreen" {
             
-            // If we need to, modify the next UIViewController.
+            // Since we know that we're about to transition to the GreenViewController
+            // we can use this moment to pass some data to it.
             let nextVC = segue.destinationViewController as! GreenViewController
             
             nextVC.someIncomingData = "RedViewController says hi!"
@@ -41,9 +42,11 @@ class RedViewController: UIViewController {
         
         if segue.sourceViewController.isKindOfClass(GreenViewController) {
             
-            let prevVC: GreenViewController = segue.sourceViewController as! GreenViewController
+            // Since we know that we're transitioning back from the GreenViewController
+            // we can use this moment to retrieve some data from it.
+            let prevVC = segue.sourceViewController as! GreenViewController
             
-            print("The view controller that is unwinding to us passed: \(prevVC.someOutgoingData!)")
+            print("The view controller that is unwinding to us passed: '\(prevVC.someOutgoingData!)'")
         }
     }
 }

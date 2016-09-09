@@ -50,16 +50,22 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // This is our opportunity to modify or customize the UILabels.
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
         
-        var pickerLabel = view as! UILabel!
+        var pickerLabel: UILabel
         
-        if pickerLabel == nil {
-            
-            // If pickerLabel is nil, no UIView is available to recycle, so create a new one!
+        if view == nil {
+        
+            // If view is nil, no UIView is available to recycle, so create a new one!
             pickerLabel = UILabel()
             
             // Programmaticly set the label's background!
             let hue = CGFloat(row)/CGFloat(pickerData.count)
             pickerLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+            
+        } else {
+            
+            // If view is not nil - cast it and then reuse it.
+            pickerLabel = view as! UILabel
+            
         }
         
         let titleData = pickerData[row]

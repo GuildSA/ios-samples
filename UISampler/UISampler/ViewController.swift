@@ -57,15 +57,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print( "onSwitchValueChanged = \(sender.on)")
     }
 
-    @IBAction func onSegmentValueChagned(sender: UISegmentedControl) {
+    @IBAction func onSegmentValueChanged(sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
             
             case 0:
-                print("First selected");
+                print("First segment selected");
             
             case 1:
-                print("Second Segment selected");
+                print("Second segment selected");
             
             default:
                 break; 
@@ -73,45 +73,51 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onStepperValueChanged(sender: UIStepper) {
+        
         print( "onStepperValueChanged = \(sender.value)")
     }
     
-    
-    
-    
-    
-    
+    //
     // The call-backs defined by UITextFieldDelegate
+    //
+    
     func textFieldDidBeginEditing(textField: UITextField) {
-        print("TextField did begin editing method called")
+        
+        print("textFieldDidBeginEditing method called")
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        print("TextField did end editing method called")
+        
+        print("textFieldDidEndEditing method called")
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        print("TextField should begin editing method called")
+        
+        print("textFieldShouldBeginEditing method called")
         return true;
     }
     
     func textFieldShouldClear(textField: UITextField) -> Bool {
-        print("TextField should clear method called")
+        
+        print("textFieldShouldClear method called")
         return true;
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        print("TextField should snd editing method called")
+        
+        print("textFieldShouldEndEditing method called")
         return true;
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        print("While entering the characters this method gets called: \(string)")
+        
+        print("textField:shouldChangeCharactersInRange called: \(string)")
         return true;
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("TextField should return method called")
+        
+        print("textFieldShouldReturn method called")
         
         // Dismiss the iOS keyboard when the user taps the "return" button!
         textField.resignFirstResponder();

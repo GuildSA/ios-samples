@@ -17,12 +17,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     // store the data for each photo as an array of PhotoData structs.
     struct PhotoData {
         
-        var thumbnailUrl:String
-        var url:String
-        var title:String
+        var thumbnailUrl: String
+        var url: String
+        var title: String
     }
     
-    var photoDataArray: Array<PhotoData> = []
+    var photoDataArray = [PhotoData]()
     
     override func viewDidLoad() {
         
@@ -30,37 +30,31 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         if let url = NSURL(string: "http://jsonplaceholder.typicode.com/photos") {
             
-            if let data = try? NSData(contentsOfURL: url, options: []) {
+            do {
                 
-                do {
-                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSArray
+                let data = try NSData(contentsOfURL: url, options: [])
+                
+                let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSArray
+                
+                for arrayEntry in jsonArray {
                     
-                    //print(jsonArray)
-                    //let jsonArray = (JSON as? NSMutableArray)!
+                    let photoDictionary = arrayEntry as! NSDictionary
 
-                    for arrayEntry in jsonArray {
+                    let thumbnailUrl = photoDictionary["thumbnailUrl"] as! String
+                    let url = photoDictionary["url"] as! String
+                    let title = photoDictionary["title"] as! String
 
-                        let photoDictionary = arrayEntry as! NSDictionary
-
-                        let thumbnailUrl:String = photoDictionary["thumbnailUrl"] as! String
-                        let url:String = photoDictionary["url"] as! String
-                        let title:String = photoDictionary["title"] as! String
-
-                        self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
-                    }
-
-                    // Once we're done loading up the photoDataArray, force the table view to reload so
-                    // the cells get rebuilt using the data that we fetched from the test server.
-                    self.tableView!.reloadData()
-                    
-                } catch {
-                    print("NSJSONSerialization Error: \(error)")
+                    self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                 }
-                
-            } else {
-                print("Failed to create NSData")
+
+                // Once we're done loading up the photoDataArray, force the table view to reload so
+                // the cells get rebuilt using the data that we fetched from the test server.
+                tableView.reloadData()
+                    
+            } catch {
+                print("NSData or NSJSONSerialization Error: \(error)")
             }
-            
+                
         } else {
             print("NSURL Error")
         }
@@ -95,15 +89,17 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         if let url = NSURL(string: thumbnaillUrl) {
             
-            if let data = try? NSData(contentsOfURL: url, options: []) {
+            do {
+                
+                let data = try NSData(contentsOfURL: url, options: [])
                 
                 // We got the image data! Use it to create a UIImage for our cell's
                 // UIImageView. Then, stop the activity spinner.
-                cell.myImageView.image = UIImage(data: data, scale:1)
+                cell.myImageView.image = UIImage(data: data)
                 cell.activityIndicator.stopAnimating()
                 
-            } else {
-                print("Failed to create NSData")
+            } catch {
+                print("NSData Error: \(error)")
             }
             
         } else {

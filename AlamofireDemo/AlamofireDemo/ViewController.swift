@@ -24,12 +24,12 @@ class ViewController: UIViewController, UITableViewDataSource {
     // store the data for each photo as an array of PhotoData structs.
     struct PhotoData {
         
-        var thumbnailUrl:String
-        var url:String
-        var title:String
+        var thumbnailUrl: String
+        var url: String
+        var title: String
     }
     
-    var photoDataArray: Array<PhotoData> = []
+    var photoDataArray = [PhotoData]()
     
     override func viewDidLoad() {
         
@@ -41,44 +41,41 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Fake Online REST API for Testing and Prototyping
         //http://jsonplaceholder.typicode.com/
         
-        Alamofire.request(.GET, "http://jsonplaceholder.typicode.com/photos", parameters: nil)
-            .responseJSON { response in
+        Alamofire.request(.GET, "http://jsonplaceholder.typicode.com/photos", parameters: nil).responseJSON { response in
                 
-                // The GET request for the JSON data has returned.
+            // The GET request for the JSON data has returned.
+            
+            //print(response.request)  // original URL request
+            //print(response.response) // URL response
+            //print(response.data)     // server data
+            //print(response.result)   // result of response serialization
+            
+            if let jsonString = response.result.value {
                 
-                //print(response.request)  // original URL request
-                //print(response.response) // URL response
-                //print(response.data)     // server data
-                //print(response.result)   // result of response serialization
+                //print("jsonString: \(jsonString)")
+                //print("jsonString[0] = \(jsonString[0])")
                 
-                if let jsonString = response.result.value {
+                let jsonArray = jsonString as! NSArray
+                
+                for arrayEntry in jsonArray {
                     
-                    //print("jsonString: \(jsonString)")
-                    //print("jsonString[0] = \(jsonString[0])")
+                    let photoDictionary = arrayEntry as! NSDictionary
                     
-                    let jsonArray = jsonString as! NSArray
+                    let thumbnailUrl = photoDictionary["thumbnailUrl"] as! String
+                    let url = photoDictionary["url"] as! String
+                    let title = photoDictionary["title"] as! String
                     
-                    for arrayEntry in jsonArray {
-                        
-                        let photoDictionary = arrayEntry as! NSDictionary
-                        
-                        let thumbnailUrl: String = photoDictionary["thumbnailUrl"] as! String
-                        let url: String = photoDictionary["url"] as! String
-                        let title: String = photoDictionary["title"] as! String
-                        
-                        self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
-                    }
-                    
-                    // Once we're done loading up the photoDataArray, force the table view to reload so
-                    // the cells get rebuilt using the data that we fetched from the test server.
-                    self.tableView!.reloadData()
-                    
-                } else {
-                    
-                    print("Failed to get a value from the response.")
+                    self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                 }
+                
+                // Once we're done loading up the photoDataArray, force the table view to reload so
+                // the cells get rebuilt using the data that we fetched from the test server.
+                self.tableView.reloadData()
+                
+            } else {
+                print("Failed to get a value from the response.")
+            }
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -125,7 +122,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                 
                 // We got the image data! Use it to create a UIImage for our cell's
                 // UIImageView. Then, stop the activity spinner.
-                cell.myImageView.image = UIImage(data: data!, scale:1)
+                cell.myImageView.image = UIImage(data: data!)
                 cell.activityIndicator.stopAnimating()
                 
             } else {

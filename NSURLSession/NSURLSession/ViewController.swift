@@ -17,9 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource {
     // store the data for each photo as an array of PhotoData structs.
     struct PhotoData {
         
-        var thumbnailUrl:String
-        var url:String
-        var title:String
+        var thumbnailUrl: String
+        var url: String
+        var title: String
     }
     
     var photoDataArray = [PhotoData]()
@@ -30,45 +30,43 @@ class ViewController: UIViewController, UITableViewDataSource {
 
         let url = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!
 
+        let session = NSURLSession.sharedSession()
+        
+// Instead of using the shared session, we could choose to create a NSURLSessionConfiguration and
+// then use it to create our own NSURLSession.
 //        let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
 //        urlConfig.timeoutIntervalForRequest = 10
 //        urlConfig.timeoutIntervalForResource = 10
 //        let session = NSURLSession(configuration: urlConfig)
-
-        let session = NSURLSession.sharedSession()
         
-        let task = session.dataTaskWithURL(url) {(data, response, error) in
+        let task = session.dataTaskWithURL(url) { (data, response, error) in
             
             if error == nil {
                 
-                if let data = try? NSData(contentsOfURL: url, options: []) {
+                do {
                     
-                    do {
+                    let data = try NSData(contentsOfURL: url, options: [])
+                    
+                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: [] ) as! NSArray
+                    
+                    for arrayEntry in jsonArray {
                         
-                        let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: [] ) as! NSArray
+                        let thumbnailUrl = arrayEntry["thumbnailUrl"] as! String
+                        let url = arrayEntry["url"] as! String
+                        let title = arrayEntry["title"] as! String
                         
-                        for arrayEntry in jsonArray {
-                            
-                            let thumbnailUrl = arrayEntry["thumbnailUrl"] as! String
-                            let url = arrayEntry["url"] as! String
-                            let title = arrayEntry["title"] as! String
-                            
-                            self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url:url, title:title))
-                        }
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            
-                            // Once we're done loading up the photoDataArray, force the table view to reload so
-                            // the cells get rebuilt using the data that we fetched from the test server.
-                            self.tableView!.reloadData()
-                        }
-                        
-                    } catch {
-                        print("JOSN Error: \(error)")
+                        self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                     }
                     
-                } else {
-                    print("Failed to create NSData")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        // Once we're done loading up the photoDataArray, force the table view to reload so
+                        // the cells get rebuilt using the data that we fetched from the test server.
+                        self.tableView!.reloadData()
+                    }
+                    
+                } catch {
+                    print("NSData or NSJSONSerialization Error: \(error)")
                 }
                 
             } else {
@@ -110,29 +108,24 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         let session = NSURLSession.sharedSession()
         
-// Instead of using the shared session, we could choose to create a NSURLSessionConfiguration and
-// then use it to create our own NSURLSession.
-//        let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        urlConfig.timeoutIntervalForRequest = 10
-//        urlConfig.timeoutIntervalForResource = 10
-//        let session = NSURLSession(configuration: urlConfig)
-        
-        let task = session.dataTaskWithURL(url) {(data, response, error) in
+        let task = session.dataTaskWithURL(url) { (data, response, error) in
             
             if error == nil {
                 
-                if let data = try? NSData(contentsOfURL: url, options: []) {
+                do {
+                    
+                    let data = try NSData(contentsOfURL: url, options: [])
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         
                         // We got the image data! Use it to create a UIImage for our cell's
                         // UIImageView. Then, stop the activity spinner.
-                        cell.myImageView.image = UIImage(data: data, scale:1)
+                        cell.myImageView.image = UIImage(data: data)
                         cell.activityIndicator.stopAnimating()
                     }
                     
-                } else {
-                    print("Failed to create NSData")
+                } catch {
+                    print("NSData Error: \(error)")
                 }
                 
             } else {

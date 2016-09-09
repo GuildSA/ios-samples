@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PickerView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PickerViewMultiWheel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,18 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p0i-QZ-g9a">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zT7-tD-R3b">
                                 <rect key="frame" x="0.0" y="176" width="320" height="216"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="m1E-5n-h6i"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ssR-az-rGA"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="8QF-eL-x22"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jE6-Pb-FOU"/>
                                 </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="p0i-QZ-g9a" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Hp-wa-fAq"/>
-                            <constraint firstItem="p0i-QZ-g9a" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LEp-gd-EFN"/>
+                            <constraint firstItem="zT7-tD-R3b" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="OVG-tJ-F65"/>
+                            <constraint firstItem="zT7-tD-R3b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c5w-Cc-gOx"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         // class unless it implements the NSCoding protocol.
         //
         
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("USER") as? NSData {
+        if let data = defaults.objectForKey("USER") as? NSData {
             let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
             
             print("user.name = \(user.name)")
@@ -135,7 +135,7 @@ class ViewController: UIViewController {
                         searchTerms: ["Book Store", "Starbucks", "Sushi"])
         
         let data = NSKeyedArchiver.archivedDataWithRootObject(user)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "USER")
+        defaults.setObject(data, forKey: "USER")
         
         defaults.synchronize()
     }

@@ -10,10 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var value = 0
-    var lock = NSLock()
+    var mySharedValue = 0
     
-    var queue = NSOperationQueue()
+    var lock = NSLock()
     
     override func viewDidLoad() {
         
@@ -23,12 +22,8 @@ class ViewController: UIViewController {
         // As soon as the view loads, we'll start two threads:
         //
         
-        // The first thread will be created and launched by using NSThread.
-        testNSThread()
-        
-        // The second thread will be created by declaring a custom NSOperation
-        // instance and launching it via a NSOperationQueue
-        testNSOperationQueue()
+        launchThread1()
+        launchThread2()
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,15 +32,26 @@ class ViewController: UIViewController {
     }
     
     // The job of this test function is to simply increment value 1000 times.
-    func incrementValue1000() {
+    func unsafeValueIncrement() {
+        
+        for _ in 0..<1000 {
+            
+            let v = mySharedValue + 1
+            print("mySharedValue = \(v)")
+            mySharedValue = v
+        }
+    }
+    
+    // The job of this test function is to simply increment value 1000 times.
+    func safeValueIncrement() {
         
         for _ in 0..<1000 {
             
             lock.lock()
             
-            let v = value + 1
-            print("value = \(v)")
-            value = v
+            let v = mySharedValue + 1
+            print("mySharedValue = \(v)")
+            mySharedValue = v
             
             lock.unlock()
         }
@@ -69,48 +75,36 @@ class ViewController: UIViewController {
     //        }
     //    }
     
-    func testNSThread() {
+    func launchThread1() {
         
-        let myThread = NSThread(target:self, selector:#selector(threadMain(_:)), object:self)
-        myThread.start()
+        let myThread1 = NSThread(target:self, selector:#selector(threadMain1(_:)), object:self)
+        myThread1.start()
         
         // If you don't need access to the thread instance, you can call
         // NSThread.detachNewThreadSelector instead.
-        //NSThread.detachNewThreadSelector("threadMain:", toTarget:self, withObject:self)
+        //NSThread.detachNewThreadSelector("threadMain1:", toTarget:self, withObject:self)
     }
     
-    func threadMain(sender: ViewController) {
+    func threadMain1(sender: ViewController) {
         
-        sender.incrementValue1000()
+        //sender.unsafeValueIncrement()
+        sender.safeValueIncrement()
         
-        print("NSThread over.")
+        print("NSThread #1 done.!")
     }
     
-    func testNSOperationQueue() {
+    func launchThread2() {
         
-        let myCustomOperation = MyCustomOperation(vc: self)
-        
-        queue.addOperation(myCustomOperation)
+        let myThread2 = NSThread(target:self, selector:#selector(threadMain2(_:)), object:self)
+        myThread2.start()
     }
     
-    class MyCustomOperation : NSOperation {
+    func threadMain2(sender: ViewController) {
         
-        var vc:ViewController
+        //sender.unsafeValueIncrement()
+        sender.safeValueIncrement()
         
-        init(vc:ViewController) {
-            self.vc = vc
-        }
-        
-        override func start() {
-            super.start()
-        }
-        
-        override func main() {
-            
-            vc.incrementValue1000()
-            
-            print("NSOperation over.")
-        }
+        print("NSThread #2 done.!")
     }
 }
 

@@ -9,93 +9,108 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var mySharedValue = 0
+    
+    var lock = NSLock()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //
+        // As soon as the view loads, we'll create two async dispatches using
+        // Grand Central Dispatch.
+        //
+        
+        dispatchAsync1()
+        dispatchAsync2()
     }
     
-    @IBAction func onTouchComputePrimes(sender: UIButton) {
-        
-        print(primesUpTo(100))
-        //print(primesUpTo(50000))
-    }
-    
-    /// @param numbers must be an array of sequential numbers, not smaller than 2
-    func sieve(numbers: [UInt]) -> [UInt] {
-        
-        if numbers.isEmpty { return [] }
-        let p = numbers[0]
-        assert(p > 1, "Numbers must start at 2 or higher!")
-        let rest = numbers[1..<numbers.count]
-        return [p] + sieve(rest.filter { $0 % p > 0 })
-    }
-    
-    func primesUpTo(max: UInt) -> [UInt] {
-        
-        return [1] + sieve(Array(2...max))
-    }
-    
-    @IBAction func onTouchLoadURLData(sender: UIButton) {
-        
-        loadDataFromURL()
-    }
-    
-    func loadDataFromURL() {
-        
-        // This call to dispatch_async() is being used to push our code that attempts to load
-        // some data over HTTP into a background thread.
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
-            
-            // Everything inside this closure will be executed on a new backgrond thread, which
-            // will allow the main thread that processes input and draws the UI to keep working.
-            
-            if let url = NSURL(string: "http://jsonplaceholder.typicode.com/posts") {
-                
-                if let data = try? NSData(contentsOfURL: url, options: []) {
-                    
-                    do {
-                        let jsonArray = try NSJSONSerialization.JSONObjectWithData(data,
-                            options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
-                        
-                        print(jsonArray)
-                        
-                    } catch {
-                        self.showError()
-                    }
-                    
-                } else {
-                    self.showError()
-                }
-                
-            } else {
-                self.showError()
-            }
-        }
-    }
-    
-    func showError() {
-        
-        // This call to dispatch_async() is being used to exucute some UI related code back 
-        // on the Main UI thread where our app started. Without this call to dispatch_async
-        // our app would crash as soon as it tried to modify the UI in any way!
-        dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-            
-            let alert = UIAlertController(title: "Loading Error",
-                message: "There was a problem loading the URL!", preferredStyle: .Alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        print("!!! didReceiveMemoryWarning !!!")
     }
-
+    
+    // The job of this test function is to demonstrate the NON-thread-safe
+    // way to modify some shared data.
+    func unsafeValueIncrement() {
+        
+        for _ in 0..<1000 {
+            
+            let v = mySharedValue + 1
+            print("mySharedValue = \(v)")
+            mySharedValue = v
+        }
+    }
+    
+    // The job of this test function is to demonstrate the thread-safe
+    // way to modify some shared data.
+    func safeValueIncrement() {
+        
+        for _ in 0..<1000 {
+            
+            lock.lock()
+            
+            let v = mySharedValue + 1
+            print("mySharedValue = \(v)")
+            mySharedValue = v
+            
+            lock.unlock()
+        }
+    }
+    
+    // Notes on calling dispatch_async and dispatch_get_global_queue:
+    
+    // QOS_CLASS_USER_INTERACTIVE: The user interactive class represents tasks
+    // that need to be done immediately in order to provide a nice user experience.
+    // Use it for UI updates, event handling and small workloads that require
+    // low latency. The total amount of work done in this class during the
+    // execution of your app should be small.
+    
+    // QOS_CLASS_USER_INITIATED: The user initiated class represents tasks that
+    // are initiated from the UI and can be performed asynchronously. It should
+    // be used when the user is waiting for immediate results, and for tasks
+    // required to continue user interaction.
+    
+    // QOS_CLASS_UTILITY: The utility class represents long-running tasks, typically
+    // with a user-visible progress indicator. Use it for computations, I/O,
+    // networking, continuous data feeds and similar tasks. This class is designed
+    // to be energy efficient.
+    
+    // QOS_CLASS_BACKGROUND: The background class represents tasks that the user
+    // is not directly aware of. Use it for prefetching, maintenance, and other
+    // tasks that don’t require user interaction and aren’t time-sensitive.
+    
+    // While the dispatch_get_global_queue() takes 2 parameters, the second one
+    // is always 0. Apple might make use of that second parameter in the future,
+    // but for now just put a 0 there. And the usage of [unowned self] in the
+    // closure is to avoid strong reference cycles.
+    
+    func dispatchAsync1() {
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
+            
+            // Everything inside this closure will be executed on a new background thread.
+            
+            //self.unsafeValueIncrement()
+            self.safeValueIncrement()
+            
+            print("dispatchAsync1 over.")
+        }
+    }
+    
+    func dispatchAsync2() {
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
+            
+            // Everything inside this closure will be executed on a new background thread.
+            
+            //self.unsafeValueIncrement()
+            self.safeValueIncrement()
+            
+            print("dispatchAsync2 over.")
+            
+        }
+    }
 }
 

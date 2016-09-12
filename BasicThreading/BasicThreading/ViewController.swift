@@ -31,7 +31,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // The job of this test function is to simply increment value 1000 times.
+    // The job of this test function is to demonstrate the NON-thread-safe
+    // way to modify some shared data.
     func unsafeValueIncrement() {
         
         for _ in 0..<1000 {
@@ -42,7 +43,8 @@ class ViewController: UIViewController {
         }
     }
     
-    // The job of this test function is to simply increment value 1000 times.
+    // The job of this test function is to demonstrate the thread-safe
+    // way to modify some shared data.
     func safeValueIncrement() {
         
         for _ in 0..<1000 {

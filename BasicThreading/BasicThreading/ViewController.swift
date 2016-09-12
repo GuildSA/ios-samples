@@ -63,19 +63,19 @@ class ViewController: UIViewController {
     // objc_sync_enter and objc_sync_exit where you pass in some instance
     // object to lock on. Here's a version of function above which uses
     // objc_sync_enter and objc_sync_exit instead of a NSLock:
-    //    func incrementValue1000() {
-    //
-    //        for _ in 0..<1000 {
-    //
-    //            objc_sync_enter(self)
-    //
-    //            let v = value + 1
-    //            print("value = \(v)")
-    //            value = v
-    //
-    //            objc_sync_exit(self)
-    //        }
-    //    }
+//    func incrementValue1000() {
+//
+//        for _ in 0..<1000 {
+//
+//            objc_sync_enter(self)
+//
+//            let v = mySharedValue + 1
+//            print("mySharedValue = \(v)")
+//            mySharedValue = v
+//
+//            objc_sync_exit(self)
+//        }
+//    }
     
     func launchThread1() {
         
@@ -92,7 +92,7 @@ class ViewController: UIViewController {
         //sender.unsafeValueIncrement()
         sender.safeValueIncrement()
         
-        print("NSThread #1 done.!")
+        print("NSThread #1 done!")
     }
     
     func launchThread2() {
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         //sender.unsafeValueIncrement()
         sender.safeValueIncrement()
         
-        print("NSThread #2 done.!")
+        print("NSThread #2 done!")
     }
 }
 

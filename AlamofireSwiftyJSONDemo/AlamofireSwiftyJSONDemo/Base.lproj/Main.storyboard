@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AlamofireSwiftyJSONDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BPW-Xc-hIx">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" id="cVT-u1-U6r" customClass="MyTableViewCell" customModule="AlamofireSwiftyJSONDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="170"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cVT-u1-U6r" id="Ew1-ZB-Gan">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gd2-ba-Tde">
+                                                    <rect key="frame" x="10" y="10" width="150" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="Cxd-mx-Fg4"/>
+                                                        <constraint firstAttribute="height" constant="150" id="bGv-z7-veg"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mx9-rr-dGp">
+                                                    <rect key="frame" x="75" y="75" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qu-KO-QEt">
+                                                    <rect key="frame" x="170" y="10" width="140" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="XHL-7b-4WT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gd2-ba-Tde" firstAttribute="centerY" secondItem="Ew1-ZB-Gan" secondAttribute="centerY" id="8Wz-Uz-mVi"/>
+                                                <constraint firstItem="Gd2-ba-Tde" firstAttribute="leading" secondItem="Ew1-ZB-Gan" secondAttribute="leading" constant="10" id="G6J-QK-Rd7"/>
+                                                <constraint firstItem="mx9-rr-dGp" firstAttribute="centerX" secondItem="Gd2-ba-Tde" secondAttribute="centerX" id="g9R-2S-T88"/>
+                                                <constraint firstItem="mx9-rr-dGp" firstAttribute="centerY" secondItem="Gd2-ba-Tde" secondAttribute="centerY" id="iCi-7Z-8I4"/>
+                                                <constraint firstAttribute="trailing" secondItem="2Qu-KO-QEt" secondAttribute="trailing" constant="10" id="kzP-uz-yQl"/>
+                                                <constraint firstItem="2Qu-KO-QEt" firstAttribute="centerY" secondItem="Ew1-ZB-Gan" secondAttribute="centerY" id="lh7-eL-tks"/>
+                                                <constraint firstItem="2Qu-KO-QEt" firstAttribute="leading" secondItem="Gd2-ba-Tde" secondAttribute="trailing" constant="10" id="r5x-is-cGM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="activityIndicator" destination="mx9-rr-dGp" id="3wQ-9J-Uh7"/>
+                                            <outlet property="myImageView" destination="Gd2-ba-Tde" id="YIS-8u-LvJ"/>
+                                            <outlet property="myTextLabel" destination="2Qu-KO-QEt" id="xc0-pk-Vdc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="imS-LT-z2J"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="COi-oe-sow"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="BPW-Xc-hIx" secondAttribute="bottom" id="3rB-MR-FHE"/>
+                            <constraint firstItem="BPW-Xc-hIx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5k7-t8-huX"/>
+                            <constraint firstAttribute="trailing" secondItem="BPW-Xc-hIx" secondAttribute="trailing" id="H4p-7q-PpJ"/>
+                            <constraint firstItem="BPW-Xc-hIx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Spm-ab-XBs"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="BPW-Xc-hIx" id="4Y1-9c-fvI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304" y="419"/>
+        </scene>
+    </scenes>
+</document>

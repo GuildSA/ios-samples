@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  AlamofireDemo
+//  AlamofireSwiftyJSONDemo
 //
 //  Created by Kevin Harris on 1/31/16.
 //  Copyright © 2016 Guild/SA. All rights reserved.
@@ -8,12 +8,17 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 // This sample uses Alamofire, an HTTP networking library written in Swift, to
 // asynchronously pulled down some JSON data that lists a bunch of test photos.
 // We then use Alamofire again to load each of those images asynchronously into
 // an UIIMageView of our custom cell type called, MyTableViewCell.
 // https://github.com/Alamofire/Alamofire
+
+// Once this sample pulls down the JSON data using Alamofire, we will then use
+// another library called SwiftyJSON to parse the JSON.
+// https://github.com/SwiftyJSON/SwiftyJSON
 
 class ViewController: UIViewController, UITableViewDataSource {
     
@@ -51,9 +56,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Fake Online REST API for Testing and Prototyping
         //http://jsonplaceholder.typicode.com/
         
-        Alamofire.request(.GET, "http://jsonplaceholder.typicode.com/photos", parameters: nil).responseJSON { response in
+        Alamofire.request(.GET, "http://jsonplaceholder.typicode.com/photos", parameters: nil).responseString { response in
             
             // The GET request for the JSON data has returned.
+            
             //print(response.request)  // original URL request
             //print(response.response) // URL response
             //print(response.data)     // server data
@@ -61,16 +67,14 @@ class ViewController: UIViewController, UITableViewDataSource {
             
             if let jsonString = response.result.value {
                 
-                let jsonArray = jsonString as! NSArray
+                let json = JSON.parse(jsonString)
                 
-                for arrayEntry in jsonArray {
-                    
-                    let photoDictionary = arrayEntry as! NSDictionary
-                    
-                    let thumbnailUrl = photoDictionary["thumbnailUrl"] as! String
-                    let url = photoDictionary["url"] as! String
-                    let title = photoDictionary["title"] as! String
-                    
+                for arrayEntry in json.arrayValue {
+
+                    let thumbnailUrl = arrayEntry["thumbnailUrl"].stringValue
+                    let url = arrayEntry["url"].stringValue
+                    let title = arrayEntry["title"].stringValue
+
                     self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                 }
                 

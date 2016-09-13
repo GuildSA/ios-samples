@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     @IBAction func onTouchStart(sender: UIButton) {
         
-        repeatingTimer = NSTimer(timeInterval: 1.0, target: self, selector: "count", userInfo: nil, repeats: true)
+        repeatingTimer = NSTimer(timeInterval: 1.0, target: self, selector: #selector(count), userInfo: nil, repeats: true)
         
         NSRunLoop.currentRunLoop().addTimer(repeatingTimer, forMode: NSRunLoopCommonModes)
     }

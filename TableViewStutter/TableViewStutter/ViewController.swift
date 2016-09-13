@@ -28,6 +28,17 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         super.viewDidLoad()
         
+        loadJSONData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadJSONData() {
+
         if let url = NSURL(string: "http://jsonplaceholder.typicode.com/photos") {
             
             do {
@@ -39,31 +50,25 @@ class ViewController: UIViewController, UITableViewDataSource {
                 for arrayEntry in jsonArray {
                     
                     let photoDictionary = arrayEntry as! NSDictionary
-
+                    
                     let thumbnailUrl = photoDictionary["thumbnailUrl"] as! String
                     let url = photoDictionary["url"] as! String
                     let title = photoDictionary["title"] as! String
-
+                    
                     self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                 }
-
+                
                 // Once we're done loading up the photoDataArray, force the table view to reload so
                 // the cells get rebuilt using the data that we fetched from the test server.
                 tableView.reloadData()
-                    
+                
             } catch {
                 print("NSData or NSJSONSerialization Error: \(error)")
             }
-                
+            
         } else {
             print("NSURL Error")
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // From UITableViewDataSource protocol.

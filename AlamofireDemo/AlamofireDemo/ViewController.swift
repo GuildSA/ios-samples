@@ -37,12 +37,22 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         // As soon as our view controller loads, use Alamofire to get the JSON data that
         // describes all the test photos that we can load.
+        loadJSONData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadJSONData() {
         
         // Fake Online REST API for Testing and Prototyping
         //http://jsonplaceholder.typicode.com/
         
         Alamofire.request(.GET, "http://jsonplaceholder.typicode.com/photos", parameters: nil).responseJSON { response in
-                
+            
             // The GET request for the JSON data has returned.
             
             //print(response.request)  // original URL request
@@ -76,18 +86,6 @@ class ViewController: UIViewController, UITableViewDataSource {
                 print("Failed to get a value from the response.")
             }
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // From UITableViewDataSource protocol.
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
     }
     
     // From UITableViewDataSource protocol.

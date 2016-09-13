@@ -27,9 +27,20 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
+        loadJSONData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadJSONData() {
+        
         let url = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!
-
+        
         let session = NSURLSession.sharedSession()
         
 // Instead of using the shared session, we could choose to create a NSURLSessionConfiguration and
@@ -73,14 +84,8 @@ class ViewController: UIViewController, UITableViewDataSource {
                 print("NSURLSession Error: \(error)")
             }
         }
-
-        task.resume()
-    }
-    
-    override func didReceiveMemoryWarning() {
         
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        task.resume()
     }
     
     // From UITableViewDataSource protocol.

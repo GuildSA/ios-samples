@@ -31,12 +31,12 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             
-            let cancelAction = UIAlertAction(title: "Call", style: .Default) { action in
+            let callAction = UIAlertAction(title: "Call", style: .Default) { action in
                 
                 UIApplication.sharedApplication().openURL(url)
             }
             
-            alertController.addAction(cancelAction)
+            alertController.addAction(callAction)
             
             self.presentViewController(alertController, animated: true, completion: nil)
             

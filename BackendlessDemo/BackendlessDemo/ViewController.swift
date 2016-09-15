@@ -10,7 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let USER_NAME = "ios_user@gmail.com"
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // Don't forget to replace the App's ID and Secret Key in AppDelegate with YORU own 
+    // from YOUR Backendless Dashboard!
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    let EMAIL = "ios_user@gmail.com" // Doubles as User Name
     let PASSWORD = "password"
     
     let backendless = Backendless.sharedInstance()
@@ -20,6 +25,7 @@ class ViewController: UIViewController {
         var objectId: String?
         var message: String?
         var authorEmail: String?
+        var topicId: Int = 0
     }
     
     override func viewDidLoad() {
@@ -32,32 +38,54 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onTouchUpInsideRegisterBtn(sender: UIButton) {
+    func checkForBackendlessSetup() {
         
-        print( "onTouchUpInsideRegisterBtn called!" )
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        if appDelegate.APP_ID == "<replace-with-your-app-id>" || appDelegate.SECRET_KEY == "<replace-with-your-secret-key>" {
+            
+            let alertController = UIAlertController(title: "Backendless Error",
+                                                    message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in the AppDelegate with the values from your app's settings.",
+                                                    preferredStyle: .Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func registerBtn(sender: UIButton) {
+        
+        checkForBackendlessSetup()
+        
+        print( "registerBtn called!" )
         
         // In a real app, this where we would send the user to a register screen to collect their
         // user name and password for registering a new user. For testing purposes, we will simply
         // register a test user using a hard coded user name and password.
         let user: BackendlessUser = BackendlessUser()
-        user.email = USER_NAME
+        user.email = EMAIL
         user.password = PASSWORD
         
         backendless.userService.registering( user,
             
-            response: { ( registeredUser : BackendlessUser!) -> () in
+            response: { ( registeredUser: BackendlessUser!) -> () in
                 print("User was registered: \(registeredUser.objectId)")
             },
             
-            error: { ( fault : Fault!) -> () in
+            error: { ( fault: Fault!) -> () in
                 print("User failed to register: \(fault)")
             }
         )
     }
     
-    @IBAction func onTouchUpInsideLoginBtn(sender: UIButton) {
+    @IBAction func loginBtn(sender: UIButton) {
         
-        print( "onTouchUpInsideLoginBtn called!" )
+        checkForBackendlessSetup()
+        
+        print( "loginBtn called!" )
         
         // First, check if the user is already logged in. If they are, we don't need to
         // ask them to login again.
@@ -81,78 +109,99 @@ class ViewController: UIViewController {
             // information so future logins can be skipped next time the user launches the app.
             // For this sample this call was made in the AppDelegate in didFinishLaunchingWithOptions.
             
-            backendless.userService.login( USER_NAME, password:PASSWORD,
+            backendless.userService.login( EMAIL, password: PASSWORD,
                 
-                response: { ( user : BackendlessUser!) -> () in
+                response: { ( user: BackendlessUser!) -> () in
                     print("User logged in: \(user.objectId)")
                 },
                 
-                error: { ( fault : Fault!) -> () in
+                error: { ( fault: Fault!) -> () in
                     print("User failed to login: \(fault)")
                 }
             )
         }
     }
     
-    @IBAction func onTouchUpInsideCreateCommentBtn(sender: UIButton) {
+    func randomBool() -> Bool {
+        return arc4random_uniform(2) == 0 ? true: false
+    }
+    
+    @IBAction func createCommentBtn(sender: UIButton) {
         
-        print( "onTouchUpInsideCreateCommentBtn called!" )
+        checkForBackendlessSetup()
+        
+        print( "createCommentBtn called!" )
+        
+        var topicId: Int
+        
+        if randomBool() {
+            topicId = 1
+        } else {
+            topicId = 2
+        }
         
         let comment = Comment()
         comment.message = "Hello, from iOS user!"
-        comment.authorEmail = USER_NAME
+        comment.authorEmail = EMAIL
+        comment.topicId = topicId
         
         backendless.data.save( comment,
             
-            response: { ( entity : AnyObject!) -> () in
+            response: { ( entity: AnyObject!) -> () in
                 
                 let comment = entity as! Comment
                 
                 print("Comment was saved: \(comment.objectId!), message: \(comment.message!)")
             },
             
-            error: { ( fault : Fault!) -> () in
+            error: { ( fault: Fault!) -> () in
                 print("Comment failed to save: \(fault)")
             }
         )
     }
     
-    @IBAction func onTouchUpInsideFetchCommentsBtn(sender: UIButton) {
+    @IBAction func findAllCommentsBtn(sender: UIButton) {
       
-        print( "onTouchUpInsideFetchCommentsBtn called!" )
+        checkForBackendlessSetup()
+        
+        print( "findAllCommentsBtn called!" )
         
         let dataStore = self.backendless.persistenceService.of(Comment.ofClass())
         
         dataStore.find(
             
-            { ( comments : BackendlessCollection!) -> () in
+            { ( comments: BackendlessCollection!) -> () in
                 print("Comments have been fetched:")
                 
                 for comment in comments.data {
                     
                     let comment = comment as! Comment
                     
-                    print("Comment: \(comment.objectId!), message: \(comment.message!)")
+                    print("Comment: \(comment.objectId!), message: \(comment.message!), topicId: \(comment.topicId)")
                 }
             },
             
-            error: { ( fault : Fault!) -> () in
+            error: { ( fault: Fault!) -> () in
                 print("Comments were not fetched: \(fault)")
             }
         )
     }
     
-    @IBAction func onTouchUpInsideRemoveCommentsBtn(sender: UIButton) {
+    @IBAction func removeAllCommentsBtn(sender: UIButton) {
         
-        print( "onTouchUpInsideRemoveCommentsBtn called!" )
+        checkForBackendlessSetup()
+        
+        print( "removeAllCommentsBtn called!" )
         
         let dataStore = self.backendless.persistenceService.of(Comment.ofClass())
         
         // Find all the Comments!
         dataStore.find(
             
-            { ( comments : BackendlessCollection!) -> () in
-                print("Comments have been fetched:")
+            { ( comments: BackendlessCollection!) -> () in
+                
+                print("Find attempt on all Comments has completed without error!")
+                print("Number of Comments found = \(comments.data.count)")
                 
                 // Now, remove all the Comments we found - one by one!
                 for comment in comments.data {
@@ -171,7 +220,46 @@ class ViewController: UIViewController {
                 }
             },
             
-            error: { ( fault : Fault!) -> () in
+            error: { ( fault: Fault!) -> () in
+                print("Comments were not fetched: \(fault)")
+            }
+        )
+    }
+    
+    @IBAction func queryCommentsBtn(sender: UIButton) {
+        
+        checkForBackendlessSetup()
+        
+        print( "queryCommentsBtn called!" )
+        
+        let dataStore = self.backendless.data.of(Comment.ofClass())
+        
+        let dataQuery = BackendlessDataQuery()
+        dataQuery.whereClause = "topicId = 1"
+        
+        // Find all the Comments where the topicId is equal to a certain number!
+        dataStore.find( dataQuery,
+                        
+            response: { ( comments: BackendlessCollection!) -> () in
+                
+                print("Find attempt on Comments with a certain topicId has completed without error!")
+                print("Number of Comments found = \(comments.data.count)")
+                
+                if comments.data.count > 0 {
+                    
+                    for comment in comments.data {
+                        
+                        let comment = comment as! Comment
+                        
+                        print("Comment: \(comment.objectId!), message: \(comment.message!), topicId: \(comment.topicId)")
+                    }
+                    
+                } else {
+                    print("No Comments were fetched using the whereClause '\(dataQuery.whereClause)'")
+                }
+            },
+                        
+            error: { ( fault: Fault!) -> () in
                 print("Comments were not fetched: \(fault)")
             }
         )

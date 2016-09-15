@@ -16,17 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Replace these with YOUR App's ID and Secret Key from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    let APP_ID = "761FB252-4CE5-99EF-FF77-C9E99ACAA400"
-    let SECRET_KEY = "926B9573-E688-8918-FF64-584F1E91EF00"
-
+    let APP_ID = "<replace-with-your-app-id>"
+    let SECRET_KEY = "<replace-with-your-secret-key>"
+    
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let backendless = Backendless.sharedInstance()
-        backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
-        backendless.userService.setStayLoggedIn(true)
+        if APP_ID != "<replace-with-your-app-id>" && SECRET_KEY != "<replace-with-your-secret-key>"{
+            
+            let backendless = Backendless.sharedInstance()
+            backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+            backendless.userService.setStayLoggedIn(true)
+        }
         
         // If you plan to use Backendless Media Service, uncomment the following line (iOS ONLY!)
         // backendless.mediaService = MediaService()

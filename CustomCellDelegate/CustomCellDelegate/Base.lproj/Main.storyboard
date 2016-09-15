@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CustomCellDelegate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BPW-Xc-hIx">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myCell" id="cVT-u1-U6r" customClass="MyTableViewCell" customModule="CustomCellDelegate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cVT-u1-U6r" id="Ew1-ZB-Gan">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdf-qa-YxJ">
+                                                    <rect key="frame" x="18" y="45" width="284" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="yne-2B-nFI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="email"/>
+                                                    <connections>
+                                                        <action selector="createEmail:" destination="cVT-u1-U6r" eventType="touchUpInside" id="5c8-IG-Na5"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="836-fF-SYc">
+                                                    <rect key="frame" x="18" y="18" width="284" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="6wK-XX-wHy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="website"/>
+                                                    <connections>
+                                                        <action selector="loadWebsite:" destination="cVT-u1-U6r" eventType="touchUpInside" id="UgZ-LV-onW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="836-fF-SYc" firstAttribute="leading" secondItem="Ew1-ZB-Gan" secondAttribute="leadingMargin" constant="10" id="2nE-6E-d5p"/>
+                                                <constraint firstItem="fdf-qa-YxJ" firstAttribute="leading" secondItem="Ew1-ZB-Gan" secondAttribute="leadingMargin" constant="10" id="A0Z-5Y-VJf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fdf-qa-YxJ" secondAttribute="trailing" constant="10" id="EV7-3d-2xc"/>
+                                                <constraint firstItem="836-fF-SYc" firstAttribute="top" secondItem="Ew1-ZB-Gan" secondAttribute="topMargin" constant="10" id="lDb-oA-5Nt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="836-fF-SYc" secondAttribute="trailing" constant="10" id="oKU-Q8-1Zp"/>
+                                                <constraint firstItem="fdf-qa-YxJ" firstAttribute="bottom" secondItem="Ew1-ZB-Gan" secondAttribute="bottomMargin" constant="-5" id="rSe-Tw-dXu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="emailBtn" destination="fdf-qa-YxJ" id="DgG-Zp-gK8"/>
+                                            <outlet property="websiteBtn" destination="836-fF-SYc" id="A51-3E-DG9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="imS-LT-z2J"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="BPW-Xc-hIx" secondAttribute="bottom" id="3rB-MR-FHE"/>
+                            <constraint firstItem="BPW-Xc-hIx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5k7-t8-huX"/>
+                            <constraint firstAttribute="trailing" secondItem="BPW-Xc-hIx" secondAttribute="trailing" id="H4p-7q-PpJ"/>
+                            <constraint firstItem="BPW-Xc-hIx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Spm-ab-XBs"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="BPW-Xc-hIx" id="4Y1-9c-fvI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304" y="419"/>
+        </scene>
+    </scenes>
+</document>

@@ -38,19 +38,19 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
 
-    func mapViewDidFinishRenderingMap(mapView: MKMapView, fullyRendered: Bool) {
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         print("mapViewDidFinishRenderingMap: \(fullyRendered)")
     }
     
-    @IBAction func onValueChangedSegment(sender: UISegmentedControl) {
+    @IBAction func onValueChangedSegment(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
             case 0:
-                mapView.mapType = MKMapType.Standard
+                mapView.mapType = MKMapType.standard
             case 1:
-                mapView.mapType = MKMapType.Satellite
+                mapView.mapType = MKMapType.satellite
             case 2:
-                mapView.mapType = MKMapType.Hybrid
+                mapView.mapType = MKMapType.hybrid
                 //setUpCamera()
             default:
                 break
@@ -58,31 +58,31 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    private func setUpCamera() {
+    fileprivate func setUpCamera() {
         mapView.camera.altitude = 1500
         mapView.camera.pitch = 60
         mapView.camera.heading = 180
     }
     
-    @IBAction func onShowTrafficBtn(sender: UIButton) {
+    @IBAction func onShowTrafficBtn(_ sender: UIButton) {
 
         mapView.showsTraffic = !mapView.showsTraffic
         
         if(mapView.showsTraffic == true) {
-            sender.setTitle("Hide Traffic", forState: UIControlState.Normal)
+            sender.setTitle("Hide Traffic", for: UIControlState())
         } else {
-            sender.setTitle("Show Traffic", forState: UIControlState.Normal)
+            sender.setTitle("Show Traffic", for: UIControlState())
         }
     }
     
-    @IBAction func onShowCompassBtn(sender: UIButton) {
+    @IBAction func onShowCompassBtn(_ sender: UIButton) {
 
         mapView.showsCompass = !mapView.showsCompass
         
         if(mapView.showsCompass == true) {
-            sender.setTitle("Hide Compass", forState: UIControlState.Normal)
+            sender.setTitle("Hide Compass", for: UIControlState())
         } else {
-            sender.setTitle("Show Compass", forState: UIControlState.Normal)
+            sender.setTitle("Show Compass", for: UIControlState())
         }
     }
 

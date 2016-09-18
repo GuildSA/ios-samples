@@ -123,6 +123,7 @@
 				TargetAttributes = {
 					E7979C171C9A564C00F797D5 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -329,6 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.guildsa.BackendlessDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PODS_ROOT}/Headers/Public/Backendless/Backendless-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -343,6 +345,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.guildsa.BackendlessDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PODS_ROOT}/Headers/Public/Backendless/Backendless-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

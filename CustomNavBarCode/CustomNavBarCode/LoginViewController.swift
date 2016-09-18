@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
 //        // This sets the text in the middle of the Nav Bar for this View Controllers.

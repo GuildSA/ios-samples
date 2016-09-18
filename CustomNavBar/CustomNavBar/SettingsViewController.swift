@@ -20,7 +20,7 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func backBtn(sender: UIButton) {
+    @IBAction func backBtn(_ sender: UIButton) {
         
         // This will not work here!
         //dismissViewControllerAnimated(true, completion: nil)
@@ -28,6 +28,6 @@ class SettingsViewController: UIViewController {
         // Since we're using a UINavigationController we will call
         // popViewControllerAnimated to dismiss the UIViewController
         // at the top of the stack.
-        self.navigationController?.popViewControllerAnimated(true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

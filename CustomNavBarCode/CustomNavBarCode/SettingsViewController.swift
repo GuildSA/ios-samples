@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // This sets the text in the middle of the Nav Bar for this View Controllers.
@@ -32,9 +32,9 @@ class SettingsViewController: UIViewController {
         
         // Now, force our image to keep its original colors by setting its rendering mode 
         // to AlwaysOriginal. This will keep iOS from converting it to white.
-        saveBtnImage = saveBtnImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        saveBtnImage = saveBtnImage!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         
-        let rightbarBtnItem = UIBarButtonItem(image: saveBtnImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(rightBarBtnItemPressed(_:)))
+        let rightbarBtnItem = UIBarButtonItem(image: saveBtnImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarBtnItemPressed(_:)))
         
         // Finally, make Bar Buttom item on the Right-side use our Save Button Image
         // without defaulting it to white.
@@ -50,9 +50,9 @@ class SettingsViewController: UIViewController {
         
         // Now, force our image to keep its original colors by setting its rendering mode
         // to AlwaysOriginal. This will keep iOS from converting it to white.
-        backBtnImage = backBtnImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        backBtnImage = backBtnImage!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         
-        let leftbarBtnItem = UIBarButtonItem(image: backBtnImage, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(leftBarBtnItemPressed(_:)))
+        let leftbarBtnItem = UIBarButtonItem(image: backBtnImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarBtnItemPressed(_:)))
         
         // Finally, make Bar Buttom item on the Left-side use our Back Button Image
         // without defaulting it to white.
@@ -93,12 +93,12 @@ class SettingsViewController: UIViewController {
     }
     
     
-    func rightBarBtnItemPressed(sender: UIBarButtonItem) {
+    func rightBarBtnItemPressed(_ sender: UIBarButtonItem) {
         
         print("Save something!")
     }
 
-    func leftBarBtnItemPressed(sender: UIBarButtonItem) {
+    func leftBarBtnItemPressed(_ sender: UIBarButtonItem) {
         
         // This will not work here!
         //dismissViewControllerAnimated(true, completion: nil)
@@ -106,10 +106,10 @@ class SettingsViewController: UIViewController {
         // Since we're using a UINavigationController we will call
         // popViewControllerAnimated to dismiss the UIViewController
         // at the top of the stack.
-        self.navigationController?.popViewControllerAnimated(true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
-    func leftBtnPressed(sender: UIButton!) {
+    func leftBtnPressed(_ sender: UIButton!) {
         
         // This will not work here!
         //dismissViewControllerAnimated(true, completion: nil)
@@ -117,6 +117,6 @@ class SettingsViewController: UIViewController {
         // Since we're using a UINavigationController we will call
         // popViewControllerAnimated to dismiss the UIViewController
         // at the top of the stack.
-        self.navigationController?.popViewControllerAnimated(true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

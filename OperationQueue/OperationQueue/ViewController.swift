@@ -14,10 +14,10 @@ class ViewController: UIViewController {
     
     var lock = NSLock()
     
-    var queue = NSOperationQueue()
+    var queue = Foundation.OperationQueue()
     
     
-    class MyCustomOperation : NSOperation {
+    class MyCustomOperation : Operation {
         
         var vc: ViewController
         

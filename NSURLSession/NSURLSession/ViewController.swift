@@ -39,37 +39,39 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func loadJSONData() {
         
-        let url = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!
+        let url = URL(string: "http://jsonplaceholder.typicode.com/photos")!
         
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
-// Instead of using the shared session, we could choose to create a NSURLSessionConfiguration and
-// then use it to create our own NSURLSession.
-//        let urlConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+// Instead of using the shared session, we could choose to create a URLSessionConfiguration and
+// then use it to create our own URLSession.
+//        let urlConfig = URLSessionConfiguration.default
 //        urlConfig.timeoutIntervalForRequest = 10
 //        urlConfig.timeoutIntervalForResource = 10
-//        let session = NSURLSession(configuration: urlConfig)
+//        let session = URLSession(configuration: urlConfig)
         
-        let task = session.dataTaskWithURL(url) { (data, response, error) in
+        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             
             if error == nil {
                 
                 do {
                     
-                    let data = try NSData(contentsOfURL: url, options: [])
+                    let data = try Data(contentsOf: url, options: [])
                     
-                    let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: [] ) as! NSArray
+                    let jsonArray = try JSONSerialization.jsonObject(with: data, options: [] ) as! NSArray
                     
                     for arrayEntry in jsonArray {
                         
-                        let thumbnailUrl = arrayEntry["thumbnailUrl"] as! String
-                        let url = arrayEntry["url"] as! String
-                        let title = arrayEntry["title"] as! String
+                        let photoDictionary = arrayEntry as! NSDictionary
+                        
+                        let thumbnailUrl = photoDictionary["thumbnailUrl"] as! String
+                        let url = photoDictionary["url"] as! String
+                        let title = photoDictionary["title"] as! String
                         
                         self.photoDataArray.append(PhotoData(thumbnailUrl: thumbnailUrl, url: url, title: title))
                     }
                     
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         
                         // Once we're done loading up the photoDataArray, force the table view to reload so
                         // the cells get rebuilt using the data that we fetched from the test server.
@@ -83,45 +85,45 @@ class ViewController: UIViewController, UITableViewDataSource {
             } else {
                 print("NSURLSession Error: \(error)")
             }
-        }
+        }) 
         
         task.resume()
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return photoDataArray.count
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
         
-        let row = indexPath.row
+        let row = (indexPath as NSIndexPath).row
         
         cell.myTextLabel.text = photoDataArray[row].title
         
         cell.myImageView.image = nil
-        cell.activityIndicator.hidden = false
+        cell.activityIndicator.isHidden = false
         cell.activityIndicator.startAnimating()
         
         let thumbnaillUrl = photoDataArray[row].thumbnailUrl
         
-        let url = NSURL(string: thumbnaillUrl)!
+        let url = URL(string: thumbnaillUrl)!
         
-        let session = NSURLSession.sharedSession()
+        let session = URLSession.shared
         
-        let task = session.dataTaskWithURL(url) { (data, response, error) in
+        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             
             if error == nil {
                 
                 do {
                     
-                    let data = try NSData(contentsOfURL: url, options: [])
+                    let data = try Data(contentsOf: url, options: [])
                     
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         
                         // We got the image data! Use it to create a UIImage for our cell's
                         // UIImageView. Then, stop the activity spinner.
@@ -136,7 +138,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             } else {
                 print("NSURLSession Error: \(error)")
             }
-        }
+        }) 
         
         task.resume()
         

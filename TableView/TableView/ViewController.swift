@@ -53,14 +53,14 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     // From UITableViewDataSource protocol.
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         // We only have one section in our table view.
         return 1
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // The number of rows we want for out table view is directly related to
         // the number of data entries we have in our data array.
@@ -68,13 +68,13 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // This will try to reuse a cell if one can be found. If not, a new cell will be created.
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
         
         // Find out what index or row we're building for and use that to fetch the corresponding data.
-        let row = indexPath.row
+        let row = (indexPath as NSIndexPath).row
         
         cell.textLabel?.text = myData[row]
         

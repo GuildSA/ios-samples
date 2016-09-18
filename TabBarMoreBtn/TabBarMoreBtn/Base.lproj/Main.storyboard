@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--First-->
@@ -14,11 +15,10 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN" customClass="View">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab #1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i57-ZV-LLM">
-                                <rect key="frame" x="110" y="267" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="LvQ-Ue-P5N"/>
                                     <constraint firstAttribute="height" constant="35" id="o0z-cY-Dcc"/>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="i57-ZV-LLM" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="48M-hP-tWq"/>
                             <constraint firstItem="i57-ZV-LLM" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="tdY-ba-dEC"/>
@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-910" y="882"/>
+            <point key="canvasLocation" x="-1695" y="878"/>
         </scene>
         <!--Third-->
         <scene sceneID="h79-21-nhN">
@@ -49,11 +49,10 @@
                         <viewControllerLayoutGuide type="bottom" id="PUy-Bw-znG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RiE-mJ-ElS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab #3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTT-vy-Wlg">
-                                <rect key="frame" x="110" y="267" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="IKe-OT-ici"/>
                                     <constraint firstAttribute="width" constant="100" id="NvH-rF-0b4"/>
@@ -63,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gTT-vy-Wlg" firstAttribute="centerY" secondItem="RiE-mJ-ElS" secondAttribute="centerY" id="pIa-Au-srO"/>
                             <constraint firstItem="gTT-vy-Wlg" firstAttribute="centerX" secondItem="RiE-mJ-ElS" secondAttribute="centerX" id="sW7-Lq-hqL"/>
@@ -71,11 +70,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Third" image="gear" id="Rbq-Mc-vS9"/>
                     <navigationItem key="navigationItem" id="LzZ-h1-D14"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9B-nx-atB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197" y="882"/>
+            <point key="canvasLocation" x="-319" y="878"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -86,11 +84,10 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab #2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oor-qK-eBw">
-                                <rect key="frame" x="110" y="267" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="9iD-Tk-KI8"/>
                                     <constraint firstAttribute="height" constant="35" id="f9P-B5-Nyg"/>
@@ -100,7 +97,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Oor-qK-eBw" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="gYm-eh-qWj"/>
                             <constraint firstItem="Oor-qK-eBw" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="hUa-hb-xfr"/>
@@ -110,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-550" y="882"/>
+            <point key="canvasLocation" x="-1001" y="878"/>
         </scene>
         <!--Fourth-->
         <scene sceneID="n0I-nW-Ndo">
@@ -121,11 +118,10 @@
                         <viewControllerLayoutGuide type="bottom" id="lO9-ML-hkH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LIx-8v-thC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab #4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMX-XM-GCt">
-                                <rect key="frame" x="110" y="267" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="FoL-lJ-nj8"/>
                                     <constraint firstAttribute="width" constant="100" id="MTm-Vf-Hqm"/>
@@ -135,7 +131,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jMX-XM-GCt" firstAttribute="centerY" secondItem="LIx-8v-thC" secondAttribute="centerY" id="L1Q-Ff-72P"/>
                             <constraint firstItem="jMX-XM-GCt" firstAttribute="centerX" secondItem="LIx-8v-thC" secondAttribute="centerX" id="unx-VQ-vPU"/>
@@ -145,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwl-Jl-IJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="882"/>
+            <point key="canvasLocation" x="362" y="878"/>
         </scene>
         <!--Fifth-->
         <scene sceneID="sHa-Nk-6tP">
@@ -156,11 +152,10 @@
                         <viewControllerLayoutGuide type="bottom" id="M8P-NQ-Xbm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yit-ua-7gU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab #5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgS-lq-5nE">
-                                <rect key="frame" x="110" y="267" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2Rr-9S-fGb"/>
                                     <constraint firstAttribute="height" constant="35" id="rz0-7r-dwP"/>
@@ -170,7 +165,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fgS-lq-5nE" firstAttribute="centerX" secondItem="Yit-ua-7gU" secondAttribute="centerX" id="N3c-eL-mZd"/>
                             <constraint firstItem="fgS-lq-5nE" firstAttribute="centerY" secondItem="Yit-ua-7gU" secondAttribute="centerY" id="Owg-t1-wCr"/>
@@ -180,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3h-8M-Vve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="543" y="882"/>
+            <point key="canvasLocation" x="1033" y="878"/>
         </scene>
         <!--Sixth-->
         <scene sceneID="tE3-Ob-wOq">
@@ -191,11 +186,10 @@
                         <viewControllerLayoutGuide type="bottom" id="i4Q-vS-dxf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A5o-86-uKX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tab #6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1i-56-TgT">
-                                <rect key="frame" x="110" y="267" width="100" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="NEV-Ri-cHr"/>
                                     <constraint firstAttribute="height" constant="35" id="jgI-n1-yxN"/>
@@ -205,7 +199,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g1i-56-TgT" firstAttribute="centerY" secondItem="A5o-86-uKX" secondAttribute="centerY" id="swA-Sn-SzU"/>
                             <constraint firstItem="g1i-56-TgT" firstAttribute="centerX" secondItem="A5o-86-uKX" secondAttribute="centerX" id="vVj-G7-Bnu"/>
@@ -215,18 +209,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TbL-yt-PdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="882"/>
+            <point key="canvasLocation" x="1692" y="878"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>

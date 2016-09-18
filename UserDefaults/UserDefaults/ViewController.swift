@@ -20,49 +20,49 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func touchUpInsideRead(sender: UIButton) {
+    @IBAction func touchUpInsideRead(_ sender: UIButton) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = Foundation.UserDefaults.standard
         
         //
         // This first example simply retrieves our user's info back
         // from NSUserDefaults as a series of key/value pairs.
         //
         
-        if let name = defaults.stringForKey("NAME") {
+        if let name = defaults.string(forKey: "NAME") {
             print("NAME = \(name)")
         } else {
             print("NAME has never been set!")
         }
         
         
-        let age = defaults.integerForKey("AGE")
+        let age = defaults.integer(forKey: "AGE")
         print("AGE = \(age)")
         
         
-        if let phoneNumber = defaults.stringForKey("PHONE_NUMBER") {
+        if let phoneNumber = defaults.string(forKey: "PHONE_NUMBER") {
             print("PHONE_NUMBER = \(phoneNumber)")
         } else {
             print("PHONE_NUMBER has never been set!")
         }
         
         
-        if let homeTown = defaults.stringForKey("HOME_TOWN") {
+        if let homeTown = defaults.string(forKey: "HOME_TOWN") {
             print("HOME_TOWN = \(homeTown)")
         } else {
             print("HOME_TOWN has never been set!")
         }
         
         
-        let signedIntoFacebook = defaults.boolForKey("SIGNED_INTO_FACEBOOK")
+        let signedIntoFacebook = defaults.bool(forKey: "SIGNED_INTO_FACEBOOK")
         print("SIGNED_INTO_FACEBOOK = \(signedIntoFacebook)")
         
         
-        let searchTermsData = defaults.objectForKey("SEARCH_TERMS") as? NSData
+        let searchTermsData = defaults.object(forKey: "SEARCH_TERMS") as? Data
         
         if let searchTermsData = searchTermsData {
             
-            let searchTermsArray = NSKeyedUnarchiver.unarchiveObjectWithData(searchTermsData) as? [String]
+            let searchTermsArray = NSKeyedUnarchiver.unarchiveObject(with: searchTermsData) as? [String]
             
             if let searchTermsArray = searchTermsArray {
                 
@@ -84,8 +84,8 @@ class ViewController: UIViewController {
         // class unless it implements the NSCoding protocol.
         //
         
-        if let data = defaults.objectForKey("USER") as? NSData {
-            let user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! User
+        if let data = defaults.object(forKey: "USER") as? Data {
+            let user = NSKeyedUnarchiver.unarchiveObject(with: data) as! User
             
             print("user.name = \(user.name)")
             print("user.age = \(user.age)")
@@ -99,24 +99,24 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func touchUpInsideWrite(sender: UIButton) {
+    @IBAction func touchUpInsideWrite(_ sender: UIButton) {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = Foundation.UserDefaults.standard
         
         //
         // This first example simply writes our user's info out to
         // NSUserDefaults as a series of key/value pairs.
         //
         
-        defaults.setObject("Mark", forKey: "NAME")
-        defaults.setObject(24, forKey: "AGE")
-        defaults.setObject("555-123-4567", forKey: "PHONE_NUMBER")
-        defaults.setObject("Dallas", forKey: "HOME_TOWN")
-        defaults.setObject(true, forKey: "SIGNED_INTO_FACEBOOK")
+        defaults.set("Mark", forKey: "NAME")
+        defaults.set(24, forKey: "AGE")
+        defaults.set("555-123-4567", forKey: "PHONE_NUMBER")
+        defaults.set("Dallas", forKey: "HOME_TOWN")
+        defaults.set(true, forKey: "SIGNED_INTO_FACEBOOK")
         
         let searchTermsArray = ["Irish Pubs", "Concerts Frisco", "Coffee Shops"]
-        let searchTermsData = NSKeyedArchiver.archivedDataWithRootObject(searchTermsArray)
-        defaults.setObject(searchTermsData, forKey: "SEARCH_TERMS")
+        let searchTermsData = NSKeyedArchiver.archivedData(withRootObject: searchTermsArray)
+        defaults.set(searchTermsData, forKey: "SEARCH_TERMS")
         
         //
         // This second example stores our user's info in an instance
@@ -134,8 +134,8 @@ class ViewController: UIViewController {
                         signedIntoFacebook: true,
                         searchTerms: ["Book Store", "Starbucks", "Sushi"])
         
-        let data = NSKeyedArchiver.archivedDataWithRootObject(user)
-        defaults.setObject(data, forKey: "USER")
+        let data = NSKeyedArchiver.archivedData(withRootObject: user)
+        defaults.set(data, forKey: "USER")
         
         defaults.synchronize()
     }

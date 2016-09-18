@@ -24,8 +24,8 @@ class ViewController: UIViewController {
         //    <true/>
         //  </dict>
         
-        let url = NSURL (string: "http://www.google.com/");
-        let requestObj = NSURLRequest(URL: url!);
+        let url = URL (string: "http://www.google.com/");
+        let requestObj = URLRequest(url: url!);
         webView.loadRequest(requestObj);
     }
 
@@ -34,26 +34,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onBackBarButton(sender: UIBarButtonItem) {
+    @IBAction func onBackBarButton(_ sender: UIBarButtonItem) {
         
         print("Going Back!")
         
         webView.goBack()
     }
     
-    @IBAction func onForwardBarButton(sender: UIBarButtonItem) {
+    @IBAction func onForwardBarButton(_ sender: UIBarButtonItem) {
         
         print("Going Forward!")
         
         webView.goForward()
     }
     
-    @IBAction func onLocalHTMLBarButton(sender: UIBarButtonItem) {
+    @IBAction func onLocalHTMLBarButton(_ sender: UIBarButtonItem) {
         
         print("Loading Local HTML!")
         
-        let localfilePath = NSBundle.mainBundle().URLForResource("local_web_page", withExtension: "html");
-        let myRequest = NSURLRequest(URL: localfilePath!);
+        let localfilePath = Bundle.main.url(forResource: "local_web_page", withExtension: "html");
+        let myRequest = URLRequest(url: localfilePath!);
         webView.loadRequest(myRequest);
     }
 }

@@ -39,13 +39,13 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func loadJSONData() {
 
-        if let url = NSURL(string: "http://jsonplaceholder.typicode.com/photos") {
+        if let url = URL(string: "http://jsonplaceholder.typicode.com/photos") {
             
             do {
                 
-                let data = try NSData(contentsOfURL: url, options: [])
+                let data = try Data(contentsOf: url, options: [])
                 
-                let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! NSArray
+                let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as! NSArray
                 
                 for arrayEntry in jsonArray {
                     
@@ -72,31 +72,31 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return photoDataArray.count
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
         
-        let row = indexPath.row
+        let row = (indexPath as NSIndexPath).row
         
         cell.myTextLabel.text = photoDataArray[row].title
         
         cell.myImageView.image = nil
-        cell.activityIndicator.hidden = false
+        cell.activityIndicator.isHidden = false
         cell.activityIndicator.startAnimating()
         
         let thumbnaillUrl = photoDataArray[row].thumbnailUrl
         
-        if let url = NSURL(string: thumbnaillUrl) {
+        if let url = URL(string: thumbnaillUrl) {
             
             do {
                 
-                let data = try NSData(contentsOfURL: url, options: [])
+                let data = try Data(contentsOf: url, options: [])
                 
                 // We got the image data! Use it to create a UIImage for our cell's
                 // UIImageView. Then, stop the activity spinner.

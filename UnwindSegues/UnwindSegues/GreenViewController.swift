@@ -28,21 +28,21 @@ class GreenViewController: UIViewController {
         print("The view controller that launched us passed: '\(someIncomingData!)'!")
     }
 
-    @IBAction func onDismissToRedViewControllerBtn(sender: UIButton) {
+    @IBAction func onDismissToRedViewControllerBtn(_ sender: UIButton) {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onUnwindToRedViewControllerBtn(sender: UIButton) {
+    @IBAction func onUnwindToRedViewControllerBtn(_ sender: UIButton) {
         
-        self.performSegueWithIdentifier("unwindToRedVC", sender: self)
+        self.performSegue(withIdentifier: "unwindToRedVC", sender: self)
     }
     
     // We can override prepareForSegue in a UIViewController if we want to perform some
     // action before a Segue actually fires off. This is typically done to package up
     // some data that we wish to pass to the new UIViewControler that we're about to
     // move to.
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if segue.identifier == "unwindToRedVC" {
             

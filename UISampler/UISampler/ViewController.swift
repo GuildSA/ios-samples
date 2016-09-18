@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onButtonTouchUpInside(sender: UIButton) {
+    @IBAction func onButtonTouchUpInside(_ sender: UIButton) {
         
         print( "onButtonTouchUpInside")
     }
@@ -45,19 +45,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        print( "onTextFieldValueChanged = \(sender.text)")
 //    }
     
-    @IBAction func onSliderValueChanged(sender: UISlider) {
+    @IBAction func onSliderValueChanged(_ sender: UISlider) {
         
         let currentValue = Int(sender.value)
 
         print( "onSliderValueChanged = \(currentValue)")
     }
     
-    @IBAction func onSwitchValueChanged(sender: UISwitch) {
+    @IBAction func onSwitchValueChanged(_ sender: UISwitch) {
         
-        print( "onSwitchValueChanged = \(sender.on)")
+        print( "onSwitchValueChanged = \(sender.isOn)")
     }
 
-    @IBAction func onSegmentValueChanged(sender: UISegmentedControl) {
+    @IBAction func onSegmentValueChanged(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
             
@@ -72,7 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func onStepperValueChanged(sender: UIStepper) {
+    @IBAction func onStepperValueChanged(_ sender: UIStepper) {
         
         print( "onStepperValueChanged = \(sender.value)")
     }
@@ -81,41 +81,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // The call-backs defined by UITextFieldDelegate
     //
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
         print("textFieldDidBeginEditing method called")
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
         print("textFieldDidEndEditing method called")
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         print("textFieldShouldBeginEditing method called")
         return true;
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         
         print("textFieldShouldClear method called")
         return true;
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         print("textFieldShouldEndEditing method called")
         return true;
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         print("textField:shouldChangeCharactersInRange called: \(string)")
         return true;
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         print("textFieldShouldReturn method called")
         

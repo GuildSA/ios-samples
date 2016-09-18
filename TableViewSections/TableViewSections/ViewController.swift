@@ -41,17 +41,17 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         return sectionTitles.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return sectionTitles[section]
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
             return dataForSection1.count
@@ -62,14 +62,14 @@ class ViewController: UIViewController, UITableViewDataSource {
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
         
-        if indexPath.section == 0 {
-            cell.textLabel?.text = dataForSection1[indexPath.row]
-        } else if indexPath.section == 1 {
-            cell.textLabel?.text = dataForSection2[indexPath.row]
+        if (indexPath as NSIndexPath).section == 0 {
+            cell.textLabel?.text = dataForSection1[(indexPath as NSIndexPath).row]
+        } else if (indexPath as NSIndexPath).section == 1 {
+            cell.textLabel?.text = dataForSection2[(indexPath as NSIndexPath).row]
         }
         
         return cell

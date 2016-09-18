@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var timeLabel: UILabel!
 
-    var repeatingTimer = NSTimer()
-    var delayedEventTimer = NSTimer()
+    var repeatingTimer = Timer()
+    var delayedEventTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +29,11 @@ class ViewController: UIViewController {
     // Functions for the Start and Stop buttons...
     //
     
-    @IBAction func onTouchStart(sender: UIButton) {
+    @IBAction func onTouchStart(_ sender: UIButton) {
         
-        repeatingTimer = NSTimer(timeInterval: 1.0, target: self, selector: #selector(count), userInfo: nil, repeats: true)
+        repeatingTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(count), userInfo: nil, repeats: true)
         
-        NSRunLoop.currentRunLoop().addTimer(repeatingTimer, forMode: NSRunLoopCommonModes)
+        RunLoop.current.add(repeatingTimer, forMode: RunLoopMode.commonModes)
     }
     
     func count() {
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         timeLabel.text = String(currentCount)
     }
 
-    @IBAction func onTouchStop(sender: UIButton) {
+    @IBAction func onTouchStop(_ sender: UIButton) {
         
         repeatingTimer.invalidate()
         timeLabel.text = "0"
@@ -55,41 +55,41 @@ class ViewController: UIViewController {
     // Functions for the Delayed Event button...
     //
     
-    @IBAction func onTouchDelayedEvent(sender: UIButton) {
+    @IBAction func onTouchDelayedEvent(_ sender: UIButton) {
         
-        delayedEventTimer = NSTimer(timeInterval: 3.0, target: self, selector: #selector(ViewController.delayedEvent), userInfo: nil, repeats: false)
+        delayedEventTimer = Timer(timeInterval: 3.0, target: self, selector: #selector(ViewController.delayedEvent), userInfo: nil, repeats: false)
         
-        NSRunLoop.currentRunLoop().addTimer(delayedEventTimer, forMode: NSRunLoopCommonModes)
+        RunLoop.current.add(delayedEventTimer, forMode: RunLoopMode.commonModes)
     }
     
     func delayedEvent() {
         
-        let alertController = UIAlertController(title: "Delayed Event", message: "Hey, I waited 3 seconds!", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Delayed Event", message: "Hey, I waited 3 seconds!", preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //
     // Functions for the Timer with Passed Object button...
     //
     
-    @IBAction func onTouchTimerWithObject(sender: UIButton) {
+    @IBAction func onTouchTimerWithObject(_ sender: UIButton) {
         
-        sender.enabled = false
+        sender.isEnabled = false
         
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(ViewController.resetButton(_:)), userInfo: ["theButtonTouched" :sender], repeats: false)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.resetButton(_:)), userInfo: ["theButtonTouched" :sender], repeats: false)
     }
     
-    func resetButton(timer: NSTimer) {
+    func resetButton(_ timer: Timer) {
 
         let userInfo = timer.userInfo as! Dictionary<String, AnyObject>
         
         let touchedbutton:UIButton = (userInfo["theButtonTouched"] as! UIButton)
         
-        touchedbutton.enabled = true
+        touchedbutton.isEnabled = true
         
         timer.invalidate()
     }

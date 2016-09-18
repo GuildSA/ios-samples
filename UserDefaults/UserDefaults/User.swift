@@ -33,29 +33,29 @@ class User: NSObject, NSCoding {
     
     required convenience init?(coder decoder: NSCoder) {
         
-        guard let name = decoder.decodeObjectForKey("name") as? String,
-            let phoneNumber = decoder.decodeObjectForKey("phoneNumber") as? String,
-            let homeTown = decoder.decodeObjectForKey("homeTown") as? String,
-            let searchTerms = decoder.decodeObjectForKey("searchTerms") as? [String]
+        guard let name = decoder.decodeObject(forKey: "name") as? String,
+            let phoneNumber = decoder.decodeObject(forKey: "phoneNumber") as? String,
+            let homeTown = decoder.decodeObject(forKey: "homeTown") as? String,
+            let searchTerms = decoder.decodeObject(forKey: "searchTerms") as? [String]
             else { return nil }
         
         self.init(
             name: name,
-            age: decoder.decodeIntegerForKey("age"),
+            age: decoder.decodeInteger(forKey: "age"),
             phoneNumber: phoneNumber,
             homeTown: homeTown,
-            signedIntoFacebook: decoder.decodeBoolForKey("signedIntoFacebook"),
+            signedIntoFacebook: decoder.decodeBool(forKey: "signedIntoFacebook"),
             searchTerms: searchTerms
         )
     }
     
-    func encodeWithCoder(coder: NSCoder) {
+    func encode(with coder: NSCoder) {
         
-        coder.encodeObject(self.name, forKey: "name")
-        coder.encodeInt(Int32(self.age), forKey: "age")
-        coder.encodeObject(self.phoneNumber, forKey: "phoneNumber")
-        coder.encodeObject(self.homeTown, forKey: "homeTown")
-        coder.encodeBool(self.signedIntoFacebook, forKey: "signedIntoFacebook")
-        coder.encodeObject(self.searchTerms, forKey: "searchTerms")
+        coder.encode(self.name, forKey: "name")
+        coder.encodeCInt(Int32(self.age), forKey: "age")
+        coder.encode(self.phoneNumber, forKey: "phoneNumber")
+        coder.encode(self.homeTown, forKey: "homeTown")
+        coder.encode(self.signedIntoFacebook, forKey: "signedIntoFacebook")
+        coder.encode(self.searchTerms, forKey: "searchTerms")
     }
 }

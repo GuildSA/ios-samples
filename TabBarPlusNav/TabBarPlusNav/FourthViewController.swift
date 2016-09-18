@@ -21,7 +21,7 @@ class FourthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         
         // The call to popToRootViewControllerAnimated will trigger this
         // call, so this is our opportunity to switch tabs.
@@ -32,7 +32,7 @@ class FourthViewController: UIViewController {
         self.tabBarController?.selectedIndex = 0;
     }
     
-    @IBAction func onTouchUpInsideJumpToTab(sender: UIButton) {
+    @IBAction func onTouchUpInsideJumpToTab(_ sender: UIButton) {
         
         // Since we are planning on abruptly leaving a tab that is using a
         // navigationController to manage view controllers, we might want
@@ -45,6 +45,6 @@ class FourthViewController: UIViewController {
         //self.navigationController?.popViewControllerAnimated(false)
         
         // If you want to go ALL the way back to the root view controller, do this?
-        self.navigationController?.popToRootViewControllerAnimated(false)
+        _ = self.navigationController?.popToRootViewController(animated: false)
     }
 }

@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     //
     
     // Method gets called when the textfield editing will start
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         print("textFieldShouldBeginEditing")
         
@@ -36,13 +36,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     }
     
     // Method gets called when the textfield editing started already
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
         print("textFieldDidBeginEditing")
     }
     
     // Method gets called when the textfield editing will end
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         print("textFieldShouldEndEditing")
         
@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     }
     
     // Method gets called when typing every single character (or whole words if the user selects an auto completion)
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         print("textField:shouldChangeCharactersInRange = \(string)")
         
@@ -58,13 +58,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     }
     
     // Method gets called when the textfield editing ended already
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
         print("textFieldDidEndEditing")
     }
     
     // Method gets called when the keyboard return key pressed
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn")
         
         myTextField.resignFirstResponder()
@@ -76,50 +76,50 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     // UITextViewDelegate
     //
     
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         
         print("textViewShouldBeginEditing")
         
         return true
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         
         print("textViewDidBeginEditing")
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         
         print("textViewDidEndEditing")
     }
     
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         
         print("textViewDidChange")
     }
     
-    func textViewDidChangeSelection(textView: UITextView) {
+    func textViewDidChangeSelection(_ textView: UITextView) {
         
         print("textViewDidChangeSelection")
         
         print("selectedRange = \(textView.selectedRange)")
     }
     
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         
         print("textViewDidChangeSelection")
         
         return true
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
 
         print("textFieldShouldClear")
 
         return true
     }
     
-    @IBAction func onTouchUpInsideDone(sender: UIButton) {
+    @IBAction func onTouchUpInsideDone(_ sender: UIButton) {
         
         // Dismiss the keyboard
         myTextView.resignFirstResponder()

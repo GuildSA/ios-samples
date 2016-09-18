@@ -24,15 +24,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func readFileFromResources(fileName: String, fileType: String, encoding: NSStringEncoding = NSUTF8StringEncoding) -> String {
+    func readFileFromResources(fileName: String, fileType: String, encoding: String.Encoding = String.Encoding.utf8) -> String {
         
-        let absoluteFilePath = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)
+        let absoluteFilePath = Bundle.main.path(forResource: fileName, ofType: fileType)
         
         if let absoluteFilePath = absoluteFilePath {
             
-            if let fileData = NSData.init(contentsOfFile: absoluteFilePath) {
+            if let fileData = try? Data.init(contentsOf: URL(fileURLWithPath: absoluteFilePath)) {
                 
-                if let fileAsString = NSString(data: fileData, encoding: encoding) {
+                if let fileAsString = NSString(data: fileData, encoding: encoding.rawValue) {
                     return fileAsString as String
                 } else {
                     print("readFileFromResources failed on: \(fileName). Failed to convert data to String!")
@@ -57,11 +57,11 @@ class ViewController: UIViewController {
         //
         // [ "Cloe", "Bob", "Jennifer", "Robert" ]
         
-        let jsonString = readFileFromResources("example1", fileType: ".json")
+        let jsonString = readFileFromResources(fileName: "example1", fileType: ".json")
 
-        let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let jsonData: Data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
 
-        let playerNamesArray = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSArray
+        let playerNamesArray = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSArray
 
         for playerName in playerNamesArray {
             
@@ -82,17 +82,17 @@ class ViewController: UIViewController {
         //     "maps": [ 12, 23, 55 ]
         // }
         
-        let jsonString = readFileFromResources("example2", fileType: ".json")
+        let jsonString = readFileFromResources(fileName: "example2", fileType: ".json")
         
-        let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let jsonData: Data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
-        let playerDataDictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
+        let playerDataDictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
         
-        let name = playerDataDictionary.valueForKey("name")
+        let name = playerDataDictionary.value(forKey: "name")
         
         print("name = \(name!)")
         
-        let maps = playerDataDictionary.valueForKey("maps") as! NSArray
+        let maps = playerDataDictionary["maps"] as! NSArray
         
         for map in maps {
             
@@ -137,42 +137,37 @@ class ViewController: UIViewController {
         //     }
         // }
         
-        let jsonString = readFileFromResources("example3", fileType: ".json")
+        let jsonString = readFileFromResources(fileName: "example3", fileType: ".json")
         
-        let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let jsonData: Data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
-        let dictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
+        let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as! NSDictionary
         
-        let weaponsDictionary = dictionary.valueForKey("weapons") as! NSDictionary
+        let weaponsDictionary = dictionary.value(forKey: "weapons") as! NSDictionary
         
-        let swords = weaponsDictionary.valueForKey("swords") as! NSArray
+        let swords = weaponsDictionary.value(forKey: "swords") as! NSArray
         
         for sword in swords {
             
-            let name = sword.valueForKey("name") as! String
-            let damage = sword.valueForKey("damage") as! Int
+            let swordDictionary = sword as! NSDictionary
+            
+            let name = swordDictionary["name"] as! String
+            let damage = swordDictionary["damage"] as! Int
             
             print("name = \(name), damage = \(damage)")
         }
         
-        let spears = weaponsDictionary.valueForKey("spears") as! NSArray
+        let spears = weaponsDictionary.value(forKey: "spears") as! NSArray
         
         for spear in spears {
             
-            let name = spear.valueForKey("name") as! String
-            let damage = spear.valueForKey("damage") as! Int
+            let spearDictionary = spear as! NSDictionary
+            
+            let name = spearDictionary["name"] as! String
+            let damage = spearDictionary["damage"] as! Int
             
             print("name = \(name), damage = \(damage)")
         }
-        
-// NOTE: Some deveolpers might pass the key name into [] insted of using valueForKey().
-//        for spear in spears {
-//
-//            let name = spear["name"] as! String
-//            let damage = spear["damage"] as! Int
-//            
-//            print("name = \(name), damage = \(damage)")
-//        }
     }
 }
 

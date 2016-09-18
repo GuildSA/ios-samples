@@ -20,9 +20,9 @@ class ModalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTouchUpInsideDismiss(sender: AnyObject) {
+    @IBAction func onTouchUpInsideDismiss(_ sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
             print("ModalViewController was dismissed!");
         })
     }

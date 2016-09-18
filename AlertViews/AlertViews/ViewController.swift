@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func showSimpleAlert(sender: UIButton) {
+    @IBAction func showSimpleAlert(_ sender: UIButton) {
         
         //
         // UIAlertController - Simple Alert
@@ -32,20 +32,20 @@ class ViewController: UIViewController {
         
         let alertController = UIAlertController(title: "Network Error",
                                                 message: "Unable to reach the server. Check network connectivity or try again later.",
-                                                preferredStyle: .Alert)
+                                                preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .Default) { action in
+        let okAction = UIAlertAction(title: "OK", style: .default) { action in
             print("OK was selected!")
         }
         
         alertController.addAction(okAction)
         
-        self.presentViewController(alertController, animated: true) {
+        self.present(alertController, animated: true) {
             print("Show the Simple Alert!")
         }
     }
     
-    @IBAction func showAlertWithButtons(sender: UIButton) {
+    @IBAction func showAlertWithButtons(_ sender: UIButton) {
         
         //
         // UIAlertController - Alert with Buttons
@@ -56,26 +56,26 @@ class ViewController: UIViewController {
 
         let alertController = UIAlertController(title: "Discard Settings",
                                                 message: "Are you sure you want to discard these settings?",
-                                                preferredStyle: .Alert)
+                                                preferredStyle: .alert)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
             print("Cancel was selected!")
         }
         
         alertController.addAction(cancelAction)
 
-        let discardAction = UIAlertAction(title: "Discard", style: .Default) { action in
+        let discardAction = UIAlertAction(title: "Discard", style: .default) { action in
             print("Discard was selected!")
         }
         
         alertController.addAction(discardAction)
 
-        self.presentViewController(alertController, animated: true) {
+        self.present(alertController, animated: true) {
             print("Show the Alert with Buttons!")
         }
     }
     
-    @IBAction func showAlertWithTextFields(sender: UIButton) {
+    @IBAction func showAlertWithTextFields(_ sender: UIButton) {
         
         //
         // UIAlertController - Alert With Text Fields & Buttons
@@ -83,28 +83,28 @@ class ViewController: UIViewController {
 
         let alertController = UIAlertController(title: "Account Login",
                                                 message: "Please enter your login credentials.",
-                                                preferredStyle: .Alert)
+                                                preferredStyle: .alert)
 
-        alertController.addTextFieldWithConfigurationHandler { textField -> Void in
+        alertController.addTextField { textField -> Void in
 
-            textField.textColor = UIColor.blueColor()
+            textField.textColor = UIColor.blue
             textField.placeholder = "User Name"
         }
 
-        alertController.addTextFieldWithConfigurationHandler { textField -> Void in
+        alertController.addTextField { textField -> Void in
 
-            textField.textColor = UIColor.blueColor()
+            textField.textColor = UIColor.blue
             textField.placeholder = "Password"
-            textField.secureTextEntry = true
+            textField.isSecureTextEntry = true
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
             print("Cancel was selected!")
         }
         
         alertController.addAction(cancelAction)
         
-        let okAction = UIAlertAction(title: "Login", style: .Default) { action in
+        let okAction = UIAlertAction(title: "Login", style: .default) { action in
             print("Login was selected!")
             
             let userName = alertController.textFields![0].text!
@@ -116,12 +116,12 @@ class ViewController: UIViewController {
         
         alertController.addAction(okAction)
         
-        self.presentViewController(alertController, animated: true) {
+        self.present(alertController, animated: true) {
             print("Show the Alert With Text Fields & Buttons")
         }
     }
     
-    @IBAction func showActionSheet(sender: UIButton) {
+    @IBAction func showActionSheet(_ sender: UIButton) {
         
         //
         // UIAlertController - Action Sheet
@@ -131,27 +131,27 @@ class ViewController: UIViewController {
 
         let alertController = UIAlertController(title: nil,
                                                 message: "You have changed this image. What would you like to do with it?",
-                                                preferredStyle: .ActionSheet)
+                                                preferredStyle: .actionSheet)
 
-        let saveAction = UIAlertAction(title: "Save", style: .Default) { action in
+        let saveAction = UIAlertAction(title: "Save", style: .default) { action in
             print("Save was selected!")
         }
         
         alertController.addAction(saveAction)
 
-        let discardAction = UIAlertAction(title: "Discard", style: .Destructive) { action in
+        let discardAction = UIAlertAction(title: "Discard", style: .destructive) { action in
             print("Discard was selected!")
         }
         
         alertController.addAction(discardAction)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
             print("Cancel was selected!")
         }
         
         alertController.addAction(cancelAction)
         
-        self.presentViewController(alertController, animated: true) {
+        self.present(alertController, animated: true) {
             print("Show the Action Sheet!")
         }
     }

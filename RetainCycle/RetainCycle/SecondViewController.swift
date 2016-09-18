@@ -27,9 +27,9 @@ class SecondViewController: UIViewController, ModelObjectDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onDismissView(sender: UIButton) {
+    @IBAction func onDismissView(_ sender: UIButton) {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
         print("SecondViewController dismissed!")
     }

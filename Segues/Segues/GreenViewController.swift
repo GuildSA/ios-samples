@@ -27,8 +27,8 @@ class GreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func backToRedViewController(sender: UIButton) {
+    @IBAction func backToRedViewController(_ sender: UIButton) {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

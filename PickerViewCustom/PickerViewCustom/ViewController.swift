@@ -23,32 +23,32 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     // From the UIPickerViewDataSource protocol.
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
     }
     
     // From the UIPickerViewDataSource protocol.
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return pickerData.count
     }
     
     // From the UIPickerViewDataSource protocol.
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return pickerData[row]
     }
     
     // From the UIPickerViewDelegate protocol.
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         print("\(pickerData[row])")
     }
     
     // This method will get called when the UIPickerView creates its UILabels.
     // This is our opportunity to modify or customize the UILabels.
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         var pickerLabel: UILabel
         
@@ -70,10 +70,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         let titleData = pickerData[row]
         
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.black])
         
         pickerLabel.attributedText = myTitle
-        pickerLabel.textAlignment = .Center
+        pickerLabel.textAlignment = .center
         
         return pickerLabel
     }

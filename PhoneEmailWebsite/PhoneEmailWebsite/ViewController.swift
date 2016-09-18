@@ -21,31 +21,31 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func callPhoneNumber(sender: UIButton) {
+    @IBAction func callPhoneNumber(_ sender: UIButton) {
         
-        if let url = NSURL(string: "tel://8042221111") {
+        if let url = URL(string: "tel://8042221111") {
 
             let alertController = UIAlertController(title: "Place Call",
                                                     message: "Do you wish to call (804) 222-1111 now?",
-                                                    preferredStyle: .Alert)
+                                                    preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            let callAction = UIAlertAction(title: "Call", style: .Default) { action in
+            let callAction = UIAlertAction(title: "Call", style: .default) { action in
                 
-                UIApplication.sharedApplication().openURL(url)
+                UIApplication.shared.openURL(url)
             }
             
             alertController.addAction(callAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             
         } else {
             print("Failed to convert phone number to NSURL")
         }
     }
 
-    @IBAction func createEmail(sender: UIButton) {
+    @IBAction func createEmail(_ sender: UIButton) {
         
         if MFMailComposeViewController.canSendMail() {
             
@@ -55,40 +55,40 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
             mailComposerVC.setSubject("My Subject...")
             mailComposerVC.setMessageBody("Here's my email! Blah Blah Blah.", isHTML: false)
             
-            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+            self.present(mailComposerVC, animated: true, completion: nil)
             
         } else {
             
             let alertController = UIAlertController(title: "Could Not Send Email",
                                                     message: "Your device is not configured to send e-mail. Please check e-mail configuration and try again.",
-                                                    preferredStyle: .Alert)
+                                                    preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            let configureAction = UIAlertAction(title: "Configure", style: .Default) { action in
+            let configureAction = UIAlertAction(title: "Configure", style: .default) { action in
                 
                 // Send the user to the device's Settings app.
-                if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(appSettings)
+                if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(appSettings)
                 }
             }
             
             alertController.addAction(configureAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 
     // Implemented from MFMailComposeViewControllerDelegate...
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func gotoWebsite(sender: UIButton) {
+    @IBAction func gotoWebsite(_ sender: UIButton) {
 
-        if let url = NSURL(string: "https://guildsa.org") {
-            UIApplication.sharedApplication().openURL(url)
+        if let url = URL(string: "https://guildsa.org") {
+            UIApplication.shared.openURL(url)
         }
     }
 }

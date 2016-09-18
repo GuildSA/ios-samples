@@ -20,18 +20,18 @@ class RedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func segueToGreenViewController(sender: UIButton) {
+    @IBAction func segueToGreenViewController(_ sender: UIButton) {
         
         // To trigger a manual Segue, we simply call performSegueWithIdentifier, but this
         // requires that the Segue have an identifier set.
-        performSegueWithIdentifier("segueFromViewController", sender: sender)
+        performSegue(withIdentifier: "segueFromViewController", sender: sender)
     }
     
     // If we create an action Segue that was directly connected from a control such as a
     // UIButton to a new UIViewControler, our only chance to stop the Segue is by overriding
     // shouldPerformSegueWithIdentifier. This will not be called for manual Segues that are
     // connected from one UIViewControler to the next UIViewControler.
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         if identifier == "segueFromButtonAction" {
             
@@ -47,14 +47,14 @@ class RedViewController: UIViewController {
     // action before a Segue actually fires off. This is typically done to package up
     // some data that we wish to pass to the new UIViewControler that we're about to
     // move to.
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if segue.identifier == "segueFromButtonAction" {
             
             print("Preparing for the segueFromButtonAction segue!")
             
             // If we need to, modify the next UIViewController.
-            let nextVC = segue.destinationViewController as! GreenViewController
+            let nextVC = segue.destination as! GreenViewController
             
             nextVC.someText = "Action Segue"
             
@@ -63,7 +63,7 @@ class RedViewController: UIViewController {
             print("Preparing for the segueFromViewController segue!")
             
             // If we need to, modify the next UIViewController.
-            let nextVC = segue.destinationViewController as! GreenViewController
+            let nextVC = segue.destination as! GreenViewController
             
             nextVC.someText = "Manual Segue"
         }

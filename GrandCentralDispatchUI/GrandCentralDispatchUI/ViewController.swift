@@ -34,60 +34,60 @@ class ViewController: UIViewController {
         for _ in 0...1000 {
             
             for i in 0..<(myHugeArray.count) {
-                myHugeArray[i] = myHugeArray[i].lowercaseString
+                myHugeArray[i] = myHugeArray[i].lowercased()
             }
             
             for i in 0..<(myHugeArray.count) {
-                myHugeArray[i] = myHugeArray[i].uppercaseString
+                myHugeArray[i] = myHugeArray[i].uppercased()
             }
         }
     }
     
-    @IBAction func onAllocateMemory(sender: UIButton) {
+    @IBAction func onAllocateMemory(_ sender: UIButton) {
         
-        let startTime = NSDate()
+        let startTime = Date()
         
         allocateAndConvertData()
         
-        let endTime = NSDate()
+        let endTime = Date()
         
-        let elapsedTime: Double = endTime.timeIntervalSinceDate(startTime) // Difference in seconds (double)
+        let elapsedTime: Double = endTime.timeIntervalSince(startTime) // Difference in seconds (double)
         
         let alert = UIAlertController(title: "Time Report",
                                       message: String(format: "Memory allocation and data conversion took %.2f seconds.", elapsedTime),
-                                      preferredStyle: .Alert)
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func onAllocateMemoryUsingGCD(sender: UIButton) {
+    @IBAction func onAllocateMemoryUsingGCD(_ sender: UIButton) {
         
-        let startTime = NSDate()
+        let startTime = Date()
         
         // This call to dispatch_async() is being used to off load some work onto a 
         // background worker thread so it won't slow down the Main UI thread.
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [unowned self] in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [unowned self] in
         
             self.allocateAndConvertData()
             
             // This call to dispatch_async() is being used to exucute some UI related code back
             // on the Main UI thread where our app started. Without this call to dispatch_async
             // our app would crash as soon as it tried to modify the UI in any way!
-            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+            DispatchQueue.main.async { [unowned self] in
                 
-                let endTime = NSDate()
+                let endTime = Date()
                 
-                let elapsedTime: Double = endTime.timeIntervalSinceDate(startTime) // Difference in seconds (double)
+                let elapsedTime: Double = endTime.timeIntervalSince(startTime) // Difference in seconds (double)
 
                 let alert = UIAlertController(title: "Time Report",
                                               message: String(format: "Memory allocation and data conversion took %.2f seconds.", elapsedTime),
-                                              preferredStyle: .Alert)
+                                              preferredStyle: .alert)
                 
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 
-                self.presentViewController(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

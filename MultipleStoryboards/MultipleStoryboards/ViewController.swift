@@ -20,13 +20,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onNextViewController(sender: UIButton) {
+    @IBAction func onNextViewController(_ sender: UIButton) {
         
         // Load the second storyboard by name.
         let storyboard = UIStoryboard(name: "Second", bundle: nil)
         
         // Use the new storyboard to instantiate a certain UIViewController by name.
-        let controller = storyboard.instantiateViewControllerWithIdentifier("SecondViewController") as UIViewController
+        let controller = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as UIViewController
         
         //self.presentViewController(controller, animated: true, completion: nil)
         

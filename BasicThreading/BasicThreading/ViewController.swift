@@ -79,7 +79,7 @@ class ViewController: UIViewController {
     
     func launchThread1() {
         
-        let myThread1 = NSThread(target:self, selector:#selector(threadMain1(_:)), object:self)
+        let myThread1 = Thread(target:self, selector:#selector(threadMain1(_:)), object:self)
         myThread1.start()
         
         // If you don't need access to the thread instance, you can call
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         //NSThread.detachNewThreadSelector("threadMain1:", toTarget:self, withObject:self)
     }
     
-    func threadMain1(sender: ViewController) {
+    func threadMain1(_ sender: ViewController) {
         
         //sender.unsafeValueIncrement()
         sender.safeValueIncrement()
@@ -97,11 +97,11 @@ class ViewController: UIViewController {
     
     func launchThread2() {
         
-        let myThread2 = NSThread(target:self, selector:#selector(threadMain2(_:)), object:self)
+        let myThread2 = Thread(target:self, selector:#selector(threadMain2(_:)), object:self)
         myThread2.start()
     }
     
-    func threadMain2(sender: ViewController) {
+    func threadMain2(_ sender: ViewController) {
         
         //sender.unsafeValueIncrement()
         sender.safeValueIncrement()

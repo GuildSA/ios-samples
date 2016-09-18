@@ -45,21 +45,21 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return businessDataArray.count
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
         
         // If this UIViewController implements MyTableViewCellDelegate, it can set
         // itself as the cell's delegate and receive function calls such as didTapEmail().
         cell.delegate = self
         
-        let row = indexPath.row
+        let row = (indexPath as NSIndexPath).row
         
         let fullUrl = businessDataArray[row].website
         cell.websiteUrl = fullUrl
@@ -67,15 +67,15 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
         var shortUrl: String = ""
         
         // If the URL has "http://" or "https://" in it - remove it!
-        if fullUrl.lowercaseString.rangeOfString("http://") != nil {
-            shortUrl = fullUrl.stringByReplacingOccurrencesOfString("http://", withString: "")
-        } else if fullUrl.lowercaseString.rangeOfString("https://") != nil {
-            shortUrl = fullUrl.stringByReplacingOccurrencesOfString("https://", withString: "")
+        if fullUrl.lowercased().range(of: "http://") != nil {
+            shortUrl = fullUrl.replacingOccurrences(of: "http://", with: "")
+        } else if fullUrl.lowercased().range(of: "https://") != nil {
+            shortUrl = fullUrl.replacingOccurrences(of: "https://", with: "")
         }
         
-        cell.websiteBtn.setTitle(shortUrl, forState: .Normal)
+        cell.websiteBtn.setTitle(shortUrl, for: UIControlState())
         
-        cell.emailBtn.setTitle(businessDataArray[row].email, forState: .Normal)
+        cell.emailBtn.setTitle(businessDataArray[row].email, for: UIControlState())
         cell.emailAddress = businessDataArray[row].email
         
         return cell
@@ -91,16 +91,16 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
     
     // Implemented from  MyTableViewCellDelegate
     // If this gets called we know that a user has tapped on the email button on one of our cells.
-    func didTapEmail(email: String) {
+    func didTapEmail(_ email: String) {
         
         if isSimulator() {
             
             let alertController = UIAlertController(title: "Could Not Send Email",
                                                     message: "You can not send an email from the simulator!",
-                                                    preferredStyle: .Alert)
+                                                    preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -113,34 +113,34 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
             mailComposerVC.setSubject("My Subject...")
             mailComposerVC.setMessageBody("Here's my email! Blah Blah Blah.", isHTML: false)
             
-            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+            self.present(mailComposerVC, animated: true, completion: nil)
             
         } else {
             
             let alertController = UIAlertController(title: "Could Not Send Email",
                                                     message: "Your device is not configured to send e-mail. Please check e-mail configuration and try again.",
-                                                    preferredStyle: .Alert)
+                                                    preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
-            let configureAction = UIAlertAction(title: "Configure", style: .Default) { action in
+            let configureAction = UIAlertAction(title: "Configure", style: .default) { action in
                 
                 // Send the user to the device's Settings app.
-                if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(appSettings)
+                if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(appSettings)
                 }
             }
             
             alertController.addAction(configureAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
     // Implemented from MFMailComposeViewControllerDelegate...
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

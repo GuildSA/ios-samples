@@ -12,7 +12,7 @@ import UIKit
 // classes to receive event notifications from MyTableViewCell.
 protocol MyTableViewCellDelegate {
     
-    func didTapEmail(email: String)
+    func didTapEmail(_ email: String)
 }
 
 class MyTableViewCell: UITableViewCell {
@@ -35,21 +35,21 @@ class MyTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
     
-    @IBAction func loadWebsite(sender: UIButton) {
+    @IBAction func loadWebsite(_ sender: UIButton) {
         
         // Since MyTableViewCell can safely call openURL() - we'll just do it here.
-        if let url = NSURL(string: websiteUrl!) {
-            UIApplication.sharedApplication().openURL(url)
+        if let url = URL(string: websiteUrl!) {
+            UIApplication.shared.openURL(url)
         }
     }
     
-    @IBAction func createEmail(sender: UIButton) {
+    @IBAction func createEmail(_ sender: UIButton) {
         
         // Since MyTableViewCell CAN NOT call presentViewController() which is
         // required to launch MFMailComposeViewController, we will need to 

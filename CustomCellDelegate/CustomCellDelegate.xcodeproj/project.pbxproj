@@ -108,6 +108,7 @@
 					E70EF1271BEC66CC008F5D48 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = MW69X2D79F;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -267,6 +268,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.guildsa.CustomCellDelegate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -281,6 +283,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.guildsa.CustomCellDelegate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

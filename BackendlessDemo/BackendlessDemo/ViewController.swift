@@ -189,45 +189,6 @@ class ViewController: UIViewController {
         )
     }
     
-    @IBAction func removeAllCommentsBtn(_ sender: UIButton) {
-        
-        checkForBackendlessSetup()
-        
-        print( "removeAllCommentsBtn called!" )
-        
-        let dataStore = backendless.persistenceService.of(Comment.ofClass())
-        
-        // Find all the Comments!
-        dataStore?.find(
-            
-            { ( comments: BackendlessCollection?) -> Void in
-                
-                print("Find attempt on all Comments has completed without error!")
-                print("Number of Comments found = \(comments?.data.count)")
-                
-                // Now, remove all the Comments we found - one by one!
-                for comment in (comments?.data)! {
-                    
-                    let comment = comment as! Comment
-                    
-                    print("Remove Comment: \(comment.objectId!)")
-
-                    var error: Fault?
-                    let result = dataStore?.remove(comment, fault: &error)
-                    if error == nil {
-                        print("One Comment has been removed: \(result)")
-                    } else {
-                        print("Server reported an error on attempted removal: \(error)")
-                    }
-                }
-            },
-            
-            error: { ( fault: Fault?) -> Void in
-                print("Comments were not fetched: \(fault)")
-            }
-        )
-    }
-    
     @IBAction func queryCommentsBtn(_ sender: UIButton) {
         
         checkForBackendlessSetup()
@@ -261,6 +222,45 @@ class ViewController: UIViewController {
                 }
             },
                         
+            error: { ( fault: Fault?) -> Void in
+                print("Comments were not fetched: \(fault)")
+            }
+        )
+    }
+    
+    @IBAction func removeAllCommentsBtn(_ sender: UIButton) {
+        
+        checkForBackendlessSetup()
+        
+        print( "removeAllCommentsBtn called!" )
+        
+        let dataStore = backendless.persistenceService.of(Comment.ofClass())
+        
+        // Find all the Comments!
+        dataStore?.find(
+            
+            { ( comments: BackendlessCollection?) -> Void in
+                
+                print("Find attempt on all Comments has completed without error!")
+                print("Number of Comments found = \(comments?.data.count)")
+                
+                // Now, remove all the Comments we found - one by one!
+                for comment in (comments?.data)! {
+                    
+                    let comment = comment as! Comment
+                    
+                    print("Remove Comment: \(comment.objectId!)")
+                    
+                    var error: Fault?
+                    let result = dataStore?.remove(comment, fault: &error)
+                    if error == nil {
+                        print("One Comment has been removed: \(result)")
+                    } else {
+                        print("Server reported an error on attempted removal: \(error)")
+                    }
+                }
+            },
+            
             error: { ( fault: Fault?) -> Void in
                 print("Comments were not fetched: \(fault)")
             }

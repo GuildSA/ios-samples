@@ -200,6 +200,9 @@ class ViewController: UIViewController {
         let dataQuery = BackendlessDataQuery()
         dataQuery.whereClause = "topicId = 1"
         
+        // Note: If you actually know the objectId of the object you want, you can set it like so.
+        //dataQuery.whereClause = "objectId = 'D5134896-8270-EFD8-FFCB-EE27F38DA200'"
+        
         // Find all the Comments where the topicId is equal to a certain number!
         dataStore?.find( dataQuery,
                         
@@ -238,6 +241,9 @@ class ViewController: UIViewController {
         
         let dataQuery = BackendlessDataQuery()
         dataQuery.whereClause = "topicId = 2"
+        
+        // Note: If you actually know the objectId of the object you want, you can set it like so.
+        //dataQuery.whereClause = "objectId = 'D5134896-8270-EFD8-FFCB-EE27F38DA200'"
         
         // Find all the Comments where the topicId is equal to a certain number!
         // Once we find them - update or change the message on each comment found.

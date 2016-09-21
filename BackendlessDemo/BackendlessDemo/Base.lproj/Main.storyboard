@@ -50,19 +50,33 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-GM-wsK">
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Query Comments"/>
+                                        <state key="normal" title="Query Some Comments"/>
                                         <connections>
-                                            <action selector="queryCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x1g-8v-GSo"/>
+                                            <action selector="querySomeCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="81B-Hi-iNT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IV-DC-JUw">
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="yta-QO-L8c"/>
+                                        </constraints>
+                                        <state key="normal" title="Query &amp; Update Comments"/>
+                                        <connections>
+                                            <action selector="queryAndUpdateCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oaV-z3-BPT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRz-cI-Nou">
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="180" id="uoH-gt-FTH"/>
-                                        </constraints>
                                         <state key="normal" title="Remove All Comments"/>
                                         <connections>
                                             <action selector="removeAllCommentsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6oq-eH-SD2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryT-aS-wF8">
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Log Out"/>
+                                        <connections>
+                                            <action selector="logoutBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NLl-rA-RN0"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -71,11 +71,11 @@ class ViewController: UIViewController {
         
         backendless.userService.registering( user,
             
-            response: { ( registeredUser: BackendlessUser?) -> Void in
-                print("User was registered: \(registeredUser?.objectId)")
+            response: { (user: BackendlessUser?) -> Void in
+                print("User was registered: \(user?.objectId)")
             },
             
-            error: { ( fault: Fault?) -> Void in
+            error: { (fault: Fault?) -> Void in
                 print("User failed to register: \(fault)")
             }
         )
@@ -91,14 +91,14 @@ class ViewController: UIViewController {
         // ask them to login again.
         let isValidUser = backendless.userService.isValidUserToken()
         
-        if(isValidUser != nil && isValidUser != 0) {
+        if isValidUser != nil && isValidUser != 0 {
             
             // The user has a valid user token so we know for sure the user is already logged!
             print("User is already logged: \(isValidUser?.boolValue)");
             
         } else {
             
-            // If we were unable to find a valid user token, the user is not logged and they'll
+            // If we were unable to find a valid user token, the user is not logged in and they'll
             // need to login. In a real app, this where we would send the user to a login screen to
             // collect their user name and password for the login attempt. For testing purposes,
             // we will simply login a test user using a hard coded user name and password.
@@ -111,11 +111,11 @@ class ViewController: UIViewController {
             
             backendless.userService.login( EMAIL, password: PASSWORD,
                 
-                response: { ( user: BackendlessUser?) -> Void in
+                response: { (user: BackendlessUser?) -> Void in
                     print("User logged in: \(user!.objectId)")
                 },
                 
-                error: { ( fault: Fault?) -> Void in
+                error: { (fault: Fault?) -> Void in
                     print("User failed to login: \(fault)")
                 }
             )
@@ -147,14 +147,14 @@ class ViewController: UIViewController {
         
         backendless.data.save( comment,
             
-            response: { ( entity: Any?) -> Void in
+            response: { (entity: Any?) -> Void in
                 
                 let comment = entity as! Comment
                 
-                print("Comment was saved: \(comment.objectId!), message: \(comment.message!), topicId: \(comment.topicId)")
+                print("Comment was saved: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
             },
             
-            error: { ( fault: Fault?) -> Void in
+            error: { (fault: Fault?) -> Void in
                 print("Comment failed to save: \(fault)")
             }
         )
@@ -170,7 +170,7 @@ class ViewController: UIViewController {
         
         dataStore?.find(
             
-            { ( comments: BackendlessCollection?) -> Void in
+            { (comments: BackendlessCollection?) -> Void in
 
                 print("Find attempt on all Comments has completed without error!")
                 print("Number of Comments found = \(comments?.data.count)")
@@ -179,17 +179,17 @@ class ViewController: UIViewController {
                     
                     let comment = comment as! Comment
                     
-                    print("Comment: \(comment.objectId!), message: \(comment.message!), topicId: \(comment.topicId)")
+                    print("Comment: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
                 }
             },
             
-            error: { ( fault: Fault?) -> Void in
+            error: { (fault: Fault?) -> Void in
                 print("Comments were not fetched: \(fault)")
             }
         )
     }
     
-    @IBAction func queryCommentsBtn(_ sender: UIButton) {
+    @IBAction func querySomeCommentsBtn(_ sender: UIButton) {
         
         checkForBackendlessSetup()
         
@@ -203,7 +203,47 @@ class ViewController: UIViewController {
         // Find all the Comments where the topicId is equal to a certain number!
         dataStore?.find( dataQuery,
                         
-            response: { ( comments: BackendlessCollection?) -> Void in
+            response: { (comments: BackendlessCollection?) -> Void in
+                
+                print("Find attempt on Comments with a certain topicId has completed without error!")
+                print("Number of Comments found = \(comments?.data.count)")
+                
+                if (comments?.data.count)! > 0 {
+                    
+                    for comment in (comments?.data)! {
+                        
+                        let comment = comment as! Comment
+                        
+                        print("Comment: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
+                    }
+                    
+                } else {
+                    print("No Comments were fetched using the whereClause '\(dataQuery.whereClause)'")
+                }
+            },
+                        
+            error: { ( fault: Fault?) -> Void in
+                print("Comments were not fetched: \(fault)")
+            }
+        )
+    }
+    
+    @IBAction func queryAndUpdateCommentsBtn(_ sender: UIButton) {
+        
+        checkForBackendlessSetup()
+        
+        print( "queryAndUpdateCommentsBtn called!" )
+
+        let dataStore = self.backendless.data.of(Comment.ofClass())
+        
+        let dataQuery = BackendlessDataQuery()
+        dataQuery.whereClause = "topicId = 2"
+        
+        // Find all the Comments where the topicId is equal to a certain number!
+        // Once we find them - update or change the message on each comment found.
+        dataStore?.find( dataQuery,
+                         
+             response: { (comments: BackendlessCollection?) -> Void in
                 
                 print("Find attempt on Comments with a certain topicId has completed without error!")
                 print("Number of Comments found = \(comments?.data.count)")
@@ -215,13 +255,30 @@ class ViewController: UIViewController {
                         let comment = comment as! Comment
                         
                         print("Comment: \(comment.objectId!), message: \(comment.message!), topicId: \(comment.topicId)")
+                        
+                        // Update or change the message for each comment we found.
+                        comment.message = "I have been updated!!!!"
+                        
+                        self.backendless.data.save( comment,
+                                                    
+                            response: { (entity: Any?) -> Void in
+                                
+                                let comment = entity as! Comment
+                                
+                                print("Comment was updated: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
+                            },
+                            
+                            error: { (fault: Fault?) -> Void in
+                                print("Comment failed to save: \(fault)")
+                            }
+                        )
                     }
                     
                 } else {
                     print("No Comments were fetched using the whereClause '\(dataQuery.whereClause)'")
                 }
             },
-                        
+         
             error: { ( fault: Fault?) -> Void in
                 print("Comments were not fetched: \(fault)")
             }
@@ -239,7 +296,7 @@ class ViewController: UIViewController {
         // Find all the Comments!
         dataStore?.find(
             
-            { ( comments: BackendlessCollection?) -> Void in
+            { (comments: BackendlessCollection?) -> Void in
                 
                 print("Find attempt on all Comments has completed without error!")
                 print("Number of Comments found = \(comments?.data.count)")
@@ -253,6 +310,7 @@ class ViewController: UIViewController {
                     
                     var error: Fault?
                     let result = dataStore?.remove(comment, fault: &error)
+                    
                     if error == nil {
                         print("One Comment has been removed: \(result)")
                     } else {
@@ -265,6 +323,36 @@ class ViewController: UIViewController {
                 print("Comments were not fetched: \(fault)")
             }
         )
+    }
+    
+    @IBAction func logoutBtn(_ sender: UIButton) {
+        
+        checkForBackendlessSetup()
+        
+        print( "logoutBtn called!" )
+        
+        // First, check if the user is actually logged in.
+        let isValidUser = backendless.userService.isValidUserToken()
+        
+        if isValidUser != nil && isValidUser != 0 {
+            
+            // If they are currently logged in - go ahead and log them out!
+            
+            backendless.userService.logout( { (user: Any!) -> Void in
+                    print("User logged out!")
+                },
+                                           
+                error: { (fault: Fault?) -> Void in
+                    print("User failed to log out: \(fault)")
+                }
+            )
+            
+        } else {
+            
+            // If we were unable to find a valid user token, the user is already logged out.
+            
+            print("User is already logged out: \(isValidUser?.boolValue)");
+        }
     }
 }
 

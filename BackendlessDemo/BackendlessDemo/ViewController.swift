@@ -151,7 +151,7 @@ class ViewController: UIViewController {
                 
                 let comment = entity as! Comment
                 
-                print("Comment was saved: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
+                print("Comment was saved: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
             },
             
             error: { (fault: Fault?) -> Void in
@@ -173,13 +173,13 @@ class ViewController: UIViewController {
             { (comments: BackendlessCollection?) -> Void in
 
                 print("Find attempt on all Comments has completed without error!")
-                print("Number of Comments found = \(comments?.data.count)")
+                print("Number of Comments found = \((comments?.data.count)!)")
                 
                 for comment in (comments?.data)! {
                     
                     let comment = comment as! Comment
                     
-                    print("Comment: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
+                    print("Comment: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                 }
             },
             
@@ -209,7 +209,7 @@ class ViewController: UIViewController {
             response: { (comments: BackendlessCollection?) -> Void in
                 
                 print("Find attempt on Comments with a certain topicId has completed without error!")
-                print("Number of Comments found = \(comments?.data.count)")
+                print("Number of Comments found = \((comments?.data.count)!)")
                 
                 if (comments?.data.count)! > 0 {
                     
@@ -217,7 +217,7 @@ class ViewController: UIViewController {
                         
                         let comment = comment as! Comment
                         
-                        print("Comment: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
+                        print("Comment: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                     }
                     
                 } else {
@@ -252,7 +252,7 @@ class ViewController: UIViewController {
              response: { (comments: BackendlessCollection?) -> Void in
                 
                 print("Find attempt on Comments with a certain topicId has completed without error!")
-                print("Number of Comments found = \(comments?.data.count)")
+                print("Number of Comments found = \((comments?.data.count)!)")
                 
                 if (comments?.data.count)! > 0 {
                     
@@ -260,7 +260,7 @@ class ViewController: UIViewController {
                         
                         let comment = comment as! Comment
                         
-                        print("Comment: \(comment.objectId!), message: \(comment.message!), topicId: \(comment.topicId)")
+                        print("Comment: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                         
                         // Update or change the message for each comment we found.
                         comment.message = "I have been updated!!!!"
@@ -271,7 +271,7 @@ class ViewController: UIViewController {
                                 
                                 let comment = entity as! Comment
                                 
-                                print("Comment was updated: \(comment.objectId!), message: '\(comment.message!)', topicId: \(comment.topicId)")
+                                print("Comment was updated: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                             },
                             
                             error: { (fault: Fault?) -> Void in
@@ -305,7 +305,7 @@ class ViewController: UIViewController {
             { (comments: BackendlessCollection?) -> Void in
                 
                 print("Find attempt on all Comments has completed without error!")
-                print("Number of Comments found = \(comments?.data.count)")
+                print("Number of Comments found = \((comments?.data.count)!)")
                 
                 // Now, remove all the Comments we found - one by one!
                 for comment in (comments?.data)! {

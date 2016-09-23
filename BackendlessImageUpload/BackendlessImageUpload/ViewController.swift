@@ -25,6 +25,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBOutlet weak var uploadSpinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var uploadBtn: UIButton!
+    
     @IBOutlet weak var downloadFullSizeBtn: UIButton!
     @IBOutlet weak var fullSizeImageView: UIImageView!
     @IBOutlet weak var fullSizeSpinner: UIActivityIndicatorView!
@@ -40,6 +42,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         uploadSpinner.isHidden = true
         fullSizeSpinner.isHidden = true
         thumbnailSpinner.isHidden = true
+        
+        let isValidUser = backendless.userService.isValidUserToken()
+        if isValidUser != nil && isValidUser != 0 {
+            uploadBtn.isEnabled = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,6 +129,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 
                 response: { (user: BackendlessUser?) -> Void in
                     print("User logged in: \(user!.objectId)")
+                    
+                    self.uploadBtn.isEnabled = true
                 },
                 
                 error: { (fault: Fault?) -> Void in

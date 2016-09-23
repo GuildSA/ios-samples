@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -41,14 +42,21 @@
                                             <action selector="uploadImageBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XRH-hT-bfX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHk-ws-Asc">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsw-hb-hWq">
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="Q3i-sL-Q3v"/>
+                                            <constraint firstAttribute="width" constant="210" id="6Du-z3-CKc"/>
                                         </constraints>
-                                        <state key="normal" title="Download Image"/>
+                                        <state key="normal" title="Download Thumbnail Image"/>
                                         <connections>
-                                            <action selector="downloadImageBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qDc-fv-oa2"/>
+                                            <action selector="downloadThumbnailImageBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bMP-hs-ooo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHk-ws-Asc">
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Download Full Image"/>
+                                        <connections>
+                                            <action selector="downloadFullSizeImageBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aS2-E6-VCV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryT-aS-wF8">
@@ -60,33 +68,52 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PVs-WC-fax">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PVs-WC-fax">
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="tdZ-Zb-N8D"/>
-                                    <constraint firstAttribute="width" constant="250" id="wVz-Wk-kjm"/>
-                                </constraints>
                             </imageView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0Yr-9i-Rn4"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xQX-EF-MfO">
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="pZ1-Mw-5Q7"/>
+                                    <constraint firstAttribute="height" constant="60" id="wcz-il-kGB"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Tl1-Tw-6dW"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="G6s-F2-efQ"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Tl1-Tw-6dW" firstAttribute="centerY" secondItem="xQX-EF-MfO" secondAttribute="centerY" id="5xY-4O-c37"/>
+                            <constraint firstItem="PVs-WC-fax" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="6LW-eC-xqI"/>
                             <constraint firstItem="GzK-js-I8O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Xd-87-Ecg"/>
+                            <constraint firstItem="xQX-EF-MfO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bpq-Yr-I21"/>
                             <constraint firstItem="GzK-js-I8O" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="Dku-26-kJv"/>
+                            <constraint firstItem="Tl1-Tw-6dW" firstAttribute="centerX" secondItem="xQX-EF-MfO" secondAttribute="centerX" id="PEi-iP-CUz"/>
+                            <constraint firstItem="xQX-EF-MfO" firstAttribute="top" secondItem="ryT-aS-wF8" secondAttribute="bottom" constant="22" id="Pue-9p-oiJ"/>
+                            <constraint firstItem="G6s-F2-efQ" firstAttribute="centerY" secondItem="Lhd-lt-Itw" secondAttribute="centerY" id="QiU-mI-oNs"/>
+                            <constraint firstItem="G6s-F2-efQ" firstAttribute="leading" secondItem="Lhd-lt-Itw" secondAttribute="trailing" constant="8" id="XZA-1y-4Kd"/>
                             <constraint firstItem="PVs-WC-fax" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gdI-DT-TyD"/>
-                            <constraint firstItem="PVs-WC-fax" firstAttribute="top" secondItem="GzK-js-I8O" secondAttribute="bottom" constant="60" id="k65-6y-7c9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PVs-WC-fax" secondAttribute="trailing" id="qWy-Ig-K7o"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PVs-WC-fax" secondAttribute="bottom" constant="15" id="uzJ-fX-TNU"/>
+                            <constraint firstItem="PVs-WC-fax" firstAttribute="top" secondItem="xQX-EF-MfO" secondAttribute="bottom" constant="21" id="vcG-MQ-VE2"/>
                             <constraint firstItem="0Yr-9i-Rn4" firstAttribute="centerY" secondItem="PVs-WC-fax" secondAttribute="centerY" id="wa9-30-zmw"/>
                             <constraint firstItem="0Yr-9i-Rn4" firstAttribute="centerX" secondItem="PVs-WC-fax" secondAttribute="centerX" id="x08-hb-Swr"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="0Yr-9i-Rn4" id="e5r-eX-y7P"/>
-                        <outlet property="downloadBtn" destination="UHk-ws-Asc" id="OaY-4K-QSu"/>
-                        <outlet property="testImageView" destination="PVs-WC-fax" id="tlK-jg-yxY"/>
+                        <outlet property="downloadFullSizeBtn" destination="UHk-ws-Asc" id="N0Y-iw-79m"/>
+                        <outlet property="downloadThumbnailBtn" destination="lsw-hb-hWq" id="Snu-Jd-mA9"/>
+                        <outlet property="fullSizeImageView" destination="PVs-WC-fax" id="5A3-vt-rin"/>
+                        <outlet property="fullSizeSpinner" destination="0Yr-9i-Rn4" id="stI-4w-GHV"/>
+                        <outlet property="thumbnailImageView" destination="xQX-EF-MfO" id="zrR-va-NdF"/>
+                        <outlet property="thumbnailSpinner" destination="Tl1-Tw-6dW" id="LlI-rR-TLP"/>
+                        <outlet property="uploadSpinner" destination="G6s-F2-efQ" id="hsK-uK-6B2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="36" y="37.331334332833585"/>
         </scene>
     </scenes>
 </document>

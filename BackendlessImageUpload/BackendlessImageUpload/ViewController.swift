@@ -20,18 +20,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let backendless = Backendless.sharedInstance()!
     
-    var fileUrl: String?
+    var fullSizeUrl: String?
+    var thumbnailUrl: String?
 
-    @IBOutlet weak var testImageView: UIImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var uploadSpinner: UIActivityIndicatorView!
     
-    @IBOutlet weak var downloadBtn: UIButton!
+    @IBOutlet weak var downloadFullSizeBtn: UIButton!
+    @IBOutlet weak var fullSizeImageView: UIImageView!
+    @IBOutlet weak var fullSizeSpinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var downloadThumbnailBtn: UIButton!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var thumbnailSpinner: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        activityIndicator.isHidden = true
+        uploadSpinner.isHidden = true
+        fullSizeSpinner.isHidden = true
+        thumbnailSpinner.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,12 +145,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    @IBAction func downloadImageBtn(_ sender: UIButton) {
+    @IBAction func downloadFullSizeImageBtn(_ sender: UIButton) {
         
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+        fullSizeSpinner.isHidden = false
+        fullSizeSpinner.startAnimating()
         
-        let url = URL(string: fileUrl!)!
+        let url = URL(string: fullSizeUrl!)!
         
         let session = URLSession.shared
         
@@ -158,11 +166,49 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         
                         // We got the image data! Use it to create a UIImage for our cell's
                         // UIImageView.
-                        self.testImageView.image = UIImage(data: data)
+                        self.fullSizeImageView.image = UIImage(data: data)
                         
-                        // TODO: Add activity indicator.
-                        self.activityIndicator.startAnimating()
-                        self.activityIndicator.isHidden = true
+                        self.fullSizeSpinner.startAnimating()
+                        self.fullSizeSpinner.isHidden = true
+                    }
+                    
+                } catch {
+                    print("NSData Error: \(error)")
+                }
+                
+            } else {
+                print("NSURLSession Error: \(error)")
+            }
+        })
+        
+        task.resume()
+    }
+    
+    @IBAction func downloadThumbnailImageBtn(_ sender: UIButton) {
+        
+        thumbnailSpinner.isHidden = false
+        thumbnailSpinner.startAnimating()
+        
+        let url = URL(string: thumbnailUrl!)!
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
+            
+            if error == nil {
+                
+                do {
+                    
+                    let data = try Data(contentsOf: url, options: [])
+                    
+                    DispatchQueue.main.async {
+                        
+                        // We got the image data! Use it to create a UIImage for our cell's
+                        // UIImageView.
+                        self.thumbnailImageView.image = UIImage(data: data)
+                        
+                        self.thumbnailSpinner.startAnimating()
+                        self.thumbnailSpinner.isHidden = true
                     }
                     
                 } catch {
@@ -216,30 +262,66 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+        uploadSpinner.isHidden = false
+        uploadSpinner.startAnimating()
         
         // The info dictionary contains multiple representations of the image, and this uses the original.
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let fullSizeImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
         let uuid = NSUUID().uuidString
         //print("\(uuid)")
         
-        let data = UIImageJPEGRepresentation(selectedImage, 0.2);
+        //
+        // Upload thumbnail image
+        //
+
+        let size = fullSizeImage.size.applying(CGAffineTransform(scaleX: 0.5, y: 0.5))
+        let hasAlpha = false
+        let scale: CGFloat = 0.1
+        
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        fullSizeImage.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        
+        let thumbnailImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let thumbnailData = UIImageJPEGRepresentation(thumbnailImage!, 1.0);
         
         backendless.fileService.upload(
-            "photos/\(backendless.userService.currentUser.objectId!)/\(uuid).jpg",
-            content: data,
+            "photos/\(backendless.userService.currentUser.objectId!)/thumb_\(uuid).jpg",
+            content: thumbnailData,
             overwrite:true,
             response: { (uploadedFile: BackendlessFile?) -> Void in
-                print("File has been uploaded. File URL is - \(uploadedFile?.fileURL)")
+                print("Thumbnail image uploaded: \(uploadedFile?.fileURL)")
+
+                self.thumbnailUrl = (uploadedFile?.fileURL)!
                 
-                self.fileUrl = (uploadedFile?.fileURL)!
+                self.downloadThumbnailBtn.isEnabled = true
+            },
+            
+            error: { (fault: Fault?) -> Void in
+                print("Server reported an error: \(fault)")
+        })
+
+        //
+        // Upload full size image
+        //
+        
+        let fullSizeData = UIImageJPEGRepresentation(fullSizeImage, 0.2);
+        
+        backendless.fileService.upload(
+            "photos/\(backendless.userService.currentUser.objectId!)/full_\(uuid).jpg",
+            content: fullSizeData,
+            overwrite:true,
+            response: { (uploadedFile: BackendlessFile?) -> Void in
+                print("Full size image uploaded to: \(uploadedFile?.fileURL)")
                 
-                self.downloadBtn.isEnabled = true
+                self.fullSizeUrl = (uploadedFile?.fileURL)!
                 
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.isHidden = true
+                self.downloadFullSizeBtn.isEnabled = true
+                
+                self.uploadSpinner.stopAnimating()
+                self.uploadSpinner.isHidden = true
             },
             
             error: { (fault: Fault?) -> Void in

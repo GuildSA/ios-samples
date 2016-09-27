@@ -37,16 +37,16 @@ class RegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: UIButton) {
         
-        if passwordTextField.text != passwordConfirmTextField.text {
-            Utility.showAlert(viewController: self, title: "Registration Error", message: "Password confirmation failed. Plase enter your password try again.")
-            return
-        }
-        
         if !Utility.isValidEmail(emailAddress: emailTextField.text!) {
             Utility.showAlert(viewController: self, title: "Registration Error", message: "Please enter a valid email address.")
             return
         }
 
+        if passwordTextField.text != passwordConfirmTextField.text {
+            Utility.showAlert(viewController: self, title: "Registration Error", message: "Password confirmation failed. Plase enter your password try again.")
+            return
+        }
+        
         spinner.startAnimating()
         
         let email = emailTextField.text!

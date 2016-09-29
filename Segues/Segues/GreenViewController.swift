@@ -20,6 +20,32 @@ class GreenViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         print("The GreenViewController was launched via a '\(someText!)'!")
+        
+        
+        // If you present a UIViewController via a modal segue you can 
+        // test which class the presenting view controller belonged to like so:
+        
+        let thePresenter = self.presentingViewController
+        
+        if (thePresenter?.isKind(of: RedViewController.self))! {
+            print("It's the RedViewController")
+        } else {
+            print("It's something else!")
+        }
+        
+//        // If however your view controller was presented via a UINavigationController
+//        // then the above isn’t going to work. Instead you need to check which view 
+//        // controller was on the navigation stack previously.
+//        let count = self.navigationController?.viewControllers.count
+//        
+//        let thePresenter: UIViewController? = count! >= 2 ? self.navigationController?.viewControllers[count!-2] : nil
+//        
+//        if (thePresenter?.isKind(of: RedViewController.self))! {
+//            print("It's the RedViewController")
+//        } else {
+//            print("It's something else!")
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {

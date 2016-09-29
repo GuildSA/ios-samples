@@ -122,6 +122,33 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func updateUserBtn(_ sender: UIButton) {
+        
+        if let currentUser = backendless.userService.currentUser {
+        
+            currentUser.setProperty("name", object: "Agent Smith" );
+        
+            // This is the other way to update an existing user.
+//            let properties = [
+//                "name" : "Agent Smith"
+//            ]
+//            currentUser.updateProperties(properties)
+            
+            backendless.userService.update(currentUser,
+                                           
+                response: { (user: Any?) -> Void in
+                    
+                    let user = user as! BackendlessUser
+                    
+                    print("User name was updated: \(user.objectId!), topicId: \(user.name!)")
+                },
+                
+                error: { (fault: Fault?) -> Void in
+                    print("User failed to update: \(fault)")
+                })
+        }
+    }
+    
     func randomBool() -> Bool {
         return arc4random_uniform(2) == 0 ? true: false
     }

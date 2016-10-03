@@ -21,18 +21,31 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DD-JU-oCW">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="180" id="L3K-wM-qeQ"/>
-                                    <constraint firstAttribute="height" constant="30" id="Uhb-dm-q3o"/>
+                                    <constraint firstAttribute="height" constant="30" id="DPg-yW-CQt"/>
+                                    <constraint firstAttribute="width" constant="210" id="ecx-cg-Plu"/>
                                 </constraints>
-                                <state key="normal" title="Send Local Notification"/>
+                                <state key="normal" title="Schedule Local Notification"/>
                                 <connections>
-                                    <action selector="sendLocalNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ims-em-QC3"/>
+                                    <action selector="scheduleLocalNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C6T-Ob-2ZE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s88-7P-ipi">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="211" id="jOs-xg-H73"/>
+                                    <constraint firstAttribute="height" constant="30" id="mMI-ja-qUh"/>
+                                </constraints>
+                                <state key="normal" title="Remove Local Notification"/>
+                                <connections>
+                                    <action selector="removeLocalNotification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X8D-Tx-1Rx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9DD-JU-oCW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="33" id="bFb-jP-JOx"/>
+                            <constraint firstItem="s88-7P-ipi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5k2-3l-llq"/>
+                            <constraint firstItem="s88-7P-ipi" firstAttribute="top" secondItem="9DD-JU-oCW" secondAttribute="bottom" constant="21" id="HRq-5o-mPF"/>
+                            <constraint firstItem="9DD-JU-oCW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="bFb-jP-JOx"/>
                             <constraint firstItem="9DD-JU-oCW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z3k-zx-e2o"/>
                         </constraints>
                     </view>

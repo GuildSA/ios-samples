@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var uuid = ""
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,7 +34,7 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: "Notification",
                                                     message: "Our app received a Local Notification! Here's our opportunity to do something special based on the Local Notification that we received.\n\nUUID:\n\n\((notification.userInfo?["UUID"])!)",
                                                     preferredStyle: .alert)
-            
+        
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alertController.addAction(okAction)
@@ -40,11 +42,11 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    @IBAction func sendLocalNotification(_ sender: AnyObject) {
+    @IBAction func scheduleLocalNotification(_ sender: UIButton) {
         
         // Create a unique ID for our new Local Notification just in case we want to ID it later.
         // This is optional but sometimes very handy!
-        let uuid = UUID().uuidString
+        uuid = UUID().uuidString
         
         // Create a new Local Notification.
         
@@ -57,6 +59,26 @@ class ViewController: UIViewController {
         
         UIApplication.shared.scheduleLocalNotification(notification)
     }
-
+    
+    @IBAction func removeLocalNotification(_ sender: UIButton) {
+        
+        // Get all the Local Notifications set by our app.
+        let scheduledNotifications: [UILocalNotification]? = UIApplication.shared.scheduledLocalNotifications
+        
+        guard scheduledNotifications != nil else {
+            
+            // Nothing to remove - just return.
+            return
+        }
+        
+        // Loop through all the Local Notifications and attempt to find the one to remove.
+        for notification in scheduledNotifications! {
+            
+            if notification.userInfo!["UUID"] as! String == uuid {
+                UIApplication.shared.cancelLocalNotification(notification)
+                break
+            }
+        }
+    }
 }
 

@@ -1,0 +1,6 @@
+framework module Pods_BackendlessPush {
+  umbrella header "Pods-BackendlessPush-umbrella.h"
+
+  export *
+  module * { export * }
+}

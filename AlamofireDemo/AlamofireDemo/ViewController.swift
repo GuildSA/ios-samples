@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Fake Online REST API for Testing and Prototyping
         //http://jsonplaceholder.typicode.com/
         
-        Alamofire.request(.GET, "http://jsonplaceholder.typicode.com/photos", parameters: nil).responseJSON { response in
+        Alamofire.request("http://jsonplaceholder.typicode.com/photos", parameters: nil).responseJSON { response in
             
             // The GET request for the JSON data has returned.
             //print(response.request)  // original URL request
@@ -85,37 +85,37 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return photoDataArray.count
     }
     
     // From UITableViewDataSource protocol.
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! MyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
         
-        let row = indexPath.row
+        let row = (indexPath as NSIndexPath).row
         
         cell.myTextLabel.text = photoDataArray[row].title
         
         cell.myImageView.image = nil
-        cell.activityIndicator.hidden = false
+        cell.activityIndicator.isHidden = false
         cell.activityIndicator.startAnimating()
         
         let thumbnaillUrl = photoDataArray[row].thumbnailUrl
         
-        Alamofire.request(.GET, thumbnaillUrl).response { (request, response, data, error) in
+        Alamofire.request(thumbnaillUrl).response { response in
             
-            if error == nil {
+            if response.error == nil {
                 
                 // We got the image data! Use it to create a UIImage for our cell's
                 // UIImageView. Then, stop the activity spinner.
-                cell.myImageView.image = UIImage(data: data!)
+                cell.myImageView.image = UIImage(data: response.data!)
                 cell.activityIndicator.stopAnimating()
                 
             } else {
-                print("Failed to load image from URL \(request) with error \(error)")
+                print("Failed to load image from URL \(response.request) with error \(response.error)")
             }
         }
         

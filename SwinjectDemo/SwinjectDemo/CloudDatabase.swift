@@ -17,7 +17,7 @@ class CloudDatabase {
         self.httpClient = httpClient
     }
     
-    func getUserData(userId: String) -> String {
+    func getUserData(_ userId: String) -> String {
     
         // Pretend that we had to do some setup here to talk to our cloud database host.
     

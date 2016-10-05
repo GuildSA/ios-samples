@@ -10,7 +10,7 @@ import Foundation
 
 class HttpClient {
     
-    func sendGetRequest(url: String) -> String {
+    func sendGetRequest(_ url: String) -> String {
     
         // Pretend that we used the parameter 'url' and did some awesome networking
         // here and then returned real data!

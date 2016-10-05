@@ -25,22 +25,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onNextView(sender: UIButton) {
+    @IBAction func onNextView(_ sender: UIButton) {
         
-        performSegueWithIdentifier("NextView", sender: self)
+        performSegue(withIdentifier: "NextView", sender: self)
     }
     
     // We can override this method in UIViewController if we want to perform some
     // logic before a Segue actually fires off.
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if segue.identifier == "NextView" {
             
             print("Preparing for the NextView segue!")
 
-            let nextVC = segue.destinationViewController as! NextViewController
+            let nextVC = segue.destination as! NextViewController
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             nextVC.cloudDatabase = appDelegate.container.resolve(CloudDatabase.self)
         }
     }

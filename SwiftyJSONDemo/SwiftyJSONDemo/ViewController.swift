@@ -25,15 +25,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func readFileFromResources(fileName: String, fileType: String, encoding: NSStringEncoding = NSUTF8StringEncoding) -> String {
+    func readFileFromResources(_ fileName: String, fileType: String, encoding: String.Encoding = String.Encoding.utf8) -> String {
         
-        let absoluteFilePath = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)
+        let absoluteFilePath = Bundle.main.path(forResource: fileName, ofType: fileType)
         
         if let absoluteFilePath = absoluteFilePath {
             
-            if let fileData = NSData.init(contentsOfFile: absoluteFilePath) {
+            if let fileData = try? Data.init(contentsOf: URL(fileURLWithPath: absoluteFilePath)) {
                 
-                if let fileAsString = NSString(data: fileData, encoding: encoding) {
+                if let fileAsString = NSString(data: fileData, encoding: encoding.rawValue) {
                     return fileAsString as String
                 } else {
                     print("readFileFromResources failed on: \(fileName). Failed to convert data to String!")

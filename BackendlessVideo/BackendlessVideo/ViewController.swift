@@ -10,18 +10,26 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDelegate {
     
-    @IBOutlet var publishBtn: UIButton!
-    @IBOutlet var playbackBtn: UIButton!
-    @IBOutlet var stopMediaBtn: UIButton!
-    @IBOutlet var swapCameraBtn: UIButton!
-    @IBOutlet var preView: UIView!
-    @IBOutlet var playbackView: UIImageView!
-    @IBOutlet var streamNameTextField: UITextField!
-    @IBOutlet var netActivity: UIActivityIndicatorView!
+    @IBOutlet weak var publishBtn: UIButton!
+    @IBOutlet weak var playbackBtn: UIButton!
+    @IBOutlet weak var stopMediaBtn: UIButton!
+    @IBOutlet weak var swapCameraBtn: UIButton!
+    @IBOutlet weak var preView: UIView!
+    @IBOutlet weak var playbackView: UIImageView!
+    @IBOutlet weak var streamNameTextField: UITextField!
+    @IBOutlet weak var netActivity: UIActivityIndicatorView!
     @IBOutlet weak var videoModeSegment: UISegmentedControl!
     @IBOutlet weak var publishOptionsSegment: UISegmentedControl!
+    @IBOutlet weak var resolutionSegment: UISegmentedControl!
     
     var isLive = false
+    
+    //options.resolution = RESOLUTION_LOW    // 144x192px (landscape) & 192x144px (portrait)
+    //options.resolution = RESOLUTION_CIF    // 288x352px (landscape) & 352x288px (portrait)
+    //options.resolution = RESOLUTION_MEDIUM // 360x480px (landscape) & 480x368px (portrait)
+    //options.resolution = RESOLUTION_VGA    // 480x640px (landscape) & 640x480px (portrait)
+    //options.resolution = RESOLUTION_HIGH   // 720x1280px (landscape) & 1280x720px (portrait)
+    var resolution: MPVideoResolution = RESOLUTION_CIF
     
     var backendless = Backendless.sharedInstance()
     var publisher: MediaPublisher?
@@ -52,10 +60,12 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         
         streamNameTextField.addTarget(self, action: #selector(textFieldChanged(textField:)), for: UIControlEvents.editingChanged)
         
-        self.publishBtn.isEnabled = false
-        self.playbackBtn.isEnabled = false
-        self.swapCameraBtn.isEnabled = false
-        self.stopMediaBtn.isEnabled = false
+        publishBtn.isEnabled = false
+        playbackBtn.isEnabled = false
+        swapCameraBtn.isEnabled = false
+        stopMediaBtn.isEnabled = false
+        
+        resolutionSegment.selectedSegmentIndex = Int(resolution.rawValue)
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,11 +133,27 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         }
     }
     
+    @IBAction func resolutionChanged(_ sender: UISegmentedControl) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            resolution = RESOLUTION_LOW
+        } else if sender.selectedSegmentIndex == 1 {
+            resolution = RESOLUTION_CIF
+        } else if sender.selectedSegmentIndex == 2 {
+            resolution = RESOLUTION_MEDIUM
+        } else if sender.selectedSegmentIndex == 3 {
+            resolution = RESOLUTION_VGA
+        } else if sender.selectedSegmentIndex == 4 {
+            resolution = RESOLUTION_HIGH
+        }
+    }
+    
     func refreshUI() {
         
         streamNameTextField.isEnabled = true
         videoModeSegment.isEnabled = true
         publishOptionsSegment.isEnabled = true
+        resolutionSegment.isEnabled = true
         
         switch currentVideoMode {
             
@@ -239,6 +265,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         streamNameTextField.isEnabled = false
         videoModeSegment.isEnabled = false
         publishOptionsSegment.isEnabled = false
+        resolutionSegment.isEnabled = false
 
         netActivity.startAnimating()
     }
@@ -258,19 +285,13 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
             case .videoPlusAudio:
                 
                 options.orientation = .portrait
-                
-                //options.resolution = RESOLUTION_LOW         // 144x192px (landscape) & 192x144px (portrait)
-                options.resolution = RESOLUTION_CIF         // 288x352px (landscape) & 352x288px (portrait)
-                //options.resolution = RESOLUTION_MEDIUM      // 360x480px (landscape) & 480x368px (portrait)
-                //options.resolution = RESOLUTION_VGA         // 480x640px (landscape) & 640x480px (portrait)
-                //options.resolution = RESOLUTION_HIGH        // 720x1280px (landscape) & 1280x720px (portrait)
-                
+                options.resolution = resolution
                 options.content = AUDIO_AND_VIDEO
                 
             case .videoOnly:
 
                 options.orientation = .portrait
-                options.resolution = RESOLUTION_CIF
+                options.resolution = resolution
                 options.content = ONLY_VIDEO
         
             case .audioOnly:

@@ -1,0 +1,6 @@
+framework module Pods_BackendlessVideo {
+  umbrella header "Pods-BackendlessVideo-umbrella.h"
+
+  export *
+  module * { export * }
+}

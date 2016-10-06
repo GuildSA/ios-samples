@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Video Recorder-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BackendlessVideo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Sce-Hs-KiC">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="qrC-pQ-0CF"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Record/Play"/>
+                                    <segment title="Stream Live"/>
+                                    <segment title="View live"/>
+                                </segments>
+                                <connections>
+                                    <action selector="videoModeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="njR-3w-4bN"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Stream Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qFL-QI-iTI">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="QNd-XT-85H"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nc7-U8-x7H"/>
+                                </connections>
+                            </textField>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOe-WX-J4q">
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" id="79o-iE-Cfi"/>
+                                    <constraint firstAttribute="width" constant="320" id="gy2-0I-pnI"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aRL-LU-ahS"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQm-EI-SmL">
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="cCG-RL-Xv3"/>
+                                    <constraint firstAttribute="height" constant="450" id="lKu-6I-T3d"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsr-BJ-5Jx">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="IUb-SO-5BW"/>
+                                    <constraint firstAttribute="height" constant="30" id="iY4-4g-nxQ"/>
+                                </constraints>
+                                <state key="normal" title="Record"/>
+                                <connections>
+                                    <action selector="onRecordBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sk3-9i-K0P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fC-81-ziH">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="8XB-LX-poV"/>
+                                    <constraint firstAttribute="height" constant="30" id="Bci-6h-sLG"/>
+                                </constraints>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="onStopBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z1f-5R-xja"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sec-zJ-h4w">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="otT-hS-9hj"/>
+                                    <constraint firstAttribute="width" constant="69" id="xof-ja-W2H"/>
+                                </constraints>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="onPlayBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HQ8-XX-aTT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-ou-v5d">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="118" id="Kg5-f3-TUh"/>
+                                    <constraint firstAttribute="height" constant="30" id="eQV-9W-UcY"/>
+                                </constraints>
+                                <state key="normal" title="Switch Cameras"/>
+                                <connections>
+                                    <action selector="onSwitchCamerasBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="itK-qS-iHW"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="iIO-wT-1qE">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="JvO-Ih-X5E"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Video/Audio"/>
+                                    <segment title="Video Only"/>
+                                    <segment title="Audio Only"/>
+                                </segments>
+                                <connections>
+                                    <action selector="publishOptionsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ohW-Hm-qZU"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="qFL-QI-iTI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="AGN-RM-2TJ"/>
+                            <constraint firstItem="iIO-wT-1qE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="CCY-lg-WpH"/>
+                            <constraint firstItem="iIO-wT-1qE" firstAttribute="top" secondItem="Sce-Hs-KiC" secondAttribute="bottom" constant="8" id="Ixt-py-vPl"/>
+                            <constraint firstItem="Sce-Hs-KiC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JbY-1y-4mW"/>
+                            <constraint firstItem="Sce-Hs-KiC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Kdw-RT-2Hw"/>
+                            <constraint firstItem="aRL-LU-ahS" firstAttribute="centerY" secondItem="AOe-WX-J4q" secondAttribute="centerY" id="MSx-P7-dmQ"/>
+                            <constraint firstItem="qFL-QI-iTI" firstAttribute="top" secondItem="iIO-wT-1qE" secondAttribute="bottom" constant="7" id="O0C-Z8-5uo"/>
+                            <constraint firstItem="AOe-WX-J4q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OCq-oT-Aqw"/>
+                            <constraint firstItem="fsr-BJ-5Jx" firstAttribute="top" secondItem="BQm-EI-SmL" secondAttribute="bottom" constant="12" id="R48-Vv-qL0"/>
+                            <constraint firstItem="AOe-WX-J4q" firstAttribute="top" secondItem="qFL-QI-iTI" secondAttribute="bottom" constant="10" id="ROx-YZ-Y6N"/>
+                            <constraint firstItem="sec-zJ-h4w" firstAttribute="top" secondItem="BQm-EI-SmL" secondAttribute="bottom" constant="12" id="Rj4-L8-Ysd"/>
+                            <constraint firstItem="aRL-LU-ahS" firstAttribute="centerX" secondItem="AOe-WX-J4q" secondAttribute="centerX" id="S5h-MI-tT9"/>
+                            <constraint firstItem="sec-zJ-h4w" firstAttribute="centerX" secondItem="BQm-EI-SmL" secondAttribute="centerX" id="YAF-IK-zzc"/>
+                            <constraint firstItem="3Pr-ou-v5d" firstAttribute="leading" secondItem="sec-zJ-h4w" secondAttribute="trailing" constant="7" id="adV-95-1v7"/>
+                            <constraint firstItem="BQm-EI-SmL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dLN-gv-Hbj"/>
+                            <constraint firstItem="Sce-Hs-KiC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="f1q-qu-JCf"/>
+                            <constraint firstItem="iIO-wT-1qE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gpd-wN-7hr"/>
+                            <constraint firstItem="qFL-QI-iTI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mh4-Ct-cop"/>
+                            <constraint firstItem="3Pr-ou-v5d" firstAttribute="top" secondItem="BQm-EI-SmL" secondAttribute="bottom" constant="12" id="mw2-5g-pIJ"/>
+                            <constraint firstItem="BQm-EI-SmL" firstAttribute="top" secondItem="qFL-QI-iTI" secondAttribute="bottom" constant="10" id="q9n-NF-aga"/>
+                            <constraint firstItem="8fC-81-ziH" firstAttribute="top" secondItem="BQm-EI-SmL" secondAttribute="bottom" constant="12" id="tA2-DA-qG9"/>
+                            <constraint firstItem="sec-zJ-h4w" firstAttribute="leading" secondItem="8fC-81-ziH" secondAttribute="trailing" constant="8" id="wLU-tw-1CW"/>
+                            <constraint firstItem="8fC-81-ziH" firstAttribute="leading" secondItem="fsr-BJ-5Jx" secondAttribute="trailing" constant="7" id="yEa-p6-yHb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Video Recorder" id="rvz-Ls-Ztr"/>
+                    <connections>
+                        <outlet property="netActivity" destination="aRL-LU-ahS" id="zMj-g0-VNz"/>
+                        <outlet property="playbackBtn" destination="sec-zJ-h4w" id="hzV-ja-e3V"/>
+                        <outlet property="playbackView" destination="AOe-WX-J4q" id="DvW-fw-bbv"/>
+                        <outlet property="preView" destination="BQm-EI-SmL" id="5Vv-F4-F7s"/>
+                        <outlet property="publishBtn" destination="fsr-BJ-5Jx" id="dim-7p-it0"/>
+                        <outlet property="publishOptionsSegment" destination="iIO-wT-1qE" id="JFD-Y7-bmv"/>
+                        <outlet property="stopMediaBtn" destination="8fC-81-ziH" id="PvG-yC-IaT"/>
+                        <outlet property="streamNameTextField" destination="qFL-QI-iTI" id="We8-N2-G6F"/>
+                        <outlet property="swapCameraBtn" destination="3Pr-ou-v5d" id="oHP-rA-gXW"/>
+                        <outlet property="videoModeSegment" destination="Sce-Hs-KiC" id="faP-vs-LgQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="H3e-sO-ddx">
+                    <connections>
+                        <action selector="viewTapped:" destination="BYZ-38-t0r" id="aFg-nz-5ku"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1052" y="-546.47676161919048"/>
+        </scene>
+    </scenes>
+</document>

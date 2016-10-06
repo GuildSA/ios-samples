@@ -1,11 +1,11 @@
 PODS:
-  - Backendless-ios-SDK (3.0.42)
+  - Backendless-ios-SDK (3.0.43)
 
 DEPENDENCIES:
   - Backendless-ios-SDK
 
 SPEC CHECKSUMS:
-  Backendless-ios-SDK: 602cb155a4021b60d6dfa770020d83fdf944f376
+  Backendless-ios-SDK: b53ffb135b571af9526f01ea1a171e682b7b4d0b
 
 PODFILE CHECKSUM: 3ef4275f0ccc8d50e67b1e72f8bdae35c3b7fc8e
 

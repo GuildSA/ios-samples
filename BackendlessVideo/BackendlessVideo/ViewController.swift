@@ -300,70 +300,61 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
     
     // MARK: IMediaStreamerDelegate protocol methods to handle stream state changes and errors
     
-    func streamStateChanged(_ sender: Any!, state: Int32, description: String!) -> Void {
+    public func streamStateChanged(_ sender: Any!, state: Int32, description: String!) {
         
         switch state {
             
             case 0: //CONN_DISCONNECTED
                 
-                DispatchQueue.main.async {
-                    self.stopMedia()
-                }
+                stopMedia()
             
             case 1: break //CONN_CONNECTED
             
             case 2: //CONN_CREATED
                 
-                DispatchQueue.main.async {
-                    self.stopMediaBtn.isEnabled = true
-                }
+                stopMediaBtn.isEnabled = true
                 
             case 3: //STREAM_PLAYING
                 
-                DispatchQueue.main.async {
+
+                if self.publisher != nil {
                     
-                    if self.publisher != nil {
-                        
-                        if description != "NetStream.Publish.Start" {
-                            self.stopMedia()
-                            return
-                        }
-                        
-                        self.swapCameraBtn.isEnabled = true
-                        self.netActivity.stopAnimating()
+                    if description != "NetStream.Publish.Start" {
+                        stopMedia()
+                        return
                     }
                     
-                    if self.player != nil {
-                        
-                        if description == "NetStream.Play.StreamNotFound" {
-                            self.stopMedia()
-                            return
-                        }
-                        
-                        if description != "NetStream.Play.Start" {
-                            return
-                        }
-                        
-                        MPMediaData.routeAudioToSpeaker()
-                        
-                        self.preView.isHidden = true
-                        self.playbackView.isHidden = false
-                        
-                        self.netActivity.stopAnimating()
+                    swapCameraBtn.isEnabled = true
+                    netActivity.stopAnimating()
+                }
+                
+                if self.player != nil {
+                    
+                    if description == "NetStream.Play.StreamNotFound" {
+                        stopMedia()
+                        return
                     }
+                    
+                    if description != "NetStream.Play.Start" {
+                        return
+                    }
+                    
+                    MPMediaData.routeAudioToSpeaker()
+                    
+                    preView.isHidden = true
+                    playbackView.isHidden = false
+                    
+                    netActivity.stopAnimating()
                 }
                 
                 return
                 
             case 4: //STREAM_PAUSED
                 
-                DispatchQueue.main.async {
-                    
-                    //if description == "NetStream.Play.StreamNotFound" {
-                    //}
-                    
-                    self.stopMedia()
-                }
+                //if description == "NetStream.Play.StreamNotFound" {
+                //}
+                
+                stopMedia()
             
             default:
                 print("streamStateChanged unhandled state: \(state)");
@@ -371,7 +362,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         }
     }
     
-    func streamConnectFailed(_ sender: Any!, code: Int32, description: String!) -> () {
+    func streamConnectFailed(_ sender: Any!, code: Int32, description: String!) {
         
         print("<IMediaStreamerDelegate> streamConnectFailed: \(code) = \(description)");
         

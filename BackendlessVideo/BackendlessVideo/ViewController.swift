@@ -306,6 +306,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         streamNameTextField.isEnabled = false
         videoModeSegment.isEnabled = false
         publishOptionsSegment.isEnabled = false
+        resolutionSegment.isEnabled = false
         
         netActivity.startAnimating()
     }

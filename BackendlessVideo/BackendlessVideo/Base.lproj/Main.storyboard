@@ -81,81 +81,67 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQm-EI-SmL">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsr-BJ-5Jx">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="O9b-Up-wvJ">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsr-BJ-5Jx">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Record"/>
+                                        <connections>
+                                            <action selector="onRecordBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sk3-9i-K0P"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fC-81-ziH">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="onStopBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z1f-5R-xja"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sec-zJ-h4w">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="onPlayBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HQ8-XX-aTT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-ou-v5d">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Switch Cameras"/>
+                                        <connections>
+                                            <action selector="onSwitchCamerasBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="itK-qS-iHW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="IUb-SO-5BW"/>
-                                    <constraint firstAttribute="height" constant="30" id="iY4-4g-nxQ"/>
+                                    <constraint firstAttribute="height" constant="30" id="Cyh-Pi-6Fu"/>
                                 </constraints>
-                                <state key="normal" title="Record"/>
-                                <connections>
-                                    <action selector="onRecordBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sk3-9i-K0P"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fC-81-ziH">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="8XB-LX-poV"/>
-                                    <constraint firstAttribute="height" constant="30" id="Bci-6h-sLG"/>
-                                </constraints>
-                                <state key="normal" title="Stop"/>
-                                <connections>
-                                    <action selector="onStopBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z1f-5R-xja"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sec-zJ-h4w">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="otT-hS-9hj"/>
-                                    <constraint firstAttribute="width" constant="69" id="xof-ja-W2H"/>
-                                </constraints>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="onPlayBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HQ8-XX-aTT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-ou-v5d">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="118" id="Kg5-f3-TUh"/>
-                                    <constraint firstAttribute="height" constant="30" id="eQV-9W-UcY"/>
-                                </constraints>
-                                <state key="normal" title="Switch Cameras"/>
-                                <connections>
-                                    <action selector="onSwitchCamerasBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="itK-qS-iHW"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sec-zJ-h4w" secondAttribute="bottom" constant="20" id="50n-hs-kd1"/>
+                            <constraint firstItem="O9b-Up-wvJ" firstAttribute="top" secondItem="AOe-WX-J4q" secondAttribute="bottom" constant="8" id="0BB-iu-am5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fsr-BJ-5Jx" secondAttribute="bottom" constant="20" id="1as-62-Il2"/>
                             <constraint firstItem="UJg-A5-Kc2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="98D-BN-W3t"/>
                             <constraint firstItem="qFL-QI-iTI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="AGN-RM-2TJ"/>
                             <constraint firstItem="UJg-A5-Kc2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BbR-RD-w1w"/>
                             <constraint firstItem="iIO-wT-1qE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="CCY-lg-WpH"/>
-                            <constraint firstItem="3Pr-ou-v5d" firstAttribute="top" secondItem="BQm-EI-SmL" secondAttribute="bottom" constant="8" id="EKt-bd-Cp3"/>
                             <constraint firstItem="qFL-QI-iTI" firstAttribute="top" secondItem="UJg-A5-Kc2" secondAttribute="bottom" constant="8" id="FXf-VR-zO7"/>
                             <constraint firstItem="AOe-WX-J4q" firstAttribute="top" secondItem="qFL-QI-iTI" secondAttribute="bottom" constant="8" id="H59-5r-qyS"/>
                             <constraint firstItem="iIO-wT-1qE" firstAttribute="top" secondItem="Sce-Hs-KiC" secondAttribute="bottom" constant="8" id="Ixt-py-vPl"/>
                             <constraint firstItem="Sce-Hs-KiC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JbY-1y-4mW"/>
                             <constraint firstItem="Sce-Hs-KiC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Kdw-RT-2Hw"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Pr-ou-v5d" secondAttribute="bottom" constant="20" id="MGN-Vw-Qed"/>
                             <constraint firstItem="AOe-WX-J4q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="N8w-FT-lAo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O9b-Up-wvJ" secondAttribute="trailing" id="WdC-zs-zg5"/>
                             <constraint firstItem="BQm-EI-SmL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="XtA-8I-Y3b"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fsr-BJ-5Jx" secondAttribute="bottom" constant="20" id="Xvn-1I-AYV"/>
                             <constraint firstItem="BQm-EI-SmL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aLd-vC-KCR"/>
-                            <constraint firstItem="3Pr-ou-v5d" firstAttribute="leading" secondItem="sec-zJ-h4w" secondAttribute="trailing" constant="7" id="adV-95-1v7"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8fC-81-ziH" secondAttribute="bottom" constant="20" id="ddU-g1-Huf"/>
                             <constraint firstItem="Sce-Hs-KiC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="f1q-qu-JCf"/>
                             <constraint firstItem="iIO-wT-1qE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gpd-wN-7hr"/>
-                            <constraint firstItem="3Pr-ou-v5d" firstAttribute="top" secondItem="AOe-WX-J4q" secondAttribute="bottom" constant="8" id="h1b-NS-E5B"/>
-                            <constraint firstItem="sec-zJ-h4w" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i1c-Ce-ZKf"/>
                             <constraint firstItem="AOe-WX-J4q" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="iuG-C1-su4"/>
+                            <constraint firstItem="fsr-BJ-5Jx" firstAttribute="top" secondItem="BQm-EI-SmL" secondAttribute="bottom" constant="8" id="lMf-n6-PwI"/>
                             <constraint firstItem="qFL-QI-iTI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mh4-Ct-cop"/>
                             <constraint firstItem="BQm-EI-SmL" firstAttribute="top" secondItem="qFL-QI-iTI" secondAttribute="bottom" constant="8" id="w5B-tb-xZJ"/>
-                            <constraint firstItem="sec-zJ-h4w" firstAttribute="leading" secondItem="8fC-81-ziH" secondAttribute="trailing" constant="8" id="wLU-tw-1CW"/>
+                            <constraint firstItem="O9b-Up-wvJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wjg-Zv-PZP"/>
                             <constraint firstItem="UJg-A5-Kc2" firstAttribute="top" secondItem="iIO-wT-1qE" secondAttribute="bottom" constant="8" id="y9g-jH-V3w"/>
-                            <constraint firstItem="8fC-81-ziH" firstAttribute="leading" secondItem="fsr-BJ-5Jx" secondAttribute="trailing" constant="7" id="yEa-p6-yHb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Video Recorder" id="rvz-Ls-Ztr"/>

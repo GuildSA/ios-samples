@@ -334,7 +334,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD630D86FED3CCD3FB401850 /* Pods-AlamofireDemo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = AlamofireDemo/Info.plist;
@@ -350,7 +350,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8914B76731A79ED480AC69CC /* Pods-AlamofireDemo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = AlamofireDemo/Info.plist;

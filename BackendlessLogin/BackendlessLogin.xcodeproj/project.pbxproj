@@ -135,6 +135,7 @@
 				TargetAttributes = {
 					E7979C171C9A564C00F797D5 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = DCJX7H847C;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -198,7 +199,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E4C9C218A65AD8E69E04997E /* [CP] Copy Pods Resources */ = {
@@ -345,6 +346,7 @@
 			baseConfigurationReference = F2530AFF389577AB9626CF63 /* Pods-BackendlessLogin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = BackendlessLogin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -360,6 +362,7 @@
 			baseConfigurationReference = 3AC17877A4B64535156D97B6 /* Pods-BackendlessLogin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = BackendlessLogin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

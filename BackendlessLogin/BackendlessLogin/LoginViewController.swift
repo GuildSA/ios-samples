@@ -67,4 +67,47 @@ class LoginViewController: UIViewController {
                 Utility.showAlert(viewController: self, title: "Login Error", message: message)
             })
     }
+    
+    @IBAction func loginViaFacebook(_ sender: UIButton) {
+        
+        // If the developer has not replaced the string "backendlessREPLACE_WITH_YOUR_APP_ID"
+        // in the info.plist - notify them of the issue.
+        
+        var foundPlaceHolderText = false
+        
+        if let urlTypesArray = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? Array<Dictionary<String, Array<String>>> {
+
+            for urlSchemesDict in urlTypesArray {
+                
+                if let urlSchemes = urlSchemesDict["CFBundleURLSchemes"] {
+                    
+                    for urlScheme in urlSchemes {
+                        
+                        if urlScheme == "backendlessREPLACE_WITH_YOUR_APP_ID" {
+                            foundPlaceHolderText = true
+                        }
+                    }
+                }
+            }
+        }
+        
+        if foundPlaceHolderText {
+            Utility.showAlert(viewController: self, title: "Backendless Error", message: "For Facebook login to work, open the project's info.plist and replace the string \"REPLACE_WITH_YOUR_APP_ID\" with YOUR App's ID from YOUR Backendless Dashboard!")
+            return
+        }
+        
+        spinner.startAnimating()
+        
+        BackendlessManager.sharedInstance.loginViaFacebook( completion: {
+            
+                self.spinner.stopAnimating()
+            },
+            
+            error: { message in
+                
+                self.spinner.stopAnimating()
+                
+                Utility.showAlert(viewController: self, title: "Login Error", message: message)
+            })
+    }
 }

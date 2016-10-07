@@ -20,16 +20,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if BackendlessManager.sharedInstance.isUserLoggedIn() {
 
-            // If the user is logged in - skip the login view and go staright the menu!
-            
+            // If the user is logged in - skip the login view and go straight the menu!
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "menuVC")
         }
         
         return true
     }
 
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        // If the user logs in via Facebook, this code will handle the successful login.
+        BackendlessManager.sharedInstance.handleOpen( open: url,
+                                         
+            completion: {
+                
+                // If the user is logged in - skip the login view and go straight the menu!
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "menuVC")
+            },
+            
+            error: {})
+
+        return true
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -51,7 +66,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

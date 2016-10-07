@@ -135,15 +135,28 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tpA-h5-TCe"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6k-GB-cv5">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="ebg-ON-2ux"/>
+                                    <constraint firstAttribute="height" constant="30" id="tT4-N7-fAO"/>
+                                </constraints>
+                                <state key="normal" title="Login via Facebook"/>
+                                <connections>
+                                    <action selector="loginViaFacebook:" destination="FS0-1V-0Iq" eventType="touchUpInside" id="LhO-bj-wdJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lf0-tQ-4Eo" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="0bj-nT-Jaz"/>
-                            <constraint firstItem="KH2-AV-msN" firstAttribute="centerY" secondItem="PTx-aC-oew" secondAttribute="centerY" constant="-50" id="2WN-QQ-vqk"/>
+                            <constraint firstItem="KH2-AV-msN" firstAttribute="centerY" secondItem="PTx-aC-oew" secondAttribute="centerY" constant="-100" id="2WN-QQ-vqk"/>
+                            <constraint firstItem="l6k-GB-cv5" firstAttribute="top" secondItem="2c5-OC-GMV" secondAttribute="bottom" constant="18.5" id="3Yc-uc-cNA"/>
                             <constraint firstItem="tpA-h5-TCe" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="9Ge-Mh-jfK"/>
-                            <constraint firstItem="Lf0-tQ-4Eo" firstAttribute="centerY" secondItem="PTx-aC-oew" secondAttribute="centerY" id="N1P-8f-TJA"/>
                             <constraint firstItem="e9H-GN-QkL" firstAttribute="top" secondItem="Lf0-tQ-4Eo" secondAttribute="bottom" constant="25" id="Otd-ji-v1E"/>
                             <constraint firstItem="KH2-AV-msN" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="Oza-eS-dFE"/>
+                            <constraint firstItem="Lf0-tQ-4Eo" firstAttribute="top" secondItem="KH2-AV-msN" secondAttribute="bottom" constant="20" id="XTN-2D-RhD"/>
+                            <constraint firstItem="l6k-GB-cv5" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="ZY0-os-cbc"/>
                             <constraint firstItem="2c5-OC-GMV" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="doV-yd-0Wg"/>
                             <constraint firstItem="e9H-GN-QkL" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="hS2-mp-ks4"/>
                             <constraint firstItem="2c5-OC-GMV" firstAttribute="top" secondItem="e9H-GN-QkL" secondAttribute="bottom" constant="50" id="oLU-bl-Pcv"/>
@@ -258,6 +271,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JJe-iE-puZ"/>
+        <segue reference="2kx-ux-ecC"/>
     </inferredMetricsTieBreakers>
 </document>

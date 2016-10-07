@@ -1,12 +1,12 @@
 PODS:
-  - Backendless (3.0.40)
+  - Backendless (3.0.43)
 
 DEPENDENCIES:
   - Backendless
 
 SPEC CHECKSUMS:
-  Backendless: ec2f43187f7ec433504128a155866cab8106306f
+  Backendless: 47e50f3a7f141f386625dae527e866b88ee8d9b4
 
 PODFILE CHECKSUM: 7d9a7093c222376b4da3a5cbf45a5efe18591c72
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

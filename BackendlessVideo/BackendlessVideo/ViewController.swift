@@ -66,6 +66,9 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         stopMediaBtn.isEnabled = false
         
         resolutionSegment.selectedSegmentIndex = Int(resolution.rawValue)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
         checkForBackendlessSetup()
     }

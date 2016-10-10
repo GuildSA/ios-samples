@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="28" id="qrC-pQ-0CF"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Record/Play"/>
+                                    <segment title="Record"/>
                                     <segment title="Stream Live"/>
                                     <segment title="View Live"/>
                                 </segments>
@@ -37,9 +37,9 @@
                                     <constraint firstAttribute="height" constant="28" id="JvO-Ih-X5E"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Video/Audio"/>
-                                    <segment title="Video Only"/>
+                                    <segment title="Video &amp; Audio"/>
                                     <segment title="Audio Only"/>
+                                    <segment title="Video Only"/>
                                 </segments>
                                 <connections>
                                     <action selector="publishOptionsChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ohW-Hm-qZU"/>
@@ -74,10 +74,7 @@
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOe-WX-J4q">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aRL-LU-ahS">
-                                <frame key="frameInset" minX="169" minY="342.5" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aRL-LU-ahS"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQm-EI-SmL">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -130,7 +127,9 @@
                             <constraint firstItem="iIO-wT-1qE" firstAttribute="top" secondItem="Sce-Hs-KiC" secondAttribute="bottom" constant="8" id="Ixt-py-vPl"/>
                             <constraint firstItem="Sce-Hs-KiC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JbY-1y-4mW"/>
                             <constraint firstItem="Sce-Hs-KiC" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Kdw-RT-2Hw"/>
+                            <constraint firstItem="aRL-LU-ahS" firstAttribute="centerX" secondItem="AOe-WX-J4q" secondAttribute="centerX" id="LoH-FD-VwM"/>
                             <constraint firstItem="AOe-WX-J4q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="N8w-FT-lAo"/>
+                            <constraint firstItem="aRL-LU-ahS" firstAttribute="centerY" secondItem="AOe-WX-J4q" secondAttribute="centerY" id="V7T-wM-55R"/>
                             <constraint firstAttribute="trailingMargin" secondItem="O9b-Up-wvJ" secondAttribute="trailing" id="WdC-zs-zg5"/>
                             <constraint firstItem="BQm-EI-SmL" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="XtA-8I-Y3b"/>
                             <constraint firstItem="BQm-EI-SmL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aLd-vC-KCR"/>

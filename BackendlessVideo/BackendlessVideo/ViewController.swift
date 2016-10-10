@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         case viewStream
     }
     
-    var currentVideoMode: VideoMode = .recordAndPlayback
+    var selectedVideoMode: VideoMode = .recordAndPlayback
     
     enum PublishOptions {
         
@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         case audioOnly
     }
     
-    var currentPublishOptions: PublishOptions = .videoPlusAudio
+    var selectedPublishOptions: PublishOptions = .videoPlusAudio
     
     override func viewDidLoad() {
         
@@ -66,11 +66,39 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         stopMediaBtn.isEnabled = false
         
         resolutionSegment.selectedSegmentIndex = Int(resolution.rawValue)
+        
+        checkForBackendlessSetup()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func checkForBackendlessSetup() {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if appDelegate.APP_ID == "<replace-with-your-app-id>" || appDelegate.SECRET_KEY == "<replace-with-your-secret-key>" {
+            
+            let alertController = UIAlertController(title: "Backendless Error",
+                                                    message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in the AppDelegate with the values from your app's settings.",
+                                                    preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func showAlert(title: String, message: String) {
+        
+        let alertController = UIAlertController(title: title,message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     func textFieldChanged(textField: UITextField) {
@@ -84,21 +112,20 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
 
         } else {
             
-            switch currentVideoMode {
+            playbackBtn.isEnabled = true
+            
+            switch selectedVideoMode {
                 
                 case .recordAndPlayback:
                     
-                    playbackBtn.isEnabled = true
                     publishBtn.isEnabled = true
                     
                 case .liveStream:
 
-                    playbackBtn.isEnabled = false
                     publishBtn.isEnabled = true
                     
                 case .viewStream:
                     
-                    playbackBtn.isEnabled = true
                     publishBtn.isEnabled = false
             }
         }
@@ -112,11 +139,11 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
     @IBAction func videoModeChanged(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-            currentVideoMode = .recordAndPlayback
+            selectedVideoMode = .recordAndPlayback
         } else if sender.selectedSegmentIndex == 1 {
-            currentVideoMode = .liveStream
+            selectedVideoMode = .liveStream
         } else if sender.selectedSegmentIndex == 2 {
-            currentVideoMode = .viewStream
+            selectedVideoMode = .viewStream
         }
         
         refreshUI()
@@ -125,11 +152,11 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
     @IBAction func publishOptionsChanged(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-            currentPublishOptions = .videoPlusAudio
+            selectedPublishOptions = .videoPlusAudio
         } else if sender.selectedSegmentIndex == 1 {
-            currentPublishOptions = .videoOnly
+            selectedPublishOptions = .audioOnly
         } else if sender.selectedSegmentIndex == 2 {
-            currentPublishOptions = .audioOnly
+            selectedPublishOptions = .videoOnly
         }
     }
     
@@ -155,7 +182,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         publishOptionsSegment.isEnabled = true
         resolutionSegment.isEnabled = true
         
-        switch currentVideoMode {
+        switch selectedVideoMode {
             
             case .recordAndPlayback:
                 
@@ -184,11 +211,12 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
                 
                 if streamNameTextField.text == "" {
                     publishBtn.isEnabled = false
+                    playbackBtn.isEnabled = false
                 } else {
                     publishBtn.isEnabled = true
+                    playbackBtn.isEnabled = true
                 }
                 
-                playbackBtn.isEnabled = false
                 swapCameraBtn.isEnabled = false
                 stopMediaBtn.isEnabled = false
                 
@@ -275,28 +303,32 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         var options: MediaPublishOptions
         
         if isLive {
-            options = MediaPublishOptions.liveStream(self.preView) as! MediaPublishOptions
+            // Call liveStream to start a live stream that is NOT recorded to the server.
+            //options = MediaPublishOptions.liveStream(self.preView) as! MediaPublishOptions
+            
+            // Call appendStream to start a live stream that is also recorded to the server for future play back.
+            options = MediaPublishOptions.appendStream(self.preView) as! MediaPublishOptions
         } else {
             options = MediaPublishOptions.recordStream(self.preView) as! MediaPublishOptions
         }
         
-        switch currentPublishOptions {
+        switch selectedPublishOptions {
                 
             case .videoPlusAudio:
                 
                 options.orientation = .portrait
                 options.resolution = resolution
                 options.content = AUDIO_AND_VIDEO
-                
+            
+            case .audioOnly:
+            
+                options.content = ONLY_AUDIO
+            
             case .videoOnly:
 
                 options.orientation = .portrait
                 options.resolution = resolution
                 options.content = ONLY_VIDEO
-        
-            case .audioOnly:
-                
-                options.content = ONLY_AUDIO
         }
         
         publisher = backendless?.mediaService.publishStream(streamNameTextField.text, tube: VIDEO_TUBE, options: options, responder: self)
@@ -324,59 +356,84 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
     
     public func streamStateChanged(_ sender: Any!, state: Int32, description: String!) {
         
+        print("<IMediaStreamerDelegate> streamStateChanged: \(state) = \(description!)");
+        
+// TODO: Are there any docs on IMediaStreamerDelegate? Is there any enums we can use instead of integers?
+        // This IMediaStreamerDelegate method is sometimes called from the main thread
+        // and sometimes not. Since I'm unsure of which thread it will be called from
+        // I'll play it safe and dispatch everything back to the main thread.
+        
         switch state {
             
-            case 0: //CONN_DISCONNECTED
+            case 0: // CONN_DISCONNECTED
                 
-                stopMedia()
-            
-            case 1: break //CONN_CONNECTED
-            
-            case 2: //CONN_CREATED
-                
-                stopMediaBtn.isEnabled = true
-                
-            case 3: //STREAM_PLAYING
-                
-
-                if self.publisher != nil {
-                    
-                    if description != "NetStream.Publish.Start" {
-                        stopMedia()
-                        return
-                    }
-                    
-                    swapCameraBtn.isEnabled = true
-                    netActivity.stopAnimating()
+                DispatchQueue.main.async {
+                    self.stopMedia()
                 }
+            
+            case 1: break // CONN_CONNECTED
+            
+            case 2: // CONN_CREATED
                 
-                if self.player != nil {
+                DispatchQueue.main.async {
+                    self.stopMediaBtn.isEnabled = true
+                }
+            
+            case 3: // STREAM_PLAYING
+                
+                DispatchQueue.main.async {
                     
-                    if description == "NetStream.Play.StreamNotFound" {
-                        stopMedia()
-                        return
+                    if self.publisher != nil {
+                        
+                        if description != "NetStream.Publish.Start" {
+                            self.showAlert(title: "Backendless Error", message: "Failed to play the stream named: '\(self.streamNameTextField.text!)' on the server.")
+                            self.stopMedia()
+                            return
+                        }
+                        
+                        self.swapCameraBtn.isEnabled = true
+                        self.netActivity.stopAnimating()
                     }
                     
-                    if description != "NetStream.Play.Start" {
-                        return
+                    if self.player != nil {
+                        
+                        if description == "NetStream.Play.StreamNotFound" {
+                            
+                            if self.selectedVideoMode == .viewStream {
+                                self.showAlert(title: "Backendless Error", message: "Could not find a live stream named: '\(self.streamNameTextField.text!)' on the server. Stream has possibly stopped broadcasting.")
+                            } else {
+                                self.showAlert(title: "Backendless Error", message: "Could not find a stream named: '\(self.streamNameTextField.text!)' on the server.")
+                            }
+                            
+                            self.stopMedia()
+                            return
+                        }
+                        
+                        if description != "NetStream.Play.Start" {
+                            return
+                        }
+                        
+                        MPMediaData.routeAudioToSpeaker()
+                        
+                        self.preView.isHidden = true
+                        self.playbackView.isHidden = false
+                        
+                        self.netActivity.stopAnimating()
                     }
-                    
-                    MPMediaData.routeAudioToSpeaker()
-                    
-                    preView.isHidden = true
-                    playbackView.isHidden = false
-                    
-                    netActivity.stopAnimating()
                 }
                 
                 return
                 
-            case 4: //STREAM_PAUSED
+            case 4: // STREAM_PAUSED
                 
-                //if description == "NetStream.Play.StreamNotFound" {
-                //}
-                
-                stopMedia()
+                DispatchQueue.main.async {
+                    
+                    if description == "NetStream.Play.StreamNotFound" {
+                        self.showAlert(title: "Backendless Error", message: "Could not find a stream named: '\(self.streamNameTextField.text!)' on the server.")
+                    }
+                    
+                    self.stopMedia()
+                }
             
             default:
                 print("streamStateChanged unhandled state: \(state)");
@@ -387,6 +444,8 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
     func streamConnectFailed(_ sender: Any!, code: Int32, description: String!) {
         
         print("<IMediaStreamerDelegate> streamConnectFailed: \(code) = \(description)");
+        
+        self.showAlert(title: "Backendless Error", message: "Failed to connect to the stream named: '\(self.streamNameTextField.text!)'.")
         
         stopMedia()
     }

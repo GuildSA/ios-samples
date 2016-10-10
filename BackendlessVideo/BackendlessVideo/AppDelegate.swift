@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let VERSION_NUM = "v1"
     
-    let EMAIL = "sim@gmail.com" // Doubles as User Name
+    let EMAIL = "test@gmail.com" // Doubles as User Name
     let PASSWORD = "password"
     
     let backendless = Backendless.sharedInstance()
@@ -34,8 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             backendless?.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
             backendless?.userService.setStayLoggedIn(true)
             backendless?.setThrowException(false)
-            
-            backendless?.hostURL = "http://api.backendless.com"
+             
+// TODO: What is the purpose of this?
+            //backendless?.hostURL = "https://api.backendless.com"
             
             backendless?.mediaService = MediaService()
             
@@ -80,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 )
             }
         }
+        
         return true
     }
 
@@ -104,7 +106,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

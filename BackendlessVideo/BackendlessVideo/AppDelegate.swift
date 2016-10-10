@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Replace these with YOUR App's ID and Secret Key from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    let APP_ID = "761FB252-4CE5-99EF-FF77-C9E99ACAA400"
-    let SECRET_KEY = "926B9573-E688-8918-FF64-584F1E91EF00"
+    let APP_ID = "<replace-with-your-app-id>"
+    let SECRET_KEY = "<replace-with-your-secret-key>"
 
     let VERSION_NUM = "v1"
     

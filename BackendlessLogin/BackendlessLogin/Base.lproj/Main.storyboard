@@ -123,17 +123,6 @@
                                     <action selector="login:" destination="FS0-1V-0Iq" eventType="touchUpInside" id="48Y-Uq-nDt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2c5-OC-GMV">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="DVU-wJ-6zP"/>
-                                    <constraint firstAttribute="width" constant="175" id="zta-0e-vyX"/>
-                                </constraints>
-                                <state key="normal" title="Create a New Account"/>
-                                <connections>
-                                    <segue destination="gEc-s1-sSV" kind="presentation" id="dgS-L7-CIZ"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tpA-h5-TCe"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6k-GB-cv5">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -146,20 +135,44 @@
                                     <action selector="loginViaFacebook:" destination="FS0-1V-0Iq" eventType="touchUpInside" id="LhO-bj-wdJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTa-8i-rSW">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="ogq-CF-ZiY"/>
+                                    <constraint firstAttribute="height" constant="30" id="rE5-Om-vAE"/>
+                                </constraints>
+                                <state key="normal" title="Login via Twitter"/>
+                                <connections>
+                                    <action selector="loginViaTwitter:" destination="FS0-1V-0Iq" eventType="touchUpInside" id="p5d-XD-GPS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2c5-OC-GMV">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DVU-wJ-6zP"/>
+                                    <constraint firstAttribute="width" constant="175" id="zta-0e-vyX"/>
+                                </constraints>
+                                <state key="normal" title="Create a New Account"/>
+                                <connections>
+                                    <segue destination="gEc-s1-sSV" kind="presentation" id="dgS-L7-CIZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lf0-tQ-4Eo" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="0bj-nT-Jaz"/>
-                            <constraint firstItem="KH2-AV-msN" firstAttribute="centerY" secondItem="PTx-aC-oew" secondAttribute="centerY" constant="-100" id="2WN-QQ-vqk"/>
-                            <constraint firstItem="l6k-GB-cv5" firstAttribute="top" secondItem="2c5-OC-GMV" secondAttribute="bottom" constant="18.5" id="3Yc-uc-cNA"/>
+                            <constraint firstItem="KH2-AV-msN" firstAttribute="centerY" secondItem="PTx-aC-oew" secondAttribute="centerY" constant="-125" id="2WN-QQ-vqk"/>
                             <constraint firstItem="tpA-h5-TCe" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="9Ge-Mh-jfK"/>
+                            <constraint firstItem="l6k-GB-cv5" firstAttribute="top" secondItem="e9H-GN-QkL" secondAttribute="bottom" constant="35" id="Mtc-Ns-quU"/>
                             <constraint firstItem="e9H-GN-QkL" firstAttribute="top" secondItem="Lf0-tQ-4Eo" secondAttribute="bottom" constant="25" id="Otd-ji-v1E"/>
                             <constraint firstItem="KH2-AV-msN" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="Oza-eS-dFE"/>
                             <constraint firstItem="Lf0-tQ-4Eo" firstAttribute="top" secondItem="KH2-AV-msN" secondAttribute="bottom" constant="20" id="XTN-2D-RhD"/>
+                            <constraint firstItem="jTa-8i-rSW" firstAttribute="top" secondItem="l6k-GB-cv5" secondAttribute="bottom" constant="15" id="Xv2-02-MBs"/>
+                            <constraint firstItem="2c5-OC-GMV" firstAttribute="top" secondItem="jTa-8i-rSW" secondAttribute="bottom" constant="15" id="YLc-Z3-I8I"/>
                             <constraint firstItem="l6k-GB-cv5" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="ZY0-os-cbc"/>
                             <constraint firstItem="2c5-OC-GMV" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="doV-yd-0Wg"/>
                             <constraint firstItem="e9H-GN-QkL" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="hS2-mp-ks4"/>
-                            <constraint firstItem="2c5-OC-GMV" firstAttribute="top" secondItem="e9H-GN-QkL" secondAttribute="bottom" constant="50" id="oLU-bl-Pcv"/>
+                            <constraint firstItem="jTa-8i-rSW" firstAttribute="centerX" secondItem="PTx-aC-oew" secondAttribute="centerX" id="oIC-sF-TWD"/>
                             <constraint firstItem="KH2-AV-msN" firstAttribute="top" secondItem="tpA-h5-TCe" secondAttribute="bottom" constant="19" id="xLA-S9-P77"/>
                         </constraints>
                     </view>

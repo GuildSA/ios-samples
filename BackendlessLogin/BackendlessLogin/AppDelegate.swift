@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-        // If the user logs in via Facebook, this code will handle the successful login.
+        // If the user logs in via Facebook or Twitter, this code will handle the successful login.
         BackendlessManager.sharedInstance.handleOpen( open: url,
                                          
             completion: {

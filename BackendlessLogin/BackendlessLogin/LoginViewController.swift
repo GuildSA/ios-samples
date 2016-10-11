@@ -20,14 +20,14 @@ class LoginViewController: UIViewController {
 
         emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldChanged(textField:)), for: UIControlEvents.editingChanged)
         passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldChanged(textField:)), for: UIControlEvents.editingChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        Utility.delayTask(seconds: 2) {
+        if BackendlessManager.sharedInstance.APP_ID == "<replace-with-your-app-id>" ||
+            BackendlessManager.sharedInstance.SECRET_KEY == "<replace-with-your-secret-key>" {
             
-            if BackendlessManager.sharedInstance.APP_ID == "<replace-with-your-app-id>" ||
-                BackendlessManager.sharedInstance.SECRET_KEY == "<replace-with-your-secret-key>" {
-                
-                Utility.showAlert(viewController: self, title: "Backendless Error", message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in this sample's BackendlessManager class with the values from your app's settings.")
-            }
+            Utility.showAlert(viewController: self, title: "Backendless Error", message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in this sample's BackendlessManager class with the values from your app's settings.")
         }
     }
     
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
             })
     }
     
-    @IBAction func loginViaFacebook(_ sender: UIButton) {
+    func isAppIdSetInPlist() -> Bool {
         
         // If the developer has not replaced the string "backendlessREPLACE_WITH_YOUR_APP_ID"
         // in the info.plist - notify them of the issue.
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
         var foundPlaceHolderText = false
         
         if let urlTypesArray = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? Array<Dictionary<String, Array<String>>> {
-
+            
             for urlSchemesDict in urlTypesArray {
                 
                 if let urlSchemes = urlSchemesDict["CFBundleURLSchemes"] {
@@ -92,13 +92,41 @@ class LoginViewController: UIViewController {
         }
         
         if foundPlaceHolderText {
-            Utility.showAlert(viewController: self, title: "Backendless Error", message: "For Facebook login to work, open the project's info.plist and replace the string \"REPLACE_WITH_YOUR_APP_ID\" with YOUR App's ID from YOUR Backendless Dashboard!")
+            Utility.showAlert(viewController: self, title: "Backendless Error", message: "For Facebook & Twitter login to work, open the project's info.plist and replace the string \"REPLACE_WITH_YOUR_APP_ID\" with YOUR App's ID from YOUR Backendless Dashboard!")
+            return false
+        }
+        
+        return true
+    }
+    
+    @IBAction func loginViaFacebook(_ sender: UIButton) {
+        
+        if !isAppIdSetInPlist() {
             return
         }
         
         spinner.startAnimating()
         
         BackendlessManager.sharedInstance.loginViaFacebook( completion: {
+            
+                self.spinner.stopAnimating()
+            },
+            
+            error: { message in
+                
+                self.spinner.stopAnimating()
+                
+                Utility.showAlert(viewController: self, title: "Login Error", message: message)
+            })
+    }
+    
+    @IBAction func loginViaTwitter(_ sender: UIButton) {
+        
+        if !isAppIdSetInPlist() {
+            return
+        }
+        
+        BackendlessManager.sharedInstance.loginViaTwitter( completion: {
             
                 self.spinner.stopAnimating()
             },

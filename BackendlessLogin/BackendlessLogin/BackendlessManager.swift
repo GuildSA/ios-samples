@@ -31,8 +31,21 @@ class BackendlessManager {
     let SECRET_KEY = "<replace-with-your-secret-key>"
     
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // For Facebook login to work, open the project's info.plist and replace the string
-    // "REPLACE_WITH_YOUR_APP_ID" with YOUR App's ID from YOUR Backendless Dashboard!
+    // For Facebook login to work, you'll need to follow the steps documented here:
+    //
+    // https://backendless.com/documentation/users/ios/users_facebook_login.htm
+    //
+    // After you've created a Facebook app to represent your mobile app, don't forget 
+    // to set the URL below as one of the app's "Valid OAuth redirect URIs":
+    //
+    // https://api.backendless.com/
+    //
+    // An example of this is shown in the image "facebook_app_uri.png"
+    //
+    // In addition, you'll also had to open this project's info.plist and replace the 
+    // string "REPLACE_WITH_YOUR_APP_ID" with YOUR App's ID from YOUR Backendless 
+    // Dashboard!
+    // 
     // Below is an example of what you're looking for in the project's info.plist:
     /*
     <key>CFBundleURLTypes</key>
@@ -106,6 +119,21 @@ class BackendlessManager {
         backendless.userService.easyLogin(
             
             withFacebookFieldsMapping: ["email":"email"], permissions: ["email"],
+            
+            response: {(result : NSNumber?) -> () in
+                print ("Result: \(result)")
+                completion()
+            },
+            
+            error: { (fault : Fault?) -> () in
+                print("Server reported an error: \(fault)")
+                error((fault?.message)!)
+        })
+    }
+    
+    func loginViaTwitter(completion: @escaping () -> (), error: @escaping (String) -> ()) {
+        
+        backendless.userService.easyLogin(withTwitterFieldsMapping: ["email":"email"],
             
             response: {(result : NSNumber?) -> () in
                 print ("Result: \(result)")

@@ -35,18 +35,23 @@ class BackendlessManager {
     //
     // https://backendless.com/documentation/users/ios/users_facebook_login.htm
     //
+    // If you have a Facebook account, your Facebook app and login can be set up here:
+    //
+    // https://developers.facebook.com/
+    //
     // After you've created a Facebook app to represent your mobile app, don't forget 
     // to set the URL below as one of the app's "Valid OAuth redirect URIs":
     //
     // https://api.backendless.com/
     //
-    // An example of this is shown in the image "facebook_app_uri.png"
+    // An example of this is shown in the image "facebook_app_setup.png"
     //
     // In addition, you'll also had to open this project's info.plist and replace the 
     // string "REPLACE_WITH_YOUR_APP_ID" with YOUR App's ID from YOUR Backendless 
     // Dashboard!
     // 
     // Below is an example of what you're looking for in the project's info.plist:
+    
     /*
     <key>CFBundleURLTypes</key>
     <array>
@@ -58,6 +63,22 @@ class BackendlessManager {
         </dict>
     </array>
     */
+    
+    // For Twitter login to work, you'll need to follow the steps documented here:
+    //
+    // https://backendless.com/documentation/users/ios/users_login_with_twitter.htm
+    //
+    // If you have a Twitter account, your Twitter app and login can be set up here:
+    //
+    // https://apps.twitter.com/
+    //
+    // After you've created a Twitter app to represent your mobile app, don't forget
+    // to set the URL below as your Twitter app's "Callback URL":
+    //
+    // https://api.backendless.com/
+    //
+    // An example of this is shown in the image "twitter_app_setup.png"
+    //
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
     func initApp() {

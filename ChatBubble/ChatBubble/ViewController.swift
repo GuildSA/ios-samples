@@ -5,6 +5,9 @@
 //  Created by Sauvik Dolui on 02/09/15.
 //  Copyright (c) 2015 Innofied Solution Pvt. Ltd. All rights reserved.
 //
+//  Chat bubble art provided by Melissa Phillips:
+//  https://www.linkedin.com/in/melissanicolephillips
+//
 
 import UIKit
 

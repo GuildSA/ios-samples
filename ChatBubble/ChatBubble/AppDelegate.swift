@@ -6,6 +6,9 @@
 //  Created by Kevin Harris on 10/13/16.
 //  Copyright © 2016 Guild/SA. All rights reserved.
 //
+//  Chat bubble art provided by Melissa Phillips:
+//  https://www.linkedin.com/in/melissanicolephillips
+//
 
 import UIKit
 

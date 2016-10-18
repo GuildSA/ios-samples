@@ -36,6 +36,6 @@ class Utility {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             task()
-        })
+        }
     }
 }

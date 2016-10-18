@@ -22,15 +22,15 @@ class ViewController: UIViewController {
 //        UtilityOBJC.showAlert(self, title: "My Alert", message: "This is my alert coming from Objective-C!")
         
         
-        UtilitySWIFT.delayTask(seconds: 3, task: {
-        
-            UtilityOBJC.showAlert(self, title: "Delayed Alert", message: "This is my delayed alert coming from Swift!")
-        })
-        
-//        UtilityOBJC.delayTask(3, task: {
-//            
-//            UtilityOBJC.showAlert(self, title: "Delayed Alert", message: "This is my delayed alert coming from Objective-C!")
+//        UtilitySWIFT.delayTask(seconds: 3, task: {
+//        
+//            UtilitySWIFT.showAlert(viewController: self, title: "Delayed Alert", message: "This is my delayed alert coming from Swift!")
 //        })
+        
+        UtilityOBJC.delayTask(3, task: {
+            
+            UtilityOBJC.showAlert(self, title: "Delayed Alert", message: "This is my delayed alert coming from Objective-C!")
+        })
         
         
 //        if !UtilitySWIFT.isValidEmail(emailAddress: "kevin@gmail") {

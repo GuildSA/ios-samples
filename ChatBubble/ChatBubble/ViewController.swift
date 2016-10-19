@@ -29,6 +29,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        textField.addTarget(self, action: #selector(ViewController.textFieldChanged(textField:)), for: UIControlEvents.editingChanged)
+        
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
@@ -70,6 +72,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldChanged(textField: UITextField) {
+        
+        if textField.text == "" {
+            sendButton.isEnabled = false
+        } else {
+            sendButton.isEnabled = true
+        }
     }
     
     func addKeyboardNotifications() {
@@ -146,6 +157,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
+extension ViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        // Prevent Horizontal Scrolling in UIScrollView
+        scrollView.contentOffset.x = 0
+    }
+}
+
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -153,24 +173,6 @@ extension ViewController: UITextFieldDelegate {
         // Send button on keybaord clicked.
         textField.resignFirstResponder()
         self.addRandomTypeChatBubble()
-        
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var text: String
-        
-        if string.characters.count > 0 {
-            text = String(format:"%@%@",textField.text!, string);
-        } else {
-            text = (textField.text! as NSString).substring(to: string.characters.count - 1) as String
-        }
-        
-        if text.characters.count > 0 {
-            sendButton.isEnabled = true
-        } else {
-            sendButton.isEnabled = false
-        }
         
         return true
     }

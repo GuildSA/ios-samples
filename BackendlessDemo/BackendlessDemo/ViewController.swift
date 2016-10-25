@@ -140,7 +140,7 @@ class ViewController: UIViewController {
                     
                     let user = user as! BackendlessUser
                     
-                    print("User name was updated: \(user.objectId!), topicId: \(user.name!)")
+                    print("User name was updated: \(user.objectId!), name: \(user.name!)")
                 },
                 
                 error: { (fault: Fault?) -> Void in

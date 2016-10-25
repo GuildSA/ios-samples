@@ -31,13 +31,15 @@ class ViewController: UIViewController {
         self.commentsHandle = self.databaseRef.child("comments").observe(.childAdded, with: { (snapshot) -> Void in
             
             let comment = snapshot.value as! [String: Any]
+            
             let topicId = comment["topicId"] as! Int
+            let authorEmail = comment["authorEmail"] as? String
             let message = comment["message"] as? String
             let timeStamp = comment["timeStamp"] as! Int
             
             let dateFromTimestamp = Date.init(timeIntervalSince1970: Double(timeStamp)/1000.0)
             
-            print("Comment: \(snapshot.key), topicId: \(topicId), message: \"\(message!)\", timeStamp: \(dateFromTimestamp)")
+            print("Comment: \(snapshot.key), topicId: \(topicId), authorEmail: \"\(authorEmail!)\", message: \"\(message!)\", timeStamp: \(dateFromTimestamp)")
         })
     }
     
@@ -45,9 +47,9 @@ class ViewController: UIViewController {
         self.databaseRef.child("comments").removeObserver(withHandle: self.commentsHandle)
     }
     
-    @IBAction func registerBtn(_ sender: UIButton) {
+    @IBAction func createUserBtn(_ sender: UIButton) {
         
-        print( "registerBtn called!" )
+        print( "createUserBtn called!" )
         
         // In a real app, this is where we would send the user to a register screen to collect their
         // user name and password for registering a new user. For testing purposes, we will simply
@@ -71,9 +73,9 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func loginBtn(_ sender: UIButton) {
+    @IBAction func signInUserBtn(_ sender: UIButton) {
         
-        print( "loginBtn called!" )
+        print( "signInUserBtn called!" )
         
         if let user = FIRAuth.auth()?.currentUser {
 
@@ -160,13 +162,15 @@ class ViewController: UIViewController {
                 let singleSnapshot = child as! FIRDataSnapshot
                 
                 let comment = singleSnapshot.value as! [String: Any]
+                
                 let topicId = comment["topicId"] as! Int
+                let authorEmail = comment["authorEmail"] as? String
                 let message = comment["message"] as? String
                 let timeStamp = comment["timeStamp"] as! Int
                 
                 let dateFromTimestamp = Date.init(timeIntervalSince1970: Double(timeStamp)/1000.0)
                 
-                print("Comment: \(snapshot.key), topicId: \(topicId), message: \"\(message!)\", timeStamp: \(dateFromTimestamp)")
+                print("Comment: \(snapshot.key), topicId: \(topicId), authorEmail: \"\(authorEmail!)\", message: \"\(message!)\", timeStamp: \(dateFromTimestamp)")
             }
 
         }) { (error) in
@@ -196,13 +200,15 @@ class ViewController: UIViewController {
                 let singleSnapshot = child as! FIRDataSnapshot
                 
                 let comment = singleSnapshot.value as! [String: Any]
+                
                 let topicId = comment["topicId"] as! Int
+                let authorEmail = comment["authorEmail"] as? String
                 let message = comment["message"] as? String
                 let timeStamp = comment["timeStamp"] as! Int
                 
                 let dateFromTimestamp = Date.init(timeIntervalSince1970: Double(timeStamp)/1000.0)
                 
-                print("Comment: \(snapshot.key), topicId: \(topicId), message: \"\(message!)\", timeStamp: \(dateFromTimestamp)")
+                print("Comment: \(snapshot.key), topicId: \(topicId), authorEmail: \"\(authorEmail!)\", message: \"\(message!)\", timeStamp: \(dateFromTimestamp)")
             }
             
         }) { (error) in
@@ -280,7 +286,7 @@ class ViewController: UIViewController {
             try firebaseAuth?.signOut()
             
             print("User logged out!")
-
+            
         } catch let signOutError as NSError {
             
             print ("User failed to log out: \(signOutError.localizedDescription)")

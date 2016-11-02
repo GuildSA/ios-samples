@@ -18,6 +18,10 @@ class ViewController: UIViewController {
         parseJsonTest1()
         parseJsonTest2()
         parseJsonTest3()
+        
+        createJsonTest1()
+        createJsonTest2()
+        createJsonTest3()
     }
 
     override func didReceiveMemoryWarning() {
@@ -166,6 +170,101 @@ class ViewController: UIViewController {
             
             print("name = \(name), damage = \(damage)")
         }
+    }
+    
+    func createJsonTest1() {
+        
+        let namesArray = [ "Cloe", "Bob", "Jennifer", "Robert" ]
+        
+        //
+        // Convert the Swift Array to JSON...
+        //
+        
+        let namesJson = JSON(namesArray)
+        let namesJsonString = namesJson.rawString(String.Encoding.utf8, options: [])
+        
+        print(namesJsonString!)
+    }
+    
+    func createJsonTest2() {
+        
+        let playerDictionary: [String:Any] = [
+            "name": "The WarL0rd",
+            "maps": [ 12, 23, 55 ]
+        ]
+
+        //
+        // Convert the Swift Dictionary to JSON...
+        //
+        
+        let playerJson = JSON(playerDictionary)
+        let playerJsonString = playerJson.rawString(String.Encoding.utf8, options: [])
+        
+        print(playerJsonString!)
+    }
+    
+    func createJsonTest3() {
+        
+        // Create a Dictionary to hold everything...
+        var rootDictionary = [String:[String:Any]]()
+
+        // Create a Dictionary to hold weapons.
+        var weaponsDictionary = [String:Any]()
+        
+        //
+        // Create an Array to hold swords...
+        //
+        
+        var swords = Array<[String:Any]>()
+        
+        var sword1 = [String:Any]()
+        sword1["name"] = "Short Sword"
+        sword1["damage"] = 25
+        swords.append(sword1)
+        
+        var sword2 = [String:Any]()
+        sword2["name"] = "Broad Sword"
+        sword2["damage"] = 100
+        swords.append(sword2)
+        
+        var sword3 = [String:Any]()
+        sword3["name"] = "Skull Cleaver"
+        sword3["damage"] = 150
+        swords.append(sword3)
+
+        // Add the swords Array to the weapons dictionary.
+        weaponsDictionary["swords"] = swords
+        
+        //
+        // Create an Array to hold spears...
+        //
+        
+        var spears = Array<[String:Any]>()
+        
+        var spear1 = [String:Any]()
+        spear1["name"] = "Wooden Spear"
+        spear1["damage"] = 15
+        spears.append(spear1)
+        
+        var spear2 = [String:Any]()
+        spear2["name"] = "Iron Spear"
+        spear2["damage"] = 20
+        spears.append(spear2)
+        
+        // Add the spears Array to the weapons dictionary.
+        weaponsDictionary["spears"] = spears
+
+        // Finally, add the weapons Array to the root dictionary.
+        rootDictionary["weapons"] = weaponsDictionary
+
+        //
+        // Convert the Swift Dictionaries and Arrays to JSON...
+        //
+        
+        let weaponsJson = JSON(rootDictionary)
+        let weaponsJsonString = weaponsJson.rawString(String.Encoding.utf8, options: [])
+        
+        print(weaponsJsonString!)
     }
 }
 

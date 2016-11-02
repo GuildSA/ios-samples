@@ -345,7 +345,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AC48BE70B14DEB3A909CC64 /* Pods-SwiftyJSONDemo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = SwiftyJSONDemo/Info.plist;
@@ -360,7 +359,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 699DB8083EFC87987A3A3EFB /* Pods-SwiftyJSONDemo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = SwiftyJSONDemo/Info.plist;

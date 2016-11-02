@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         BackendlessManager.sharedInstance.initApp()
         
-        if BackendlessManager.sharedInstance.isUserLoggedIn() {
+        if BackendlessManager.sharedInstance.isUserLoggedIn {
 
             // If the user is logged in - skip the login view and go straight the menu!
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

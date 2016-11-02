@@ -30,6 +30,33 @@ class BackendlessManager {
     let APP_ID = "<replace-with-your-app-id>"
     let SECRET_KEY = "<replace-with-your-secret-key>"
     
+    private var _isUserLoggedIn: Bool? = nil
+    
+    var isUserLoggedIn : Bool {
+        
+        get {
+            
+            if self._isUserLoggedIn != nil {
+                return self._isUserLoggedIn!
+            }
+    
+            cacheLoginStatus()
+    
+            return self._isUserLoggedIn!
+        }
+    }
+    
+    private func cacheLoginStatus() {
+        
+        let isValidUser = backendless.userService.isValidUserToken()
+        
+        if isValidUser != nil && isValidUser != 0 {
+            _isUserLoggedIn = true
+        } else {
+            _isUserLoggedIn = false
+        }
+    }
+    
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // For Facebook login to work, you'll need to follow the steps documented here:
     //
@@ -88,17 +115,6 @@ class BackendlessManager {
         backendless.userService.setStayLoggedIn(true)
     }
     
-    func isUserLoggedIn() -> Bool {
-        
-        let isValidUser = backendless.userService.isValidUserToken()
-        
-        if isValidUser != nil && isValidUser != 0 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     func registerUser(email: String, password: String, completion: @escaping () -> (), error: @escaping (String) -> ()) {
     
         let user: BackendlessUser = BackendlessUser()
@@ -126,6 +142,7 @@ class BackendlessManager {
                                         
             response: { (user: BackendlessUser?) -> Void in
                 print("User logged in: \(user!.objectId)")
+                self.cacheLoginStatus()
                 completion()
             },
             
@@ -143,6 +160,7 @@ class BackendlessManager {
             
             response: {(result : NSNumber?) -> () in
                 print ("Result: \(result)")
+                self.cacheLoginStatus()
                 completion()
             },
             
@@ -158,6 +176,7 @@ class BackendlessManager {
             
             response: {(result : NSNumber?) -> () in
                 print ("Result: \(result)")
+                self.cacheLoginStatus()
                 completion()
             },
             
@@ -175,6 +194,7 @@ class BackendlessManager {
         
         if user != nil {
             print("handleOpen: user = \(user)")
+            self.cacheLoginStatus()
             completion()
         } else {
             error()
@@ -184,12 +204,13 @@ class BackendlessManager {
     func logoutUser(completion: @escaping () -> (), error: @escaping (String) -> ()) {
         
         // First, check if the user is actually logged in.
-        if isUserLoggedIn() {
+        if isUserLoggedIn {
             
             // If they are currently logged in - go ahead and log them out!
             
             backendless.userService.logout( { (user: Any!) -> Void in
                     print("User logged out!")
+                    self.cacheLoginStatus()
                     completion()
                 },
                                             

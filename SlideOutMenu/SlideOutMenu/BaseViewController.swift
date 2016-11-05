@@ -8,21 +8,15 @@
 
 import UIKit
 
-class BaseViewController: UIViewController, SlideMenuDelegate {
+class BaseViewController: UIViewController {
     
-    // Implements SlideMenuDelegate protocol
-    func slideMenuViewControllerRequestedWithName(_ viewControllerName: String) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let topViewController = self.navigationController!.topViewController!
-        let destViewController = self.storyboard!.instantiateViewController(withIdentifier: viewControllerName)
-        
-        // Do not set a new view controller if it's the one that is already set.
-        if topViewController.restorationIdentifier! != destViewController.restorationIdentifier! {
-            self.navigationController!.setViewControllers([destViewController], animated: true)
-        }
+        addSlideMenuButtonToNav()
     }
     
-    func addSlideMenuButtonToNav() {
+    private func addSlideMenuButtonToNav() {
         
         let slideMenuBtn = UIButton(type: UIButtonType.system)
         slideMenuBtn.setImage(UIImage(named: "menu"), for: UIControlState())
@@ -83,5 +77,19 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
                 menuVC.view.frame = CGRect(x: 0, y: 0, width: mainScreen.bounds.size.width, height: mainScreen.bounds.size.height);
             
             }, completion: nil)
+    }
+}
+
+extension BaseViewController: SlideMenuDelegate {
+    
+    func slideMenuViewControllerRequestedWithName(_ viewControllerName: String) {
+        
+        let topViewController = self.navigationController!.topViewController!
+        let destViewController = self.storyboard!.instantiateViewController(withIdentifier: viewControllerName)
+        
+        // Do not set a new view controller if it's the one that is already set.
+        if topViewController.restorationIdentifier! != destViewController.restorationIdentifier! {
+            self.navigationController!.setViewControllers([destViewController], animated: true)
+        }
     }
 }

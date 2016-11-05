@@ -12,9 +12,7 @@ class FirstViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addSlideMenuButtonToNav()
-        
+
         // Do any additional setup after loading the view.
     }
 }

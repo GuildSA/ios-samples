@@ -13,7 +13,7 @@ protocol SlideMenuDelegate {
     func slideMenuViewControllerRequestedWithName(_ viewControllerName: String)
 }
 
-class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MenuViewController: UIViewController {
     
     @IBOutlet var slideMenuTableView: UITableView!
     
@@ -82,7 +82,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.removeFromParentViewController()
         })
     }
-    
+}
+
+extension MenuViewController: UITableViewDataSource {
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return menuEntries.count
@@ -102,7 +105,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
-    
+}
+
+extension MenuViewController: UITableViewDelegate {
+        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switchViewController((indexPath as NSIndexPath).row)

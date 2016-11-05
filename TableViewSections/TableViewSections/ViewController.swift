@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController {
 
     let sectionTitles = [
         "Section 1: Numbers",
@@ -40,7 +40,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension ViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return sectionTitles.count
@@ -74,6 +77,4 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         return cell
     }
-
 }
-

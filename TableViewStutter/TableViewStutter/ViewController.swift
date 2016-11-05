@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -70,14 +70,15 @@ class ViewController: UIViewController, UITableViewDataSource {
             print("NSURL Error")
         }
     }
+}
+
+extension ViewController: UITableViewDataSource {
     
-    // From UITableViewDataSource protocol.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return photoDataArray.count
     }
     
-    // From UITableViewDataSource protocol.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell

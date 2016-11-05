@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -34,16 +34,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         print( "onButtonTouchUpInside")
     }
-    
-// New developers often assume that they can hook up a UITextField's 
-// value changed action like so, but this will not work. You must 
-// listen to changes to a UITextField by implementing the 
-// UITextFieldDelegate.
-    
-//    @IBAction func onTextFieldValueChanged(sender: UITextField) {
-//        
-//        print( "onTextFieldValueChanged = \(sender.text)")
-//    }
     
     @IBAction func onSliderValueChanged(_ sender: UISlider) {
         
@@ -77,9 +67,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print( "onStepperValueChanged = \(sender.value)")
     }
     
-    //
-    // The call-backs defined by UITextFieldDelegate
-    //
+    // New developers often assume that they can hook up a UITextField's
+    // value changed action like so, but this will not work. You must
+    // listen to changes to a UITextField by implementing the
+    // UITextFieldDelegate (See Below).
+    
+//    @IBAction func onTextFieldValueChanged(sender: UITextField) {
+//
+//        print( "onTextFieldValueChanged = \(sender.text)")
+//    }
+}
+
+extension ViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         

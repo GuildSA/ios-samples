@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,11 +39,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // This sample sets the dataSource and delegate in the StoryBoard, but you may
-        // see some code samples where they're set here in code like so.
-        //tableView.delegate = self
-        //tableView.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,15 +46,16 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension ViewController: UITableViewDataSource {
     
-    // From UITableViewDataSource protocol.
     func numberOfSections(in tableView: UITableView) -> Int {
         
         // We only have one section in our table view.
         return 1
     }
     
-    // From UITableViewDataSource protocol.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         // The number of rows we want for out table view is directly related to
@@ -67,7 +63,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         return myData.count
     }
     
-    // From UITableViewDataSource protocol.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // This will try to reuse a cell if one can be found. If not, a new cell will be created.

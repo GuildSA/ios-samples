@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,41 +45,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
 
-    // From UITableViewDataSource protocol.
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1;
-    }
-    
-    // From UITableViewDataSource protocol.
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return myData.count
-    }
-    
-    // From UITableViewDataSource protocol.
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //print("Building a UITableViewCell for \(indexPath.row)")
-
-        // Our Custom Cell.
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
-        
-        cell.textLabel?.text = myData[(indexPath as NSIndexPath).row]
-
-        return cell
-    }
-    
-    // From UITableViewDelegate protocol.
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print("User selected section: \((indexPath as NSIndexPath).section), row: \((indexPath as NSIndexPath).row)")
-        
-        // The user has tapped or selected a row in our table view - manually fire our
-        // named Segue.
-        performSegue(withIdentifier: "mySegue", sender: tableView)
-    }
-    
     // We can override this method in UIViewController if we want to perform some
     // logic before a Segue actually fires off.
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
@@ -102,3 +67,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
+extension ViewController: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1;
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return myData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //print("Building a UITableViewCell for \(indexPath.row)")
+        
+        // Our Custom Cell.
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
+        
+        cell.textLabel?.text = myData[(indexPath as NSIndexPath).row]
+        
+        return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+ 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("User selected section: \((indexPath as NSIndexPath).section), row: \((indexPath as NSIndexPath).row)")
+        
+        // The user has tapped or selected a row in our table view - manually fire our
+        // named Segue.
+        performSegue(withIdentifier: "mySegue", sender: tableView)
+    }
+}

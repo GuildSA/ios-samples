@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var publishBtn: UIButton!
     @IBOutlet weak var playbackBtn: UIButton!
@@ -78,6 +78,36 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldChanged(textField: UITextField) {
+        
+        if streamNameTextField.text == "" {
+            
+            playbackBtn.isEnabled = false
+            stopMediaBtn.isEnabled = false
+            publishBtn.isEnabled = false
+            swapCameraBtn.isEnabled = false
+            
+        } else {
+            
+            playbackBtn.isEnabled = true
+            
+            switch selectedVideoMode {
+                
+            case .recordAndPlayback:
+                
+                publishBtn.isEnabled = true
+                
+            case .liveStream:
+                
+                publishBtn.isEnabled = true
+                
+            case .viewStream:
+                
+                publishBtn.isEnabled = false
+            }
+        }
+    }
+    
     func checkForBackendlessSetup() {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -102,36 +132,6 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    func textFieldChanged(textField: UITextField) {
-        
-        if streamNameTextField.text == "" {
-            
-            playbackBtn.isEnabled = false
-            stopMediaBtn.isEnabled = false
-            publishBtn.isEnabled = false
-            swapCameraBtn.isEnabled = false
-
-        } else {
-            
-            playbackBtn.isEnabled = true
-            
-            switch selectedVideoMode {
-                
-                case .recordAndPlayback:
-                    
-                    publishBtn.isEnabled = true
-                    
-                case .liveStream:
-
-                    publishBtn.isEnabled = true
-                    
-                case .viewStream:
-                    
-                    publishBtn.isEnabled = false
-            }
-        }
     }
     
     @IBAction func onSwitchCamerasBtn(_ sender: UIButton) {
@@ -345,8 +345,9 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         
         netActivity.startAnimating()
     }
-    
-    // MARK: UITextFieldDelegate protocol methods
+}
+
+extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -354,14 +355,15 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         
         return true
     }
-    
-    // MARK: IMediaStreamerDelegate protocol methods to handle stream state changes and errors
+}
+
+extension ViewController: IMediaStreamerDelegate {
     
     public func streamStateChanged(_ sender: Any!, state: Int32, description: String!) {
         
         print("<IMediaStreamerDelegate> streamStateChanged: \(state) = \(description!)");
         
-// TODO: Are there any docs on IMediaStreamerDelegate? Is there any enums we can use instead of integers?
+        // TODO: Are there any docs on IMediaStreamerDelegate? Is there any enums we can use instead of integers?
         // This IMediaStreamerDelegate method is sometimes called from the main thread
         // and sometimes not. Since I'm unsure of which thread it will be called from
         // I'll play it safe and dispatch everything back to the main thread.
@@ -373,15 +375,15 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
                 DispatchQueue.main.async {
                     self.stopMedia()
                 }
-            
+                
             case 1: break // CONN_CONNECTED
-            
+                
             case 2: // CONN_CREATED
                 
                 DispatchQueue.main.async {
                     self.stopMediaBtn.isEnabled = true
                 }
-            
+                
             case 3: // STREAM_PLAYING
                 
                 DispatchQueue.main.async {
@@ -437,7 +439,7 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
                     
                     self.stopMedia()
                 }
-            
+                
             default:
                 print("streamStateChanged unhandled state: \(state)");
                 return
@@ -453,4 +455,3 @@ class ViewController: UIViewController, UITextFieldDelegate, IMediaStreamerDeleg
         stopMedia()
     }
 }
-

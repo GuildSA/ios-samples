@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Don't forget to replace the App's ID and Secret Key in AppDelegate with YOUR own
@@ -261,8 +261,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("User is already logged out: \(isValidUser?.boolValue)");
         }
     }
-    
-    // MARK: UIImagePickerControllerDelegate
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.

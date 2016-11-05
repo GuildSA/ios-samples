@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, IBEPushReceiver {
+class ViewController: UIViewController {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Don't forget to replace the App's ID and Secret Key in AppDelegate with YOUR own
@@ -47,48 +47,6 @@ class ViewController: UIViewController, IBEPushReceiver {
         }
     }
     
-    // IBEPushReceiver Methods
-
-    public func didReceiveRemoteNotification(_ notification: String!, headers: [AnyHashable : Any]!) {
-
-        print("Received Message: \(notification!)")
-        
-        let publisherName = headers["publisher_name"] ?? "nil"
-        let iosBadge = headers["ios-badge"] ?? "nil"
-        let iosSound = headers["ios-sound"] ?? "nil"
-        
-        print("publisher_name = \(publisherName)")
-        print("ios-badge = \(iosBadge)")
-        print("ios-sound = \(iosSound)")
-        //print("android-content-text = \(headers["android-content-text"]!)")
-        //print("android-content-title = \(headers["android-content-title"]!)")
-        //print("android-ticker-text = \(headers["android-ticker-text"]!)")
-        
-        let alertController = UIAlertController(title: "Push Notification",
-                                                message: "Our app received a Remote Push Notification! Here's our opportunity to do something special based on it.\n\nPush Data:\n\nnotification = \(notification!)\npublisher_name = \(publisherName)\nios-badge = \(iosBadge)\nios-sound = \(iosSound)",
-            preferredStyle: .alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        alertController.addAction(okAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
-
-    public func didRegisterForRemoteNotifications(withDeviceId deviceId: String!, fault: Fault!) {
-
-        if fault == nil {
-            print("didRegisterForRemoteNotificationsWithDeviceId: \(deviceId!)")
-        } else {
-            print("didRegisterForRemoteNotificationsWithDeviceId: \(fault)")
-        }
-    }
-
-    public func didFailToRegisterForRemoteNotificationsWithError(_ err: Error!) {
-
-        print("didFailToRegisterForRemoteNotificationsWithError: \(err)")
-    }
-    
     @IBAction func triggerPushFromAppBtn(_ sender: UIButton) {
         
         checkForBackendlessSetup()
@@ -125,4 +83,48 @@ class ViewController: UIViewController, IBEPushReceiver {
         })
     }
 }
+
+extension ViewController: IBEPushReceiver {
+
+    public func didReceiveRemoteNotification(_ notification: String!, headers: [AnyHashable : Any]!) {
+        
+        print("Received Message: \(notification!)")
+        
+        let publisherName = headers["publisher_name"] ?? "nil"
+        let iosBadge = headers["ios-badge"] ?? "nil"
+        let iosSound = headers["ios-sound"] ?? "nil"
+        
+        print("publisher_name = \(publisherName)")
+        print("ios-badge = \(iosBadge)")
+        print("ios-sound = \(iosSound)")
+        //print("android-content-text = \(headers["android-content-text"]!)")
+        //print("android-content-title = \(headers["android-content-title"]!)")
+        //print("android-ticker-text = \(headers["android-ticker-text"]!)")
+        
+        let alertController = UIAlertController(title: "Push Notification",
+                                                message: "Our app received a Remote Push Notification! Here's our opportunity to do something special based on it.\n\nPush Data:\n\nnotification = \(notification!)\npublisher_name = \(publisherName)\nios-badge = \(iosBadge)\nios-sound = \(iosSound)",
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    public func didRegisterForRemoteNotifications(withDeviceId deviceId: String!, fault: Fault!) {
+        
+        if fault == nil {
+            print("didRegisterForRemoteNotificationsWithDeviceId: \(deviceId!)")
+        } else {
+            print("didRegisterForRemoteNotificationsWithDeviceId: \(fault)")
+        }
+    }
+    
+    public func didFailToRegisterForRemoteNotificationsWithError(_ err: Error!) {
+        
+        print("didFailToRegisterForRemoteNotificationsWithError: \(err)")
+    }
+}
+
 

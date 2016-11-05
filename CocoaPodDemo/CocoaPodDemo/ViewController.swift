@@ -34,13 +34,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTouchUpInsideTestAlert(sender: UIButton) {
+    @IBAction func onTouchUpInsideTestAlert(_ sender: UIButton) {
         
         // Some of these examples came from here:
         // https://github.com/vikmeup/SCLAlertView-Swift
         
         // Example #1
-        SCLAlertView().showInfo("Important info", subTitle: "You are great")
+        SCLAlertView().showInfo("Important info", subTitle: "You are great!z")
 
         
         // Example #2

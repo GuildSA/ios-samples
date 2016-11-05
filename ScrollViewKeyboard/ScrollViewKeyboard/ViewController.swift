@@ -11,7 +11,7 @@ import UIKit
 // This sample is based on this article:
 // https://spin.atomicobject.com/2014/03/05/uiscrollview-autolayout-ios/
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -38,24 +38,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        // Hide the keyboard!
-        textField.resignFirstResponder()
-        
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        self.activeField = textField
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        self.activeField = nil
     }
     
     func keyboardDidShow(_ notification: Notification) {
@@ -102,3 +84,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        // Hide the keyboard!
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        self.activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        self.activeField = nil
+    }
+}

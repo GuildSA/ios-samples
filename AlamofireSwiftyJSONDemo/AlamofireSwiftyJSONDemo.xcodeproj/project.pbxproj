@@ -121,7 +121,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Guild/SA;
 				TargetAttributes = {
 					E70EF1271BEC66CC008F5D48 = {
@@ -333,7 +333,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5958596411C5A1CAEA843D26 /* Pods-AlamofireSwiftyJSONDemo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = AlamofireSwiftyJSONDemo/Info.plist;
@@ -348,7 +347,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA5A7D487A827753E21D2FBE /* Pods-AlamofireSwiftyJSONDemo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DCJX7H847C;
 				INFOPLIST_FILE = AlamofireSwiftyJSONDemo/Info.plist;

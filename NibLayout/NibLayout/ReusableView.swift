@@ -23,12 +23,12 @@ class ReusableView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSBundle.mainBundle().loadNibNamed("ReusableView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("ReusableView", owner: self, options: nil)
         
         self.addSubview(view)
     }
 
-    @IBAction func onTouchBtn(sender: UIButton) {
+    @IBAction func onTouchBtn(_ sender: UIButton) {
         print("Button touched!")
     }
 }

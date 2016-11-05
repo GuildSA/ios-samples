@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController {
 
     var pickerColors = ["White", "Red", "Green", "Blue", "Purple", "Orange", "Brown", "Yellow"];
     
@@ -21,28 +21,30 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension ViewController: UIPickerViewDataSource {
     
-    // From the UIPickerViewDataSource protocol.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
     }
     
-    // From the UIPickerViewDataSource protocol.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return pickerColors.count
     }
     
-    // From the UIPickerViewDataSource protocol.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return pickerColors[row]
     }
-    
-    // From the UIPickerViewDelegate protocol.
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+}
 
+extension ViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         switch row {
             case 0: self.view.backgroundColor = UIColor.white
             case 1: self.view.backgroundColor = UIColor.red

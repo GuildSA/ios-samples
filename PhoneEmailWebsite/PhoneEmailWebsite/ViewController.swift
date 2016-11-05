@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,12 +79,6 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
 
-    // Implemented from MFMailComposeViewControllerDelegate...
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func gotoWebsite(_ sender: UIButton) {
 
         if let url = URL(string: "https://guildsa.org") {
@@ -93,3 +87,10 @@ class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
     }
 }
 
+extension ViewController: MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+}

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var myTextField: UITextField!
     @IBOutlet weak var myTextView: UITextView!
@@ -23,10 +23,15 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         // Dispose of any resources that can be recreated.
     }
 
-    //
-    // UITextFieldDelegate
-    //
-    
+    @IBAction func onTouchUpInsideDone(_ sender: UIButton) {
+        
+        // Dismiss the keyboard
+        myTextView.resignFirstResponder()
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+
     // Method gets called when the textfield editing will start
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
@@ -71,11 +76,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         
         return true
     }
-    
-    //
-    // UITextViewDelegate
-    //
-    
+}
+
+extension ViewController: UITextViewDelegate {
+
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         
         print("textViewShouldBeginEditing")
@@ -113,17 +117,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-
+        
         print("textFieldShouldClear")
-
+        
         return true
     }
-    
-    @IBAction func onTouchUpInsideDone(_ sender: UIButton) {
-        
-        // Dismiss the keyboard
-        myTextView.resignFirstResponder()
-    }
-
 }
 

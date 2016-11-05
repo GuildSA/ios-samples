@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ViewController: UIViewController, UITableViewDataSource, MFMailComposeViewControllerDelegate, MyTableViewCellDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,13 +44,22 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
         businessDataArray.append(BusinessData(website: "https://guildsa.org", email: "info@guildsa.org"))
     }
     
-    // From UITableViewDataSource protocol.
+    func isSimulator() -> Bool {
+#if (arch(i386) || arch(x86_64)) && os(iOS)
+        return true
+#else
+        return false
+#endif
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return businessDataArray.count
     }
     
-    // From UITableViewDataSource protocol.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
@@ -80,16 +89,10 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
         
         return cell
     }
+}
+
+extension ViewController: MyTableViewCellDelegate {
     
-    func isSimulator() -> Bool {
-#if (arch(i386) || arch(x86_64)) && os(iOS)
-        return true
-#else
-        return false
-#endif
-    }
-    
-    // Implemented from  MyTableViewCellDelegate
     // If this gets called we know that a user has tapped on the email button on one of our cells.
     func didTapEmail(_ email: String) {
         
@@ -136,11 +139,12 @@ class ViewController: UIViewController, UITableViewDataSource, MFMailComposeView
             self.present(alertController, animated: true, completion: nil)
         }
     }
+}
+
+extension ViewController: MFMailComposeViewControllerDelegate {
     
-    // Implemented from MFMailComposeViewControllerDelegate...
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
         controller.dismiss(animated: true, completion: nil)
     }
 }
-

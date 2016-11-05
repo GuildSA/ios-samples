@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController {
     
     var pickerDates = [
         
@@ -30,29 +30,30 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension ViewController: UIPickerViewDataSource  {
     
-    // From the UIPickerViewDataSource protocol.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 3
     }
     
-    // From the UIPickerViewDataSource protocol.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return pickerDates[component].count
     }
     
-    // From the UIPickerViewDataSource protocol.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return pickerDates[component][row]
     }
-    
-    // From the UIPickerViewDelegate protocol.
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+}
 
+extension ViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         print("\(pickerDates[component][row])")
     }
 }
-

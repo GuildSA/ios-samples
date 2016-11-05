@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var mapView: MKMapView!
     
@@ -37,11 +37,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        print("mapViewDidFinishRenderingMap: \(fullyRendered)")
-    }
-    
     @IBAction func onValueChangedSegment(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
@@ -55,7 +50,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
             default:
                 break
         }
-        
     }
     
     fileprivate func setUpCamera() {
@@ -79,12 +73,20 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
         mapView.showsCompass = !mapView.showsCompass
         
-        if(mapView.showsCompass == true) {
+        if mapView.showsCompass {
             sender.setTitle("Hide Compass", for: UIControlState())
         } else {
             sender.setTitle("Show Compass", for: UIControlState())
         }
     }
 
+}
+
+extension ViewController: MKMapViewDelegate {
+
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        
+        print("mapViewDidFinishRenderingMap: \(fullyRendered)")
+    }
 }
 

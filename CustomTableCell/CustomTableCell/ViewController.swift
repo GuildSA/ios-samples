@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
       
@@ -46,20 +46,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
-    // From UITableViewDataSource protocol.
+extension ViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
-
-    // From UITableViewDataSource protocol.
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return myData.count
     }
-
-    // From UITableViewDataSource protocol.
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! MyTableViewCell
@@ -68,28 +68,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell
     }
+}
+
+extension ViewController: UITableViewDelegate {
     
-    // From UITableViewDelegate protocol.
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         
         return true
     }
     
-    // From UITableViewDelegate protocol.
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
         cell?.contentView.backgroundColor = UIColor.red
     }
     
-    // From UITableViewDelegate protocol.
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
         cell?.contentView.backgroundColor = UIColor.clear
     }
     
-    // From UITableViewDelegate protocol.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)

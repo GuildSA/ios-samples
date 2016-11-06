@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         // https://github.com/vikmeup/SCLAlertView-Swift
         
         // Example #1
-        SCLAlertView().showInfo("Important info", subTitle: "You are great!z")
+        SCLAlertView().showInfo("Important info", subTitle: "You are great!")
 
         
         // Example #2
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
 //        let alert = SCLAlertView()
 //        let txt = alert.addTextField("Enter your screen name")
 //        alert.addButton("Submit Name") {
-//            print("Name = \(txt.text)")
+//            print("Name = \(txt.text!)")
 //        }
 //        alert.showEdit("Screen Name", subTitle:"Please add a screen name to use during chats.")
         
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
 //            subTitle: "Operation successfully completed.", // String of view
 //            duration: 2.0, // Duration to show before closing automatically, default: 0.0
 //            completeText: "Done", // Optional button value, default: ""
-//            style: .Success, // Styles - see below.
+//            style: .success, // Styles - see below.
 //            colorStyle: 0xA429FF,
 //            colorTextButton: 0xFFFFFF
 //        )
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         // Example #5
 //        let alertView = SCLAlertView()
 //        
-//        alertView.addButton("First Button", target:self, selector:Selector("firstButton"))
+//        alertView.addButton("First Button", target:self, selector:#selector(ViewController.firstButton))
 //        
 //        alertView.addButton("Second Button") {
 //            print("Second button tapped")

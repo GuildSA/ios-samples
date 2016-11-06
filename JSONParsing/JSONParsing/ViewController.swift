@@ -3,7 +3,7 @@
 //  JSONParsing
 //
 //  Created by Kevin Harris on 4/27/16.
-//  Copyright © 2016 guildsa. All rights reserved.
+//  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
 import UIKit

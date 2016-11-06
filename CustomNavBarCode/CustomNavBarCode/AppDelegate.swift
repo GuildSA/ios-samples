@@ -3,7 +3,7 @@
 //  CustomNavBarCode
 //
 //  Created by Kevin Harris on 9/30/16.
-//  Copyright © 2016 guildsa. All rights reserved.
+//  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
 import UIKit

@@ -3,7 +3,7 @@
 //  OperationQueue
 //
 //  Created by Kevin Harris on 2/1/16.
-//  Copyright © 2016 guildsa. All rights reserved.
+//  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
 import UIKit

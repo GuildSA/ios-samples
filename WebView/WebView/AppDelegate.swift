@@ -3,7 +3,7 @@
 //  WebView
 //
 //  Created by Kevin Harris on 1/27/16.
-//  Copyright © 2016 guildsa. All rights reserved.
+//  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
 import UIKit

@@ -64,13 +64,12 @@ class ViewController: UIViewController {
         
         let jsonString = readFileFromResources("example1", fileType: ".json")
 
-        let json = JSON.parse(jsonString)
+        let json = JSON.init(parseJSON: jsonString)
         
-// NOTE: If we want more control over the string encoding we can convert the String to a
-//       NSData first and then pass the NSDatat object into the JSON initializer.
-//
-//        let jsonData: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-//        let json = JSON(data: jsonData)
+        // NOTE: If we want more control over the string encoding we can convert the String to a
+        // Data object first and then pass the Data object into the JSON initializer.
+        //let jsonData: Data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        //let json = JSON.init(data: jsonData)
         
         // Do this to get a single name by index.
         let playerName = json.arrayValue[3].stringValue
@@ -98,7 +97,7 @@ class ViewController: UIViewController {
         
         let jsonString = readFileFromResources("example2", fileType: ".json")
         
-        let json = JSON.parse(jsonString)
+        let json = JSON.init(parseJSON: jsonString)
         
         let name = json["name"].stringValue
         
@@ -153,7 +152,7 @@ class ViewController: UIViewController {
         
         let jsonString = readFileFromResources("example3", fileType: ".json")
         
-        let json = JSON.parse(jsonString)
+        let json = JSON.init(parseJSON: jsonString)
         
         for sword in json["weapons"]["swords"].arrayValue {
             

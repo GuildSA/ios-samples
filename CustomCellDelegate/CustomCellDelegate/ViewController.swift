@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     func isSimulator() -> Bool {
-#if (arch(i386) || arch(x86_64)) && os(iOS)
+#if targetEnvironment(simulator)
         return true
 #else
         return false
@@ -82,9 +82,9 @@ extension ViewController: UITableViewDataSource {
             shortUrl = fullUrl.replacingOccurrences(of: "https://", with: "")
         }
         
-        cell.websiteBtn.setTitle(shortUrl, for: UIControlState())
+        cell.websiteBtn.setTitle(shortUrl, for: UIControl.State())
         
-        cell.emailBtn.setTitle(businessDataArray[row].email, for: UIControlState())
+        cell.emailBtn.setTitle(businessDataArray[row].email, for: UIControl.State())
         cell.emailAddress = businessDataArray[row].email
         
         return cell
@@ -129,7 +129,7 @@ extension ViewController: MyTableViewCellDelegate {
             let configureAction = UIAlertAction(title: "Configure", style: .default) { action in
                 
                 // Send the user to the device's Settings app.
-                if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.openURL(appSettings)
                 }
             }

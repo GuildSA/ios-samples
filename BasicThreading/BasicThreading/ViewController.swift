@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         //NSThread.detachNewThreadSelector("threadMain1:", toTarget:self, withObject:self)
     }
     
-    func threadMain1(_ sender: ViewController) {
+    @objc func threadMain1(_ sender: ViewController) {
         
         //sender.unsafeValueIncrement()
         sender.safeValueIncrement()
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
         myThread2.start()
     }
     
-    func threadMain2(_ sender: ViewController) {
+    @objc func threadMain2(_ sender: ViewController) {
         
         //sender.unsafeValueIncrement()
         sender.safeValueIncrement()

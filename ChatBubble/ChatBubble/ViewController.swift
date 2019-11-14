@@ -29,7 +29,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textField.addTarget(self, action: #selector(ViewController.textFieldChanged(textField:)), for: UIControlEvents.editingChanged)
+        textField.addTarget(self, action: #selector(ViewController.textFieldChanged(textField:)), for: UIControl.Event.editingChanged)
         
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldChanged(textField: UITextField) {
+    @objc func textFieldChanged(textField: UITextField) {
         
         if textField.text == "" {
             sendButton.isEnabled = false
@@ -85,14 +85,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     func addKeyboardNotifications() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name:UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         
-        var info = (notification as NSNotification).userInfo!
-        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let info = (notification as NSNotification).userInfo!
+        let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
         UIView.animate(withDuration: 1.0, animations: { () -> Void in
             self.buttomLayoutConstraint.constant = keyboardFrame.size.height
@@ -102,7 +102,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }) 
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         
         UIView.animate(withDuration: 1.0, animations: { () -> Void in
             self.buttomLayoutConstraint.constant = 0.0
@@ -190,9 +190,12 @@ extension ViewController: UIImagePickerControllerDelegate {
         })
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let chosenImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
         let bubbleData = ChatBubbleData(text: textField.text, image: chosenImage, date: Date(), type: getRandomChatDataType())
         
         addChatBubble(bubbleData)
@@ -203,3 +206,13 @@ extension ViewController: UIImagePickerControllerDelegate {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

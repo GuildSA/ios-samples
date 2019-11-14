@@ -100,13 +100,13 @@ class ChatBubble: UIView {
         imageViewBG = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height))
         
         if data.type == .mine {
-            imageViewBG?.image = UIImage(named: bubbleImageFileName)?.resizableImage(withCapInsets: UIEdgeInsetsMake(14, 14, 17, 28))
+            imageViewBG?.image = UIImage(named: bubbleImageFileName)?.resizableImage(withCapInsets: UIEdgeInsets.init(top: 14, left: 14, bottom: 17, right: 28))
         } else {
-            imageViewBG?.image = UIImage(named: bubbleImageFileName)?.resizableImage(withCapInsets: UIEdgeInsetsMake(14, 22, 17, 20))
+            imageViewBG?.image = UIImage(named: bubbleImageFileName)?.resizableImage(withCapInsets: UIEdgeInsets.init(top: 14, left: 22, bottom: 17, right: 20))
         }
         
         self.addSubview(imageViewBG!)
-        self.sendSubview(toBack: imageViewBG!)
+        self.sendSubviewToBack(imageViewBG!)
         
         // Frame recalculation for filling up the bubble with background bubble image.
         let repsotionXFactor:CGFloat = data.type == .mine ? 0.0 : -8.0

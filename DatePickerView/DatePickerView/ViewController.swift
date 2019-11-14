@@ -47,11 +47,11 @@ class ViewController: UIViewController {
         let hour = components?.hour
         let minute = components?.minute
         
-        print("Month = \(month)")
-        print("Day = \(day)")
-        print("Year = \(year)")
-        print("Hour = \(hour)")
-        print("Minute = \(minute)")
+        print("Month = \(month as Int?)")
+        print("Day = \(day as Int?)")
+        print("Year = \(year as Int?)")
+        print("Hour = \(hour as Int?)")
+        print("Minute = \(minute as Int?)")
     }
 }
 

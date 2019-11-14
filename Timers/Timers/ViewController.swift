@@ -33,10 +33,10 @@ class ViewController: UIViewController {
         
         repeatingTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(count), userInfo: nil, repeats: true)
         
-        RunLoop.current.add(repeatingTimer, forMode: RunLoopMode.commonModes)
+        RunLoop.current.add(repeatingTimer, forMode: RunLoop.Mode.common)
     }
     
-    func count() {
+    @objc func count() {
         
         var currentCount:Int = Int(timeLabel.text!)!
         
@@ -59,10 +59,10 @@ class ViewController: UIViewController {
         
         delayedEventTimer = Timer(timeInterval: 3.0, target: self, selector: #selector(ViewController.delayedEvent), userInfo: nil, repeats: false)
         
-        RunLoop.current.add(delayedEventTimer, forMode: RunLoopMode.commonModes)
+        RunLoop.current.add(delayedEventTimer, forMode: RunLoop.Mode.common)
     }
     
-    func delayedEvent() {
+    @objc func delayedEvent() {
         
         let alertController = UIAlertController(title: "Delayed Event", message: "Hey, I waited 3 seconds!", preferredStyle: .alert)
         
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewController.resetButton(_:)), userInfo: ["theButtonTouched" :sender], repeats: false)
     }
     
-    func resetButton(_ timer: Timer) {
+    @objc func resetButton(_ timer: Timer) {
 
         let userInfo = timer.userInfo as! Dictionary<String, AnyObject>
         

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
         let location = CLLocationCoordinate2D(latitude: 33.171000,longitude: -96.831992)
         
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
 
         let region = MKCoordinateRegion(center: location, span: span)
 
@@ -63,9 +63,9 @@ class ViewController: UIViewController {
         mapView.showsTraffic = !mapView.showsTraffic
         
         if(mapView.showsTraffic == true) {
-            sender.setTitle("Hide Traffic", for: UIControlState())
+            sender.setTitle("Hide Traffic", for: UIControl.State())
         } else {
-            sender.setTitle("Show Traffic", for: UIControlState())
+            sender.setTitle("Show Traffic", for: UIControl.State())
         }
     }
     
@@ -74,9 +74,9 @@ class ViewController: UIViewController {
         mapView.showsCompass = !mapView.showsCompass
         
         if mapView.showsCompass {
-            sender.setTitle("Hide Compass", for: UIControlState())
+            sender.setTitle("Hide Compass", for: UIControl.State())
         } else {
-            sender.setTitle("Show Compass", for: UIControlState())
+            sender.setTitle("Show Compass", for: UIControl.State())
         }
     }
 

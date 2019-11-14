@@ -32,9 +32,9 @@ class SettingsViewController: UIViewController {
         
         // Now, force our image to keep its original colors by setting its rendering mode 
         // to AlwaysOriginal. This will keep iOS from converting it to white.
-        saveBtnImage = saveBtnImage!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        saveBtnImage = saveBtnImage!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        let rightbarBtnItem = UIBarButtonItem(image: saveBtnImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(rightBarBtnItemPressed(_:)))
+        let rightbarBtnItem = UIBarButtonItem(image: saveBtnImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(rightBarBtnItemPressed(_:)))
         
         // Finally, make Bar Buttom item on the Right-side use our Save Button Image
         // without defaulting it to white.
@@ -50,9 +50,9 @@ class SettingsViewController: UIViewController {
         
         // Now, force our image to keep its original colors by setting its rendering mode
         // to AlwaysOriginal. This will keep iOS from converting it to white.
-        backBtnImage = backBtnImage!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        backBtnImage = backBtnImage!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         
-        let leftbarBtnItem = UIBarButtonItem(image: backBtnImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(leftBarBtnItemPressed(_:)))
+        let leftbarBtnItem = UIBarButtonItem(image: backBtnImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(leftBarBtnItemPressed(_:)))
         
         // Finally, make Bar Buttom item on the Left-side use our Back Button Image
         // without defaulting it to white.
@@ -93,12 +93,12 @@ class SettingsViewController: UIViewController {
     }
     
     
-    func rightBarBtnItemPressed(_ sender: UIBarButtonItem) {
+    @objc func rightBarBtnItemPressed(_ sender: UIBarButtonItem) {
         
         print("Save something!")
     }
 
-    func leftBarBtnItemPressed(_ sender: UIBarButtonItem) {
+    @objc func leftBarBtnItemPressed(_ sender: UIBarButtonItem) {
         
         // This will not work here!
         //dismissViewControllerAnimated(true, completion: nil)

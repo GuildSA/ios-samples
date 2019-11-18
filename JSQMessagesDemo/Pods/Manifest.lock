@@ -6,10 +6,15 @@ PODS:
 DEPENDENCIES:
   - JSQMessagesViewController
 
+SPEC REPOS:
+  trunk:
+    - JSQMessagesViewController
+    - JSQSystemSoundPlayer
+
 SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
 
 PODFILE CHECKSUM: bcc7fd49e0663c8907422e389ff515d8dbe8fc88
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.8.4

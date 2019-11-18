@@ -83,7 +83,7 @@ class ViewController: UIViewController {
                 }
                 
             } else {
-                print("NSURLSession Error: \(error)")
+                print("NSURLSession Error: \(error as! String)")
             }
         }) 
         
@@ -137,7 +137,7 @@ extension ViewController: UITableViewDataSource {
                 }
                 
             } else {
-                print("NSURLSession Error: \(error)")
+                print("NSURLSession Error: \(error as! String)")
             }
         })
         

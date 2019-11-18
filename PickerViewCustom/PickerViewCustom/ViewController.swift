@@ -70,7 +70,7 @@ extension ViewController: UIPickerViewDelegate {
         
         let titleData = pickerData[row]
 
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.black])
+        let myTitle = NSAttributedString(string: titleData, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font):UIFont(name: "Georgia", size: 26.0)!,convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor):UIColor.black]))
 
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = .center
@@ -80,3 +80,14 @@ extension ViewController: UIPickerViewDelegate {
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}

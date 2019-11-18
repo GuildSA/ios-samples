@@ -18,17 +18,17 @@ class BaseViewController: UIViewController {
     
     private func addSlideMenuButtonToNav() {
         
-        let slideMenuBtn = UIButton(type: UIButtonType.system)
-        slideMenuBtn.setImage(UIImage(named: "menu"), for: UIControlState())
+        let slideMenuBtn = UIButton(type: UIButton.ButtonType.system)
+        slideMenuBtn.setImage(UIImage(named: "menu"), for: UIControl.State())
         slideMenuBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        slideMenuBtn.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        slideMenuBtn.addTarget(self, action: #selector(BaseViewController.onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         
         let barButtonItem = UIBarButtonItem(customView: slideMenuBtn)
         
         self.navigationItem.leftBarButtonItem = barButtonItem;
     }
 
-    func onSlideMenuButtonPressed(_ sender: UIButton) {
+    @objc func onSlideMenuButtonPressed(_ sender: UIButton) {
         
         let mainScreen = UIScreen.main
         
@@ -67,7 +67,7 @@ class BaseViewController: UIViewController {
         menuVC.slideMenuBtn = sender
         menuVC.delegate = self
         self.view.addSubview(menuVC.view)
-        self.addChildViewController(menuVC)
+        self.addChild(menuVC)
         menuVC.view.layoutIfNeeded()
         
         menuVC.view.frame = CGRect(x: -mainScreen.bounds.size.width, y: 0, width: mainScreen.bounds.size.width, height: mainScreen.bounds.size.height);

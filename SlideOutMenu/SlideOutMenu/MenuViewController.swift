@@ -79,7 +79,7 @@ class MenuViewController: UIViewController {
             }, completion: { (finished) -> Void in
                 
                 self.view.removeFromSuperview()
-                self.removeFromParentViewController()
+                self.removeFromParent()
         })
     }
 }
@@ -95,7 +95,7 @@ extension MenuViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuTableViewCell") as! MenuTableViewCell
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.layoutMargins = UIEdgeInsets.zero
         cell.preservesSuperviewLayoutMargins = false
         cell.backgroundColor = UIColor.clear

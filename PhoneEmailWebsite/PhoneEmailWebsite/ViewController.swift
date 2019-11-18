@@ -68,7 +68,7 @@ class ViewController: UIViewController {
             let configureAction = UIAlertAction(title: "Configure", style: .default) { action in
                 
                 // Send the user to the device's Settings app.
-                if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.openURL(appSettings)
                 }
             }

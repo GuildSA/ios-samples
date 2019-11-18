@@ -1,12 +1,22 @@
 PODS:
-  - SCLAlertView (0.7.0)
+  - SCLAlertView (0.8.1)
 
 DEPENDENCIES:
-  - SCLAlertView
+  - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift.git`, branch `0.8.1`)
+
+EXTERNAL SOURCES:
+  SCLAlertView:
+    :branch: 0.8.1
+    :git: https://github.com/vikmeup/SCLAlertView-Swift.git
+
+CHECKOUT OPTIONS:
+  SCLAlertView:
+    :commit: 17f7c90dfc9c7f15564e84621d48441d403323ee
+    :git: https://github.com/vikmeup/SCLAlertView-Swift.git
 
 SPEC CHECKSUMS:
-  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
+  SCLAlertView: 9603594eeae6f8f38f67f486c841d0d397ef641f
 
-PODFILE CHECKSUM: c5961f812ffea20cac16863ac3803c467c718123
+PODFILE CHECKSUM: 840b4c2342dfa4c185f5109b83eb992d1702a977
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.8.4

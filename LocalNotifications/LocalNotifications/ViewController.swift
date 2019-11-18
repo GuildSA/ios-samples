@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func reactToNotification(notification: NSNotification) {
+    @objc func reactToNotification(notification: NSNotification) {
         
         print("The method reactToNotification was called!")
         

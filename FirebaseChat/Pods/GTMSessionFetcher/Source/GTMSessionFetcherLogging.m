@@ -87,7 +87,7 @@ static NSString *gLoggingProcessName = nil;
     // directory that a developer can find easily, the application home
     paths = @[ NSHomeDirectory() ];
 #elif TARGET_OS_IPHONE
-    // Neither ~/Desktop nor ~/Home is writable on an actual iPhone device.
+    // Neither ~/Desktop nor ~/Home is writable on an actual iOS, watchOS, or tvOS device.
     // Put it in ~/Documents.
     paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 #else
@@ -109,7 +109,13 @@ static NSString *gLoggingProcessName = nil;
                              withIntermediateDirectories:YES
                                               attributes:nil
                                                    error:NULL];
+        if (doesFolderExist) {
+          // The directory has been created. Exclude it from backups.
+          NSURL *pathURL = [NSURL fileURLWithPath:logsFolderPath isDirectory:YES];
+          [pathURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:NULL];
+        }
       }
+
       if (doesFolderExist) {
         // it's there; store it in the global
         gLoggingDirectoryPath = [logsFolderPath copy];

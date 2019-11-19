@@ -31,14 +31,14 @@ class ViewController: JSQMessagesViewController {
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     
-    var databaseRef: FIRDatabaseReference!
-    var storageRef: FIRStorageReference!
+    var databaseRef: DatabaseReference!
+    var storageRef: StorageReference!
     
-    var chatMessagesDict = [String:FIRDataSnapshot]()
-    var chatSessionHandle: FIRDatabaseHandle!
+    var chatMessagesDict = [String:DataSnapshot]()
+    var chatSessionHandle: DatabaseHandle!
 
-    var userIsTypingRef: FIRDatabaseReference!
-    var usersTypingQuery: FIRDatabaseQuery!
+    var userIsTypingRef: DatabaseReference!
+    var usersTypingQuery: DatabaseQuery!
     fileprivate var localTyping = false
     
     var isTyping: Bool {
@@ -59,7 +59,7 @@ class ViewController: JSQMessagesViewController {
         
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
         
-        usersTypingQuery.observe(.value) { (data: FIRDataSnapshot!) in
+        usersTypingQuery.observe(.value) { (data: DataSnapshot!) in
             
             if data.childrenCount == 1 && self.isTyping {
                 // Don't show the indicator if the only one typing is us!
@@ -73,7 +73,7 @@ class ViewController: JSQMessagesViewController {
     }
     
     func isSimulator() -> Bool {
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
+        #if targetEnvironment(simulator)
             return true
         #else
             return false
@@ -163,7 +163,7 @@ class ViewController: JSQMessagesViewController {
     
     func configureDatabase() {
         
-        self.databaseRef = FIRDatabase.database().reference()
+        self.databaseRef = Database.database().reference()
         
         // Get all the current chat messages.
         
@@ -174,7 +174,7 @@ class ViewController: JSQMessagesViewController {
             // Add every chat message to the dictionary that doesn't already exist.
             for child in snapshot.children {
                 
-                let chat = child as! FIRDataSnapshot
+                let chat = child as! DataSnapshot
                 
                 if strongSelf.chatMessagesDict[chat.key] == nil {
                     strongSelf.chatMessagesDict[chat.key] = chat
@@ -217,7 +217,7 @@ class ViewController: JSQMessagesViewController {
         }
     }
     
-    func addMessage(fromSnapshot: FIRDataSnapshot) {
+    func addMessage(fromSnapshot: DataSnapshot) {
         
         let chatMessage = fromSnapshot.value as! [String: Any]
         
@@ -239,7 +239,7 @@ class ViewController: JSQMessagesViewController {
                 
                 self.messages.append(message!)
                 
-                FIRStorage.storage().reference(forURL: imageUrl).data(withMaxSize: INT64_MAX){ (data, error) in
+                Storage.storage().reference(forURL: imageUrl).getData(maxSize: INT64_MAX){ (data, error) in
                     
                     if let error = error {
                         print("Error downloading imageUrl: \(error)")
@@ -296,8 +296,8 @@ class ViewController: JSQMessagesViewController {
         // you'll need to download the "GoogleService-Info.plist" file that belongs to
         // your Firebase app from the Firebase dashboard and add it to the Xcode project.
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        let storageUrl = FIRApp.defaultApp()?.options.storageBucket
-        storageRef = FIRStorage.storage().reference(forURL: "gs://" + storageUrl!)
+        let storageUrl = FirebaseApp.app()?.options.storageBucket
+        storageRef = Storage.storage().reference(forURL: "gs://" + storageUrl!)
     }
     
     func sendChatMessageToFirebase(withData data: [String: Any]) {
@@ -463,21 +463,24 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         })
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        guard let image = info[UIImagePickerControllerOriginalImage] as! UIImage? else { return }
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage? else { return }
         
         // If the user picked an image, convert it into a .jpg of lower quality for storage.
-        let imageData = UIImageJPEGRepresentation(image, 0.8)
+        let imageData = image.jpegData(compressionQuality: 0.8)
         
         // Create a unique name for it so we don't override any other pics.
         let imagePath = "\(self.senderId!)/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
         
-        let metadata = FIRStorageMetadata()
+        let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
         // Store the image data in Firebase Storage.
-        self.storageRef.child(imagePath).put(imageData!, metadata: metadata) { [weak self] (metadata, error) in
+        self.storageRef.child(imagePath).putData(imageData!, metadata: metadata) { [weak self] (metadata, error) in
                 
                 if let error = error {
                     print("Error uploading image: \(error)")
@@ -508,3 +511,13 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

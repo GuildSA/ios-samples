@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         if APP_ID != "<replace-with-your-app-id>" && SECRET_KEY != "<replace-with-your-secret-key>" {
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if isValidUser != nil && isValidUser != 0 {
                 
                 // The user has a valid user token so we know for sure the user is already logged!
-                print("User is already logged: \(isValidUser?.boolValue)");
+                print("User is already logged: \(String(describing: isValidUser?.boolValue))");
                 
             } else {
                 
@@ -54,29 +54,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // and if that suceeds, go ahead and log them in.
                 
                 let user: BackendlessUser = BackendlessUser()
-                user.email = EMAIL as NSString!
-                user.password = PASSWORD as NSString!
+                user.email = EMAIL as NSString
+                user.password = PASSWORD as NSString
                 
                 backendless?.userService.registering( user,
                                                      
                 response: { (user: BackendlessUser?) -> Void in
                     
-                        print("User was registered: \(user?.objectId)")
+                    print("User was registered: \(String(describing: user?.objectId))")
                     
                         self.backendless?.userService.login( self.EMAIL, password: self.PASSWORD,
         
                             response: { (user: BackendlessUser?) -> Void in
-                                print("User logged in: \(user!.objectId)")
+                                print("User logged in: \(String(describing: user!.objectId))")
                             },
             
                            error: { (fault: Fault?) -> Void in
-                                print("User failed to login: \(fault)")
+                            print("User failed to login: \(String(describing: fault))")
                             }
                         )
                     },
                                                          
                     error: { (fault: Fault?) -> Void in
-                        print("User failed to register: \(fault)")
+                        print("User failed to register: \(String(describing: fault))")
                     }
                 )
             }

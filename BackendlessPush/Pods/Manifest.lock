@@ -1,12 +1,24 @@
 PODS:
-  - Backendless (3.0.43)
+  - Backendless (5.5.0):
+    - Socket.IO-Client-Swift
+  - Socket.IO-Client-Swift (15.2.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.1)
 
 DEPENDENCIES:
-  - Backendless
+  - Backendless (= 5.5.0)
+
+SPEC REPOS:
+  trunk:
+    - Backendless
+    - Socket.IO-Client-Swift
+    - Starscream
 
 SPEC CHECKSUMS:
-  Backendless: 47e50f3a7f141f386625dae527e866b88ee8d9b4
+  Backendless: 98c135ce4cab83b25e654416f0e209af8af86d33
+  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 679f10eaccf10ec26e1f36495a49c44892e27279
+PODFILE CHECKSUM: cd4c7069f83999d05bc093cd399c2916bd7c8c98
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.8.4

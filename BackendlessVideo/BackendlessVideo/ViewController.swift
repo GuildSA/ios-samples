@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        streamNameTextField.addTarget(self, action: #selector(textFieldChanged(textField:)), for: UIControlEvents.editingChanged)
+        streamNameTextField.addTarget(self, action: #selector(textFieldChanged(textField:)), for: UIControl.Event.editingChanged)
         
         publishBtn.isEnabled = false
         playbackBtn.isEnabled = false
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func textFieldChanged(textField: UITextField) {
+    @objc func textFieldChanged(textField: UITextField) {
         
         if streamNameTextField.text == "" {
             
@@ -448,7 +448,7 @@ extension ViewController: IMediaStreamerDelegate {
     
     func streamConnectFailed(_ sender: Any!, code: Int32, description: String!) {
         
-        print("<IMediaStreamerDelegate> streamConnectFailed: \(code) = \(description)");
+        print("<IMediaStreamerDelegate> streamConnectFailed: \(code) = \(String(describing: description))");
         
         self.showAlert(title: "Backendless Error", message: "Failed to connect to the stream named: '\(self.streamNameTextField.text!)'.")
         

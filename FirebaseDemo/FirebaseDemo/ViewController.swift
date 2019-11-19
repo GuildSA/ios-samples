@@ -20,13 +20,13 @@ class ViewController: UIViewController {
     let EMAIL = "ios_user@gmail.com"
     let PASSWORD = "password"
     
-    var databaseRef: FIRDatabaseReference!
-    var commentsHandle: FIRDatabaseHandle!
+    var databaseRef: DatabaseReference!
+    var commentsHandle: DatabaseHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.databaseRef = FIRDatabase.database().reference()
+        self.databaseRef = Database.database().reference()
         
         self.commentsHandle = self.databaseRef.child("comments").observe(.childAdded, with: { (snapshot) -> Void in
             
@@ -54,13 +54,13 @@ class ViewController: UIViewController {
         // In a real app, this is where we would send the user to a register screen to collect their
         // user name and password for registering a new user. For testing purposes, we will simply
         // register a test user using a hard coded user name and password.
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
             
             print("User is already logged: \(user.debugDescription)");
             
         } else {
             
-            FIRAuth.auth()?.createUser(withEmail: EMAIL, password: PASSWORD) { (user, error) in
+            Auth.auth().createUser(withEmail: EMAIL, password: PASSWORD) { (user, error) in
                 
                 if let error = error {
                     
@@ -77,13 +77,13 @@ class ViewController: UIViewController {
         
         print( "signInUserBtn called!" )
         
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
 
             print("User is already logged: \(user.debugDescription)");
             
         } else {
             
-            FIRAuth.auth()?.signIn(withEmail: EMAIL, password: PASSWORD) { (user, error) in
+            Auth.auth().signIn(withEmail: EMAIL, password: PASSWORD) { (user, error) in
                 
                 if let error = error {
                     
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         
         print( "createUserDataBtn called!" )
         
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
             
             let data: [String:Any] = [
                 "name": "John Doe",
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
         
         print( "updateUserDataBtn called!" )
         
-        if let user = FIRAuth.auth()?.currentUser {
+        if let user = Auth.auth().currentUser {
             
             self.databaseRef.child("users/\(user.uid)/name").setValue("Agent Smith")
         }
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
             
             for child in snapshot.children {
                 
-                let singleSnapshot = child as! FIRDataSnapshot
+                let singleSnapshot = child as! DataSnapshot
                 
                 let comment = singleSnapshot.value as! [String: Any]
                 
@@ -197,7 +197,7 @@ class ViewController: UIViewController {
 
             for child in snapshot.children {
                 
-                let singleSnapshot = child as! FIRDataSnapshot
+                let singleSnapshot = child as! DataSnapshot
                 
                 let comment = singleSnapshot.value as! [String: Any]
                 
@@ -236,7 +236,7 @@ class ViewController: UIViewController {
             
             for child in snapshot.children {
                 
-                let singleSnapshot = child as! FIRDataSnapshot
+                let singleSnapshot = child as! DataSnapshot
                 
                 self.databaseRef.child("comments/\(singleSnapshot.key)/message").setValue("I have been updated!!!!")
             }
@@ -264,7 +264,7 @@ class ViewController: UIViewController {
             // Now, remove all the comments we found - one by one!
             for child in snapshot.children {
                 
-                let singleSnapshot = child as! FIRDataSnapshot
+                let singleSnapshot = child as! DataSnapshot
                 
                 self.databaseRef.child("comments").child(singleSnapshot.key).removeValue()
             }
@@ -279,11 +279,11 @@ class ViewController: UIViewController {
         
         print( "logoutBtn called!" )
         
-        let firebaseAuth = FIRAuth.auth()
+        let firebaseAuth = Auth.auth()
         
         do {
             
-            try firebaseAuth?.signOut()
+            try firebaseAuth.signOut()
             
             print("User logged out!")
             

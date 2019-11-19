@@ -144,7 +144,7 @@ extension ViewController: UITableViewDataSource {
                 cell.activityIndicator.stopAnimating()
                 
             } else {
-                print("Failed to load image from URL \(response.request) with error \(response.error)")
+                print("Failed to load image from URL \(String(describing: response.request)) with error \(String(describing: response.error))")
             }
         }
         

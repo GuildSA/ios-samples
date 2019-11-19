@@ -118,8 +118,8 @@ class BackendlessManager {
     func registerUser(email: String, password: String, completion: @escaping () -> (), error: @escaping (String) -> ()) {
     
         let user: BackendlessUser = BackendlessUser()
-        user.email = email as NSString!
-        user.password = password as NSString!
+        user.email = email as NSString?
+        user.password = password as NSString?
         
         backendless.userService.registering( user,
                                               

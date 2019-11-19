@@ -67,7 +67,7 @@ class ViewController: UIViewController {
             
             if let jsonString = response.result.value {
                 
-                let json = JSON.parse(jsonString)
+                let json = JSON.init(parseJSON: jsonString)
                 
                 for arrayEntry in json.arrayValue {
 
@@ -120,7 +120,7 @@ extension ViewController: UITableViewDataSource {
                 cell.activityIndicator.stopAnimating()
                 
             } else {
-                print("Failed to load image from URL \(response.request) with error \(response.error)")
+                print("Failed to load image from URL \(String(describing: response.request)) with error \(String(describing: response.error))")
             }
         }
         

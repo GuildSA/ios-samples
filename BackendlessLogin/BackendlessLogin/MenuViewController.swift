@@ -61,7 +61,7 @@ class MenuViewController: UIViewController {
             },
             
             error: { (fault: Fault?) -> Void in
-                print("Comment failed to save: \(fault)")
+                print("Comment failed to save: \(String(describing: fault))")
             }
         )
     }
@@ -74,21 +74,21 @@ class MenuViewController: UIViewController {
         
         dataStore?.find(
             
-            { (comments: BackendlessCollection?) -> Void in
+            { (data: [Any]?) -> Void in
 
-                print("Find attempt on all Comments has completed without error!")
-                print("Number of Comments found = \((comments?.data.count)!)")
+                let comments = data as! [Comment]
                 
-                for comment in (comments?.data)! {
-                    
-                    let comment = comment as! Comment
+                print("Find attempt on all Comments has completed without error!")
+                print("Number of Comments found = \(comments.count)")
+                
+                for comment in comments {
                     
                     print("Comment: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                 }
             },
             
             error: { (fault: Fault?) -> Void in
-                print("Comments were not fetched: \(fault)")
+                print("Comments were not fetched: \(String(describing: fault))")
             }
         )
     }
@@ -99,36 +99,37 @@ class MenuViewController: UIViewController {
         
         let dataStore = self.backendless.data.of(Comment.ofClass())
         
-        let dataQuery = BackendlessDataQuery()
-        dataQuery.whereClause = "topicId = 1"
+        let queryBuilder = DataQueryBuilder()
+        queryBuilder?.setWhereClause("topicId = 1")
         
         // Note: If you actually know the objectId of the object you want, you can set it like so.
-        //dataQuery.whereClause = "objectId = 'D5134896-8270-EFD8-FFCB-EE27F38DA200'"
+        //queryBuilder?.setWhereClause("objectId = 'D5134896-8270-EFD8-FFCB-EE27F38DA200'")
         
         // Find all the Comments where the topicId is equal to a certain number!
-        dataStore?.find( dataQuery,
+        // Once we find them - update or change the message on each comment found.
+        dataStore?.find( queryBuilder,
                         
-            response: { (comments: BackendlessCollection?) -> Void in
+            response:{ (data: [Any]?) -> Void in
+               
+               let comments = data as! [Comment]
                 
                 print("Find attempt on Comments with a certain topicId has completed without error!")
-                print("Number of Comments found = \((comments?.data.count)!)")
+                print("Number of Comments found = \(comments.count)")
                 
-                if (comments?.data.count)! > 0 {
+                if comments.count > 0 {
                     
-                    for comment in (comments?.data)! {
-                        
-                        let comment = comment as! Comment
+                    for comment in comments {
                         
                         print("Comment: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                     }
                     
                 } else {
-                    print("No Comments were fetched using the whereClause '\(dataQuery.whereClause)'")
+                    print("No Comments were fetched using the whereClause '\(String(describing: queryBuilder?.getWhereClause()))'")
                 }
             },
                         
             error: { ( fault: Fault?) -> Void in
-                print("Comments were not fetched: \(fault)")
+                print("Comments were not fetched: \(String(describing: fault))")
             }
         )
     }
@@ -139,26 +140,26 @@ class MenuViewController: UIViewController {
 
         let dataStore = self.backendless.data.of(Comment.ofClass())
         
-        let dataQuery = BackendlessDataQuery()
-        dataQuery.whereClause = "topicId = 2"
+        let queryBuilder = DataQueryBuilder()
+        queryBuilder?.setWhereClause("topicId = 2")
         
         // Note: If you actually know the objectId of the object you want, you can set it like so.
-        //dataQuery.whereClause = "objectId = 'D5134896-8270-EFD8-FFCB-EE27F38DA200'"
+        //queryBuilder?.setWhereClause("objectId = 'D5134896-8270-EFD8-FFCB-EE27F38DA200'")
         
         // Find all the Comments where the topicId is equal to a certain number!
         // Once we find them - update or change the message on each comment found.
-        dataStore?.find( dataQuery,
+        dataStore?.find( queryBuilder,
                          
-             response: { (comments: BackendlessCollection?) -> Void in
+             response:{ (data: [Any]?) -> Void in
+                
+                let comments = data as! [Comment]
                 
                 print("Find attempt on Comments with a certain topicId has completed without error!")
-                print("Number of Comments found = \((comments?.data.count)!)")
+                print("Number of Comments found = \(comments.count)")
                 
-                if (comments?.data.count)! > 0 {
+                if comments.count > 0 {
                     
-                    for comment in (comments?.data)! {
-                        
-                        let comment = comment as! Comment
+                    for comment in comments {
                         
                         print("Comment: \(comment.objectId!), topicId: \(comment.topicId), message: \"\(comment.message!)\"")
                         
@@ -175,18 +176,18 @@ class MenuViewController: UIViewController {
                             },
                             
                             error: { (fault: Fault?) -> Void in
-                                print("Comment failed to save: \(fault)")
+                                print("Comment failed to save: \(String(describing: fault))")
                             }
                         )
                     }
                     
                 } else {
-                    print("No Comments were fetched using the whereClause '\(dataQuery.whereClause)'")
+                    print("No Comments were fetched using the whereClause '\(String(describing: queryBuilder?.getWhereClause()))'")
                 }
             },
          
             error: { ( fault: Fault?) -> Void in
-                print("Comments were not fetched: \(fault)")
+                print("Comments were not fetched: \(String(describing: fault))")
             }
         )
     }
@@ -200,31 +201,33 @@ class MenuViewController: UIViewController {
         // Find all the Comments!
         dataStore?.find(
             
-            { (comments: BackendlessCollection?) -> Void in
+            { (data: [Any]?) -> Void in
+
+                let comments = data as! [Comment]
                 
                 print("Find attempt on all Comments has completed without error!")
-                print("Number of Comments found = \((comments?.data.count)!)")
+                print("Number of Comments found = \(comments.count)")
                 
                 // Now, remove all the Comments we found - one by one!
-                for comment in (comments?.data)! {
-                    
-                    let comment = comment as! Comment
+                for comment in comments {
                     
                     print("Remove Comment: \(comment.objectId!)")
                     
-                    var error: Fault?
-                    let result = dataStore?.remove(comment, fault: &error)
-                    
-                    if error == nil {
-                        print("One Comment has been removed: \(result)")
-                    } else {
-                        print("Server reported an error on attempted removal: \(error)")
-                    }
+                    self.backendless.data.remove(comment,
+                                                 
+                        response: { (entity: Any?) -> Void in
+                            print("One Comment has been removed: \(String(describing: entity))")
+                        },
+                        
+                        error: { (fault: Fault?) -> Void in
+                            print("Server reported an error on attempted removal: \(String(describing: fault))")
+                        }
+                    )
                 }
             },
             
             error: { ( fault: Fault?) -> Void in
-                print("Comments were not fetched: \(fault)")
+                print("Comments were not fetched: \(String(describing: fault))")
             }
         )
     }

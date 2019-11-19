@@ -6,6 +6,7 @@
 //  Copyright © 2016 Guild/SA. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 class Utility {

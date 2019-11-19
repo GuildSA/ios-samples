@@ -22,13 +22,11 @@ class BackendlessManager {
     
     let backendless = Backendless.sharedInstance()!
     
-    let VERSION_NUM = "v1"
-    
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Replace these with YOUR App's ID and Secret Key from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let APP_ID = "<replace-with-your-app-id>"
-    let SECRET_KEY = "<replace-with-your-secret-key>"
+    let API_KEY = "<replace-with-your-api-key>"
     
     private var _isUserLoggedIn: Bool? = nil
     
@@ -50,7 +48,7 @@ class BackendlessManager {
         
         let isValidUser = backendless.userService.isValidUserToken()
         
-        if isValidUser != nil && isValidUser != 0 {
+        if isValidUser {
             _isUserLoggedIn = true
         } else {
             _isUserLoggedIn = false
@@ -111,7 +109,7 @@ class BackendlessManager {
     func initApp() {
     
         // First, init Backendless!
-        backendless.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+        backendless.initApp(APP_ID, apiKey:API_KEY)
         backendless.userService.setStayLoggedIn(true)
     }
     
@@ -121,16 +119,16 @@ class BackendlessManager {
         user.email = email as NSString?
         user.password = password as NSString?
         
-        backendless.userService.registering( user,
+        backendless.userService.register( user,
                                               
             response: { (user: BackendlessUser?) -> Void in
             
-                print("User was registered: \(user?.objectId)")
+                print("User was registered: \(String(describing: user?.objectId))")
                 completion()
             },
           
             error: { (fault: Fault?) -> Void in
-                print("User failed to register: \(fault)")
+                print("User failed to register: \(String(describing: fault))")
                 error((fault?.message)!)
             }
         )
@@ -141,64 +139,64 @@ class BackendlessManager {
         backendless.userService.login( email, password: password,
                                         
             response: { (user: BackendlessUser?) -> Void in
-                print("User logged in: \(user!.objectId)")
+                print("User logged in: \(String(describing: user!.objectId))")
                 self.cacheLoginStatus()
                 completion()
             },
             
             error: { (fault: Fault?) -> Void in
-                print("User failed to login: \(fault)")
+                print("User failed to login: \(String(describing: fault))")
                 error((fault?.message)!)
             })
     }
     
     func loginViaFacebook(completion: @escaping () -> (), error: @escaping (String) -> ()) {
         
-        backendless.userService.easyLogin(
-            
-            withFacebookFieldsMapping: ["email":"email"], permissions: ["email"],
-            
-            response: {(result : NSNumber?) -> () in
-                print ("Result: \(result)")
-                self.cacheLoginStatus()
-                completion()
-            },
-            
-            error: { (fault : Fault?) -> () in
-                print("Server reported an error: \(fault)")
-                error((fault?.message)!)
-        })
+//        backendless.userService.easyLogin(
+//
+//            withFacebookFieldsMapping: ["email":"email"], permissions: ["email"],
+//
+//            response: {(result : NSNumber?) -> () in
+//                print ("Result: \(result)")
+//                self.cacheLoginStatus()
+//                completion()
+//            },
+//
+//            error: { (fault : Fault?) -> () in
+//                print("Server reported an error: \(fault)")
+//                error((fault?.message)!)
+//        })
     }
     
     func loginViaTwitter(completion: @escaping () -> (), error: @escaping (String) -> ()) {
         
-        backendless.userService.easyLogin(withTwitterFieldsMapping: ["email":"email"],
-            
-            response: {(result : NSNumber?) -> () in
-                print ("Result: \(result)")
-                self.cacheLoginStatus()
-                completion()
-            },
-            
-            error: { (fault : Fault?) -> () in
-                print("Server reported an error: \(fault)")
-                error((fault?.message)!)
-        })
+//        backendless.userService.easyLogin(withTwitterFieldsMapping: ["email":"email"],
+//
+//            response: {(result : NSNumber?) -> () in
+//                print ("Result: \(result)")
+//                self.cacheLoginStatus()
+//                completion()
+//            },
+//
+//            error: { (fault : Fault?) -> () in
+//                print("Server reported an error: \(fault)")
+//                error((fault?.message)!)
+//        })
     }
     
     func handleOpen(open url: URL, completion: @escaping () -> (), error: @escaping () -> ()) {
         
-        print("handleOpen: url scheme = \(url.scheme)")
-
-        let user = backendless.userService.handleOpen(url)
-        
-        if user != nil {
-            print("handleOpen: user = \(user)")
-            self.cacheLoginStatus()
-            completion()
-        } else {
-            error()
-        }
+//        print("handleOpen: url scheme = \(String(describing: url.scheme))")
+//
+//        let user = backendless.userService.handleOpen(url)
+//
+//        if user != nil {
+//            print("handleOpen: user = \(user)")
+//            self.cacheLoginStatus()
+//            completion()
+//        } else {
+//            error()
+//        }
     }
     
     func logoutUser(completion: @escaping () -> (), error: @escaping (String) -> ()) {
@@ -208,14 +206,14 @@ class BackendlessManager {
             
             // If they are currently logged in - go ahead and log them out!
             
-            backendless.userService.logout( { (user: Any!) -> Void in
+             backendless.userService.logout( {
                     print("User logged out!")
                     self.cacheLoginStatus()
                     completion()
                 },
                                             
                 error: { (fault: Fault?) -> Void in
-                    print("User failed to log out: \(fault)")
+                    print("User failed to log out: \(String(describing: fault))")
                     error((fault?.message)!)
                 })
             

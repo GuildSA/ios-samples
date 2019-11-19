@@ -357,14 +357,6 @@ class ViewController: UIViewController {
                     
                     print("Remove Comment: \(comment.objectId!)")
                     
-//                    var error: Fault?
-//                    let result = dataStore?.remove(comment, fault: &error)
-//                    if error == nil {
-//                        print("One Comment has been removed: \(result)")
-//                    } else {
-//                        print("Server reported an error on attempted removal: \(String(describing: error))")
-//                    }
-                    
                     self.backendless.data.remove(comment,
                                                  
                         response: { (entity: Any?) -> Void in

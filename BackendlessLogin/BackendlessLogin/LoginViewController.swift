@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         if BackendlessManager.sharedInstance.APP_ID == "<replace-with-your-app-id>" ||
-            BackendlessManager.sharedInstance.SECRET_KEY == "<replace-with-your-secret-key>" {
+            BackendlessManager.sharedInstance.API_KEY == "<replace-with-your-api-key>" {
             
             Utility.showAlert(viewController: self, title: "Backendless Error", message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in this sample's BackendlessManager class with the values from your app's settings.")
         }

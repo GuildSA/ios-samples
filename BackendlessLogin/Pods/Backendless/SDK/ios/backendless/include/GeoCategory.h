@@ -8,7 +8,7 @@
  *
  *  ********************************************************************************************************************
  *
- *  Copyright 2012 BACKENDLESS.COM. All Rights Reserved.
+ *  Copyright 2018 BACKENDLESS.COM. All Rights Reserved.
  *
  *  NOTICE: All information contained herein is, and remains the property of Backendless.com and its suppliers,
  *  if any. The intellectual and technical concepts contained herein are proprietary to Backendless.com and its
@@ -23,7 +23,7 @@
 
 @interface GeoCategory : NSObject
 
-@property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) NSString *objectId;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSNumber *size;
 

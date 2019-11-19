@@ -79,7 +79,7 @@ class ViewController: UIViewController {
                 print("Message has been sent: \(status!)")
             },
             error: { (fault : Fault?) -> () in
-                print("Server reported an error: \(fault)")
+                print("Server reported an error: \(String(describing: fault))")
         })
     }
 }
@@ -117,13 +117,13 @@ extension ViewController: IBEPushReceiver {
         if fault == nil {
             print("didRegisterForRemoteNotificationsWithDeviceId: \(deviceId!)")
         } else {
-            print("didRegisterForRemoteNotificationsWithDeviceId: \(fault)")
+            print("didRegisterForRemoteNotificationsWithDeviceId: \(String(describing: fault))")
         }
     }
     
     public func didFailToRegisterForRemoteNotificationsWithError(_ err: Error!) {
         
-        print("didFailToRegisterForRemoteNotificationsWithError: \(err)")
+        print("didFailToRegisterForRemoteNotificationsWithError: \(String(describing: err))")
     }
 }
 

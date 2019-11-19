@@ -8,7 +8,7 @@
  *
  *  ********************************************************************************************************************
  *
- *  Copyright 2012 BACKENDLESS.COM. All Rights Reserved.
+ *  Copyright 2018 BACKENDLESS.COM. All Rights Reserved.
  *
  *  NOTICE: All information contained herein is, and remains the property of Backendless.com and its suppliers,
  *  if any. The intellectual and technical concepts contained herein are proprietary to Backendless.com and its
@@ -32,10 +32,11 @@ typedef enum {
 @property (strong, nonatomic) NSString *messageId;
 @property (strong, nonatomic) NSNumber *status;
 @property (strong, nonatomic) NSString *errorMessage;
+
 -(id)initWithId:(NSString *)messageId;
 -(id)initWithId:(NSString *)messageId status:(PublishStatusEnum)status;
 -(id)initWithId:(NSString *)messageId status:(PublishStatusEnum)status errorMessage:(NSString *)errorMessage;
-
 -(PublishStatusEnum)valStatus;
 -(void)status:(PublishStatusEnum)status;
+
 @end

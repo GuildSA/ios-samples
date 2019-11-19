@@ -11,23 +11,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let VERSION_NUM = "v1"
-    
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Replace these with YOUR App's ID and Secret Key from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let APP_ID = "<replace-with-your-app-id>"
-    let SECRET_KEY = "<replace-with-your-secret-key>"
+    let API_KEY = "<replace-with-your-api-key>"
     
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if APP_ID != "<replace-with-your-app-id>" && SECRET_KEY != "<replace-with-your-secret-key>" {
+        if APP_ID != "<replace-with-your-app-id>" && API_KEY != "<replace-with-your-api-key>" {
             
             let backendless = Backendless.sharedInstance()
-            backendless?.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+            backendless?.initApp(APP_ID, apiKey:API_KEY)
             backendless?.userService.setStayLoggedIn(true)
         }
         

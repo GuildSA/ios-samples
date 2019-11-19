@@ -8,7 +8,7 @@
  *
  *  ********************************************************************************************************************
  *
- *  Copyright 2012 BACKENDLESS.COM. All Rights Reserved.
+ *  Copyright 2018 BACKENDLESS.COM. All Rights Reserved.
  *
  *  NOTICE: All information contained herein is, and remains the property of Backendless.com and its suppliers,
  *  if any. The intellectual and technical concepts contained herein are proprietary to Backendless.com and its
@@ -20,7 +20,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
 @class Fault;
 @protocol IResponder;
 
@@ -29,11 +28,7 @@
 @property (strong, nonatomic) NSString *fileURL;
 
 +(id)file:(NSString *)url;
+-(NSNumber *)remove;
+-(void)remove:(void(^)(NSNumber *))responseBlock error:(void(^)(Fault *))errorBlock;
 
-// sync
--(void)remove;
--(void)remove:(Fault **)fault;
-// async
--(void)removeWithResponder:(id <IResponder>)responder;
--(void)remove:(void(^)(id))responseBlock error:(void(^)(id))errorBlock;
 @end

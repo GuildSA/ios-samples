@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         thumbnailSpinner.isHidden = true
         
         let isValidUser = backendless.userService.isValidUserToken()
-        if isValidUser != nil && isValidUser != 0 {
+        if isValidUser {
             uploadBtn.isEnabled = true
         }
     }
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        if appDelegate.APP_ID == "<replace-with-your-app-id>" || appDelegate.SECRET_KEY == "<replace-with-your-secret-key>" {
+        if appDelegate.APP_ID == "<replace-with-your-app-id>" || appDelegate.API_KEY == "<replace-with-your-api-key>" {
             
             let alertController = UIAlertController(title: "Backendless Error",
                                                     message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in the AppDelegate with the values from your app's settings.",
@@ -82,17 +82,17 @@ class ViewController: UIViewController {
         // user name and password for registering a new user. For testing purposes, we will simply
         // register a test user using a hard coded user name and password.
         let user: BackendlessUser = BackendlessUser()
-        user.email = EMAIL as NSString!
-        user.password = PASSWORD as NSString!
+        user.email = EMAIL as NSString
+        user.password = PASSWORD as NSString
         
-        backendless.userService.registering( user,
+        backendless.userService.register( user,
             
             response: { (user: BackendlessUser?) -> Void in
-                print("User was registered: \(user?.objectId)")
+                print("User was registered: \(String(describing: user?.objectId))")
             },
             
             error: { (fault: Fault?) -> Void in
-                print("User failed to register: \(fault)")
+                print("User failed to register: \(String(describing: fault))")
             }
         )
     }
@@ -107,10 +107,10 @@ class ViewController: UIViewController {
         // ask them to login again.
         let isValidUser = backendless.userService.isValidUserToken()
         
-        if isValidUser != nil && isValidUser != 0 {
+        if isValidUser {
             
             // The user has a valid user token so we know for sure the user is already logged!
-            print("User is already logged: \(isValidUser?.boolValue)");
+            print("User is already logged: \(String(describing: isValidUser))");
             
         } else {
             
@@ -128,13 +128,13 @@ class ViewController: UIViewController {
             backendless.userService.login( EMAIL, password: PASSWORD,
                 
                 response: { (user: BackendlessUser?) -> Void in
-                    print("User logged in: \(user!.objectId)")
+                    print("User logged in: \(String(describing: user!.objectId))")
                     
                     self.uploadBtn.isEnabled = true
                 },
                 
                 error: { (fault: Fault?) -> Void in
-                    print("User failed to login: \(fault)")
+                    print("User failed to login: \(String(describing: fault))")
                 }
             )
         }
@@ -186,7 +186,7 @@ class ViewController: UIViewController {
                 }
                 
             } else {
-                print("NSURLSession Error: \(error)")
+                print("NSURLSession Error: \(String(describing: error))")
             }
         })
         
@@ -225,7 +225,7 @@ class ViewController: UIViewController {
                 }
                 
             } else {
-                print("NSURLSession Error: \(error)")
+                print("NSURLSession Error: \(String(describing: error))")
             }
         })
         
@@ -241,16 +241,16 @@ class ViewController: UIViewController {
         // First, check if the user is actually logged in.
         let isValidUser = backendless.userService.isValidUserToken()
         
-        if isValidUser != nil && isValidUser != 0 {
+        if isValidUser {
             
             // If they are currently logged in - go ahead and log them out!
             
-            backendless.userService.logout( { (user: Any!) -> Void in
+            backendless.userService.logout( {
                     print("User logged out!")
                 },
                                            
                 error: { (fault: Fault?) -> Void in
-                    print("User failed to log out: \(fault)")
+                    print("User failed to log out: \(String(describing: fault))")
                 }
             )
             
@@ -258,7 +258,7 @@ class ViewController: UIViewController {
             
             // If we were unable to find a valid user token, the user is already logged out.
             
-            print("User is already logged out: \(isValidUser?.boolValue)");
+            print("User is already logged out: \(String(describing: isValidUser))");
         }
     }
 }
@@ -270,13 +270,16 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
         uploadSpinner.isHidden = false
         uploadSpinner.startAnimating()
         
         // The info dictionary contains multiple representations of the image, and this uses the original.
-        let fullSizeImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let fullSizeImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
 
         let uuid = NSUUID().uuidString
         //print("\(uuid)")
@@ -295,14 +298,14 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         let thumbnailImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        let thumbnailData = UIImageJPEGRepresentation(thumbnailImage!, 1.0);
+        let thumbnailData = thumbnailImage!.jpegData(compressionQuality: 1.0);
         
-        backendless.fileService.upload(
+        backendless.fileService.uploadFile(
             "photos/\(backendless.userService.currentUser.objectId!)/thumb_\(uuid).jpg",
             content: thumbnailData,
-            overwrite:true,
+            overwriteIfExist:true,
             response: { (uploadedFile: BackendlessFile?) -> Void in
-                print("Thumbnail image uploaded: \(uploadedFile?.fileURL)")
+                print("Thumbnail image uploaded: \(String(describing: uploadedFile?.fileURL))")
 
                 self.thumbnailUrl = (uploadedFile?.fileURL)!
                 
@@ -310,21 +313,21 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             },
             
             error: { (fault: Fault?) -> Void in
-                print("Server reported an error: \(fault)")
+                print("Server reported an error: \(String(describing: fault))")
         })
 
         //
         // Upload full size image
         //
         
-        let fullSizeData = UIImageJPEGRepresentation(fullSizeImage, 0.2);
+        let fullSizeData = fullSizeImage.jpegData(compressionQuality: 0.2);
         
-        backendless.fileService.upload(
+        backendless.fileService.uploadFile(
             "photos/\(backendless.userService.currentUser.objectId!)/full_\(uuid).jpg",
             content: fullSizeData,
-            overwrite:true,
+            overwriteIfExist:true,
             response: { (uploadedFile: BackendlessFile?) -> Void in
-                print("Full size image uploaded to: \(uploadedFile?.fileURL)")
+                print("Full size image uploaded to: \(String(describing: uploadedFile?.fileURL))")
                 
                 self.fullSizeUrl = (uploadedFile?.fileURL)!
                 
@@ -335,7 +338,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             },
             
             error: { (fault: Fault?) -> Void in
-                print("Server reported an error: \(fault)")
+                print("Server reported an error: \(String(describing: fault))")
         })
         
         // Dismiss the picker.
@@ -343,3 +346,13 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

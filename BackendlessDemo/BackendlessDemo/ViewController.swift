@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // Don't forget to replace the App's ID and Secret Key in AppDelegate with YOUR own
+    // Don't forget to replace the App's ID and API Key in AppDelegate with YOUR own
     // from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         if appDelegate.APP_ID == "<replace-with-your-app-id>" || appDelegate.API_KEY == "<replace-with-your-api-key>" {
             
             let alertController = UIAlertController(title: "Backendless Error",
-                                                    message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in the AppDelegate with the values from your app's settings.",
+                                                    message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and API_KEY in the AppDelegate with the values from your app's settings.",
                                                     preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

@@ -12,11 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // Replace these with YOUR App's ID and Secret Key from YOUR Backendless Dashboard!
+    // Replace these with YOUR App's ID and API Key from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let APP_ID = "<replace-with-your-app-id>"
-    let API_KEY = "<replace-with-your-secret-key>"
-
+    let API_KEY = "<replace-with-your-api-key>"
+    
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -34,14 +34,14 @@ class ViewControllerSWIFT: UIViewController {
         
         let personObjc1 = PersonOBJC()
         
-        print("name = \(personObjc1?.name)")
-        print("age = \(personObjc1?.age)")
+        print("name = \(String(describing: personObjc1?.name))")
+        print("age = \(String(describing: personObjc1?.age))")
         
         
         let personObjc2 = PersonOBJC(name: "Steve Jobs", andAge: 56)
         
-        print("name = \(personObjc2?.name)")
-        print("age = \(personObjc2?.age)")
+        print("name = \(String(describing: personObjc2?.name))")
+        print("age = \(String(describing: personObjc2?.age))")
         
         //
         // Test Swift class...

@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objcMembers
 class PersonSWIFT : NSObject {
 
     var name: String

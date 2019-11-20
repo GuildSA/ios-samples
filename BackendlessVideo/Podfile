@@ -6,6 +6,6 @@ target 'BackendlessVideo' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Backendless', '5.5.0'
+  pod 'Backendless', '5.6.0'
 
 end

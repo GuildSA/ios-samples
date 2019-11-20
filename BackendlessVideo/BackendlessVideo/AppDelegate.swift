@@ -15,10 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Replace these with YOUR App's ID and Secret Key from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let APP_ID = "<replace-with-your-app-id>"
-    let SECRET_KEY = "<replace-with-your-secret-key>"
+    let API_KEY = "<replace-with-your-api-key>"
 
-    let VERSION_NUM = "v1"
-    
     let EMAIL = "test@gmail.com" // Doubles as User Name
     let PASSWORD = "password"
     
@@ -29,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
-        if APP_ID != "<replace-with-your-app-id>" && SECRET_KEY != "<replace-with-your-secret-key>" {
+        if APP_ID != "<replace-with-your-app-id>" && API_KEY != "<replace-with-your-api-key>" {
             
-            backendless?.initApp(APP_ID, secret:SECRET_KEY, version:VERSION_NUM)
+            backendless?.initApp(APP_ID, apiKey:API_KEY)
             backendless?.userService.setStayLoggedIn(true)
             backendless?.setThrowException(false)
              
@@ -43,10 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Next, check if the user is already logged in. If they are - do nothing else!
             let isValidUser = backendless?.userService.isValidUserToken()
             
-            if isValidUser != nil && isValidUser != 0 {
+            if isValidUser != nil {
                 
                 // The user has a valid user token so we know for sure the user is already logged!
-                print("User is already logged: \(String(describing: isValidUser?.boolValue))");
+                print("User is already logged: \(String(describing: isValidUser))");
                 
             } else {
                 
@@ -57,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 user.email = EMAIL as NSString
                 user.password = PASSWORD as NSString
                 
-                backendless?.userService.registering( user,
+                backendless?.userService.register( user,
                                                      
                 response: { (user: BackendlessUser?) -> Void in
                     

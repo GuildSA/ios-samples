@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // Don't forget to replace the App's ID and Secret Key in AppDelegate with YOUR own
+    // Don't forget to replace the App's ID and API Key in AppDelegate with YOUR own
     // from YOUR Backendless Dashboard!
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         if appDelegate.APP_ID == "<replace-with-your-app-id>" || appDelegate.API_KEY == "<replace-with-your-api-key>" {
             
             let alertController = UIAlertController(title: "Backendless Error",
-                                                    message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and SECRET_KEY in the AppDelegate with the values from your app's settings.",
+                                                    message: "To use this sample you must register with Backendless, create an app, and replace the APP_ID and API_KEY in the AppDelegate with the values from your app's settings.",
                                                     preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -271,8 +271,9 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         
         uploadSpinner.isHidden = false
@@ -307,9 +308,10 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             response: { (uploadedFile: BackendlessFile?) -> Void in
                 print("Thumbnail image uploaded: \(String(describing: uploadedFile?.fileURL))")
 
-                self.thumbnailUrl = (uploadedFile?.fileURL)!
-                
-                self.downloadThumbnailBtn.isEnabled = true
+                DispatchQueue.main.async {
+                    self.thumbnailUrl = (uploadedFile?.fileURL)!
+                    self.downloadThumbnailBtn.isEnabled = true
+                }
             },
             
             error: { (fault: Fault?) -> Void in
@@ -329,12 +331,14 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             response: { (uploadedFile: BackendlessFile?) -> Void in
                 print("Full size image uploaded to: \(String(describing: uploadedFile?.fileURL))")
                 
-                self.fullSizeUrl = (uploadedFile?.fileURL)!
-                
-                self.downloadFullSizeBtn.isEnabled = true
-                
-                self.uploadSpinner.stopAnimating()
-                self.uploadSpinner.isHidden = true
+                DispatchQueue.main.async {
+                    self.fullSizeUrl = (uploadedFile?.fileURL)!
+                    
+                    self.downloadFullSizeBtn.isEnabled = true
+                    
+                    self.uploadSpinner.stopAnimating()
+                    self.uploadSpinner.isHidden = true
+                }
             },
             
             error: { (fault: Fault?) -> Void in
